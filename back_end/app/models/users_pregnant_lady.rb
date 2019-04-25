@@ -1,3 +1,4 @@
 class UsersPregnantLady < ApplicationRecord
-  has_many :water_intake, :food_entries, :exercise_completions, :weigh_ins
+  has_many :water_entries, :food_entries, :exercise_completions, :weight_entries
+  validates :email, uniqueness: true
 end
