@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import water_icon from './docs/water_icon.png';
+import random_chart from './docs/random_chart.png'
+import { Button } from 'reactstrap';
+import './component.css'
 
-class Water extends Component{
+class Water extends Component {
 
   render(){
     return(
-      <div className="Water-header">
+      <div className="component" id="water">
+        <img src={water_icon} class="icon" alt="water" />
         <h2>Water</h2>
-        
-      </div>
+        <img src={random_chart} alt="random-chart" />
+        <Button>Add water</Button>
+      </div>          
     )
   }
 }

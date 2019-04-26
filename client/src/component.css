@@ -1,0 +1,19 @@
+.component {
+
+}
+
+.icon {
+    width: 20em;
+}
+
+#water {
+    background-color: lightblue;
+}
+
+#food {
+    background-color: #ff694f;
+}
+
+#exercise {
+    background-color: #ffee75;
+}
