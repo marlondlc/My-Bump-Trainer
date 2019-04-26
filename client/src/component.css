@@ -2,6 +2,11 @@
 
 }
 
+.content {
+    width: 80em;
+    display: flex;
+}
+
 .icon {
     width: 20em;
 }

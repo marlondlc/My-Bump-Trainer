@@ -9,9 +9,11 @@ class Water extends Component {
   render(){
     return(
       <div className="component" id="water">
-        <img src={water_icon} class="icon" alt="water" />
-        <h2>Water</h2>
-        <img src={random_chart} alt="random-chart" />
+        <div className="content">
+          <img src={water_icon} class="icon" alt="water" />
+          <h2>Water</h2>
+          <img src={random_chart} alt="random-chart" />
+        </div>
         <Button>Add water</Button>
       </div>          
     )
