@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from './Navbar.jsx';
 import Water from './water.jsx';
+import NavFooter from './NavFooter.jsx'
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Water />
+        <NavFooter />
       </div>
     );
   }
