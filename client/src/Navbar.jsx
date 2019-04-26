@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Navbar.css'
-import User from './User.jsx';
+// import User from './User.jsx';
 
 
 
