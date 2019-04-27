@@ -27,6 +27,7 @@ FoodType.connection.execute('ALTER SEQUENCE food_types_id_seq RESTART WITH 1')
 FoodEntry.connection.execute('ALTER SEQUENCE food_entries_id_seq RESTART WITH 1')
 FoodOption.connection.execute('ALTER SEQUENCE food_options_id_seq RESTART WITH 1')
 ExerciseType.connection.execute('ALTER SEQUENCE exercise_types_id_seq RESTART WITH 1')
+ExerciseOption.connection.execute('ALTER SEQUENCE exercise_options_id_seq RESTART WITH 1')
 ExerciseEntry.connection.execute('ALTER SEQUENCE exercise_entries_id_seq RESTART WITH 1')
 
 
@@ -124,22 +125,28 @@ p " ---------------------------------------------------------- "
 5.times do | index |
   ExerciseOption.create(
     name: "cardio",
-    intensity: "high"
+    intensity: "high",
+    exercise_type_id: index + 1
   )
 end
 
 p "Created #{ExerciseOption.count} Exercise Option"
 p " ---------------------------------------------------------- "
 
+# ExerciseEntry.create!(
+#     start_time: '2019-04-27 21:05:11.53454',
+#     end_time: '2019-04-27 21:05:11.53454',
+#     user_id: 1,
+#     exercise_option_id: 1
+# )
+
 5.times do | index |
 ExerciseEntry.create(
   start_time: Faker::Time.between(2.days.ago, Date.today, :afternoon),
-  end_time: Faker::Time.between(2.days.ago, Date.today, :evening)
+  end_time: Faker::Time.between(2.days.ago, Date.today, :evening),
+  user_id: index + 1,
+  exercise_option_id: index + 1
 )
 end
 
 p "Created #{ExerciseEntry.count} Exercise Entry"
-
-
-
-

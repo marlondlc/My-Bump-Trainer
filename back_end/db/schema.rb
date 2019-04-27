@@ -18,21 +18,29 @@ ActiveRecord::Schema.define(version: 2019_04_27_151846) do
   create_table "exercise_entries", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "user_id"
+    t.bigint "exercise_option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exercise_option_id"], name: "index_exercise_entries_on_exercise_option_id"
+    t.index ["user_id"], name: "index_exercise_entries_on_user_id"
   end
 
   create_table "exercise_options", force: :cascade do |t|
     t.string "name"
     t.string "intensity"
+    t.bigint "exercise_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exercise_type_id"], name: "index_exercise_options_on_exercise_type_id"
   end
 
   create_table "exercise_types", force: :cascade do |t|
     t.string "name"
+    t.bigint "exercise_option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exercise_option_id"], name: "index_exercise_types_on_exercise_option_id"
   end
 
   create_table "food_entries", force: :cascade do |t|
