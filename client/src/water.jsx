@@ -10,20 +10,19 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
-class Water extends Component {
-
-  render(){
-    return(
-      <div className="component" id="water">
-        <div className="content">
-          <img src={water_icon} class="icon" alt="water" />
-          <h2>Water</h2>
-          <ReactFC {...chartConfigs} />
-        </div>
-        <Button>Add water</Button>
-      </div>          
-    )
+class Water extends Component { 
+    render(){
+      return(
+        <div className="component" id="water">
+          <div className="content">
+            <img src={water_icon} class="icon" alt="water" />
+            <h2>Water</h2>
+            <ReactFC data={this.props.waterEntries} {...chartConfigs} />
+          </div>
+          <Button>Add water</Button>
+        </div>          
+      )
+    }
   }
-}
 
 export default Water;

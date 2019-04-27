@@ -1,3 +1,9 @@
+// const dataList = this.props.waterEntries.map(waterEntry => ( 
+//     label={waterEntry.drunk_at}
+//     value={waterEntry.volume} 
+// ));
+
+
 const myDataSource = {
   "chart": {
       "caption": "How much water you've drank today",
