@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Water from './water';
+// NAV BAR REACT IMPORTS ----------------
+
 // import NavFooter from './NavFooter'
 import Navbar from './components/toolbar/Navbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/Backdrop/Backdrop';
+
+// REACT ROUTER IMPORTS ----------------
+import { BrowserRouter, Route, Switch} from "react-router-dom"
+import Navigation from "./components/Navigation"
+
+// ROUTE COMPONENTS HERE : ----------------
+import Homepage from "./components/Home"
+import WaterForm from "./components/FormsPages/WaterForm"
+import FoodForm from "./components/FormsPages/FoodForm"
+import ExerciseForm from "./components/FormsPages/ExerciseForm"
+import Error from "./components/Error"
 
 class App extends Component {
   state = {
@@ -30,15 +42,27 @@ class App extends Component {
     }
 
     return (
-      <div className="app" style={{height: '100%'}}>
+      <div className="navbar-div" style={{height: '100%'}}>
         <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer show={this.state.sideDrawerOpen} />
         {backdrop}
         <main style={{marginTop: '64px'}}>
-        <p>this is the page content</p>
         </main>
-        <Water />
+        <BrowserRouter>
+          <div>
+            <Navigation />
+          <Switch>
+          <Route path="/" component={Homepage} exact />
+          <Route path="/waterform" component={WaterForm} exact/>
+          <Route path="/exerciseform" component={ExerciseForm} exact/>
+          <Route path="/foodform" component={FoodForm} exact/>
+          <Route component={Error} />
+          </Switch>
+          </div>
+        </BrowserRouter>
+        
       </div>
+
     );
   }
 }

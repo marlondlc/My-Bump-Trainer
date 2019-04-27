@@ -50,13 +50,13 @@
     color: yellowgreen;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .navbar-navigation-items {
         display: none;
     }
 }
 
-/* @media (min-width: 769px) {
+@media (min-width: 769px) {
     .navbar__toggle-button {
         display: none;
     }
