@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import food_icon from './docs/food_icon.png';
-import random_chart from './docs/random_chart.png'
 import { Button } from 'reactstrap';
-import './component.css'
+import './component.css';
+import chartConfigs from "./charts/food.jsx";
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
+import ReactFC from 'react-fusioncharts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 class Food extends Component {
 
   render(){
     return(
       <div className="component" id="food">
-        <img src={food_icon} class="icon" alt="food" />
-        <h2>Food</h2>
-        <img src={random_chart} alt="random-chart" />
+        <div className="content">
+          <img src={food_icon} class="icon" alt="food" />
+          <h2>Food</h2>
+          <ReactFC {...chartConfigs} />
+        </div>
         <Button>Add Food</Button>
       </div>
     )
@@ -19,3 +27,5 @@ class Food extends Component {
 }
 
 export default Food;
+
+

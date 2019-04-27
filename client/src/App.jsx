@@ -8,6 +8,8 @@ import Exercise from "./exercise";
 // import AddFood from "./forms/addFood";
 // import AddExercise from "./forms/addExercise";
 
+
+
 class App extends Component {
   render() {
     return (
@@ -16,6 +18,7 @@ class App extends Component {
         <Water />
         <Food />
         <Exercise />
+        
       </div>
     );
   }
