@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Navbar.css'
@@ -6,7 +8,7 @@ import { Navbar, Container } from 'react-bootstrap'
 
 
 
-class NavBar extends Component{
+class Nav extends Component{
 
     render(){
         return(
@@ -26,4 +28,4 @@ class NavBar extends Component{
       }
 }
 
-export default NavBar;
+export default Nav;
