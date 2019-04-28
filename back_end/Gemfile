@@ -19,6 +19,12 @@ gem 'puma', '~> 3.11'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+#First, we’ll install the responders gem, which will let us apply a respond_to rule to all the actions in our controllers, making the code DRY-er.
+gem 'responders'
+
+#Use FAKER for testing
+gem 'faker', '~> 1.6', '>= 1.6.6'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

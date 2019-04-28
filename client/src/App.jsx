@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+<<<<<<< HEAD
 
 // NAV BAR REACT IMPORTS ----------------
 // import NavFooter from './NavFooter'
@@ -21,6 +22,15 @@ import FoodForm from "./components/FormsPages/FoodForm"
 import ExerciseForm from "./components/FormsPages/ExerciseForm"
 import Error from "./components/Error"
 
+=======
+import NavBar from './Navbar.jsx';
+import Water from './water.jsx';
+import Food from './food.jsx';
+import Exercise from "./exercise";
+// import AddWater from "./forms/addWater";
+// import AddFood from "./forms/addFood";
+// import AddExercise from "./forms/addExercise";
+>>>>>>> feature_controller
 
 class App extends Component {
   state = {
@@ -45,6 +55,7 @@ class App extends Component {
     }
 
     return (
+<<<<<<< HEAD
       <div className="navbar-div" style={{height: '100%'}}>
         <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer show={this.state.sideDrawerOpen} />
@@ -63,6 +74,13 @@ class App extends Component {
           </Switch>
           </div>
         </BrowserRouter>
+=======
+      <div>
+        <NavBar />
+        <Water />
+        <Food />
+        <Exercise />
+>>>>>>> feature_controller
       </div>
 
     );
