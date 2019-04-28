@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "^4.3.1",
     "mdbreact": "^4.13.0",
     "react": "^16.8.6",
@@ -11,9 +10,8 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-=======
->>>>>>> feature_controller
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "reactstrap": "^8.0.0"
   },
   "devDependencies": {
     "chart.js": "^2.8.0",
