@@ -6,6 +6,7 @@ import "./App.css";
 import Navbar from './components/toolbar/Navbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/Backdrop/Backdrop';
+// import ControlledTabs from './components/toolbar/ControlledTabs';
 
 
 // REACT ROUTER IMPORTS ----------------
@@ -62,7 +63,6 @@ class App extends Component {
           </Switch>
           </div>
         </BrowserRouter>
-        
       </div>
 
     );
