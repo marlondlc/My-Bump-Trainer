@@ -1,4 +1,4 @@
 class FoodEntry < ApplicationRecord
-  belongs_to :users_pregnant_ladies
-  belongs_to :food_options
+  belongs_to :user
+  belongs_to :food_option
 end
