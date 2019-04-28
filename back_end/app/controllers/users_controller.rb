@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  #7 actions available
+
   def index
 
   end
