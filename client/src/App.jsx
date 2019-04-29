@@ -26,7 +26,7 @@ import Error from "./components/Error"
 import AddFood from "./forms/addFood"
 import AddWater from "./forms/addWater"
 import AddExercise from "./forms/addExercise"
-
+import Water from "./water"
 
 
 class App extends Component {
@@ -58,6 +58,7 @@ class App extends Component {
         <SideDrawer show={this.state.sideDrawerOpen} />
         {backdrop}
         <main style={{marginTop: '64px'}}>
+        <Water />
         </main>
         <BrowserRouter>
           <div>
