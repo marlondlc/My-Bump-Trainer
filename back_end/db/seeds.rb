@@ -67,8 +67,9 @@ p " ---------------------------------------------------------- "
 5.times do | index |
   WaterEntry.create(
     volume: 2,
-    drunk_at: Faker::Time.backward(14, :evening),
-    user_id: Faker::Number.between(1, 5)
+    drunk_at: Faker::Time.backward(index * 2, :evening),
+    # user_id: Faker::Number.between(1, 5)
+    user_id: 1
   )
 end
 

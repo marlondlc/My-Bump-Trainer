@@ -21,4 +21,16 @@ class App extends Component {
   }
 }
 
+componentDidMount() {
+  axios
+    .get("http://localhost:3001/api/v1/resources.json")
+    .then(response => {
+      console.log(response);
+      this.setState({
+        resources: response.data
+      });
+    })
+    .catch(error => console.log(error));
+}
+
 export default App;
