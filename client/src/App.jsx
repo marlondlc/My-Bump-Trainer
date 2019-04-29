@@ -1,28 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from './Navbar.jsx';
-import Water from './water.jsx';
-import Food from './food.jsx';
-import Exercise from "./exercise";
+import FoodCard from './food.jsx';
+import Exercise from './exercise';
+import WaterCard from './watercard.jsx';
+// import MyComponent from './test'
 require('typeface-roboto')
-import WaterCard from "./test.jsx"
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-});
 
 class App extends Component {
     constructor(props) {
@@ -66,44 +49,84 @@ class App extends Component {
                   "label": "10pm",
                   "value": "2200",
                 }
-            ]
+            ],
+          foodEntries: [
+            {
+                "label": "6am",
+                "value": "0"
+            },      
+            {
+                "label": "8am",
+                "value": "1000"
+            },  
+            {
+                "label": "10am",
+                "value": "1000"
+            },
+            {
+                "label": "12pm",
+                "value": "3000"
+              },
+              {
+                "label": "2pm",
+                "value": "3000"
+              },
+              {
+                "label": "4pm",
+                "value": "3050"
+              },
+              {
+                "label": "6pm",
+                "value": "3050"
+              },
+              {
+                "label": "8pm",
+                "value": "7050"
+              },
+              {
+                "label": "10pm",
+                "value": "8050",
+              }
+          ], 
+          foodPyramid: [
+            {
+              label: "Food and drinks high in fat, sugar and salt",
+              value: "1"
+            },
+            {
+              label: "Fats, spreads and oils",
+              value: "3"
+            },
+            {
+              label: "Meat, poultry, fish, eggs, beans and nuts",
+              value: "13"
+            },
+            {
+              label: "Milk, yoghurt and cheese",
+              value: "18"
+            },
+            {
+              label: "Wholemeal cereals and breads, potatoes, pasta and rice",
+              value: "25"
+            },
+            {
+              label: "Vegetables, salad and fruit",
+              value: "40"
+            }
+          ]
         }
     }
     render() {
-      const { classes } = this.props;
-      const { spacing } = this.state;
       return (
-
         <div>
-
           <NavBar />
-          <WaterCard />
-          <Water waterEntries={this.state.waterEntries} />
-          <Food waterEntries={this.state.waterEntries}/>
+          <WaterCard waterEntries={this.state.waterEntries}/>
+          <FoodCard foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
           <Exercise />
-          <Grid container className={classes.root} spacing={16}>
-          <Grid item xs={12}>
-            <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-                <Grid key="1" item>
-                  <Paper className={classes.paper}>Something</Paper>
-                </Grid>
-                <Grid key="2" item>
-                  <Paper className={classes.paper} />
-                </Grid>
-                <Grid key="3" item>
-                  <Paper className={classes.paper} />
-                </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+          {/* <MyComponent foodPyramid={this.state.foodPyramid}/> */}
         </div>
     );
   }
 }
 
-
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles) (App);
+export default App;

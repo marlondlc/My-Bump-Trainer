@@ -12,22 +12,18 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import grey from '@material-ui/core/colors/grey';
+import blue from '@material-ui/core/colors/blue';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import chartConfigs from "./charts/food.jsx";
-import foodPyramid from "./charts/foodpyramid.jsx";
+import chartConfigs from "./charts/water.jsx";
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import widgets from "fusioncharts/fusioncharts.widgets";
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
-widgets(FusionCharts);
 
 const styles = theme => ({
   card: {
@@ -51,15 +47,11 @@ const styles = theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[400],
+    backgroundColor: blue[500],
   },
-  palette: {
-    backgroundColor: red[400],
-    color: grey[50],
-  }
 });
 
-class FoodCard extends React.Component {
+class WaterCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {
@@ -68,14 +60,13 @@ class FoodCard extends React.Component {
 
   render() {
     const { classes } = this.props;
-    chartConfigs.dataSource.data = this.props.foodEntries;
-    foodPyramid.dataSource.data = this.props.foodPyramid;
+    chartConfigs.dataSource.data = this.props.waterEntries;
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label="Food" className={classes.avatar}>
-              F
+            <Avatar aria-label="Water" className={classes.avatar}>
+              W
             </Avatar>
           }
           action={
@@ -83,18 +74,18 @@ class FoodCard extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Your food"
+          title="How much water you've had to drink"
           subheader="Today"
         />
-        <ReactFC {...foodPyramid} />
+        <ReactFC {...chartConfigs} />
 
         <CardContent>
           <Typography component="p">
-            The recommended calorie consumption per day for a pregnant woman in the first trimester is 1,800.
+            The recommended water consumption per day for a pregnant woman is 10 eight ounce glasses (2.3 litres)
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes.palette} >Add food</Button>
+            <Button variant="contained" color="primary" >Add water</Button>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -114,7 +105,10 @@ class FoodCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <ReactFC {...chartConfigs} />
+            <Typography paragraph>Method:</Typography>
+            <Typography paragraph>
+              We can put some other charts down here
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>
@@ -122,8 +116,8 @@ class FoodCard extends React.Component {
   }
 }
 
-FoodCard.propTypes = {
+WaterCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FoodCard);
+export default withStyles(styles)(WaterCard);
