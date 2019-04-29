@@ -13,6 +13,9 @@ import Backdrop from './components/Backdrop/Backdrop';
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 import Navigation from "./components/Navigation"
 
+// AXIOS, FETCHING DATA FROM BACKEND -------------
+import axios from 'axios';
+
 
 // ROUTE COMPONENTS HERE : ----------------
 import Homepage from "./components/Home"
