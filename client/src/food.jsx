@@ -16,7 +16,7 @@ class Food extends Component {
     return(
       <div className="component" id="food">
         <div className="content">
-          <img src={food_icon} class="icon" alt="food" />
+          <img src={food_icon} className="icon" alt="food" />
           <h2>Food</h2>
           <ReactFC {...chartConfigs} />
         </div>

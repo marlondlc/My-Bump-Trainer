@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import water_icon from './docs/water_icon.png';
-import { Button } from 'reactstrap';
+import Button from '@material-ui/core/Button';
 import './component.css';
 import chartConfigs from "./charts/water.jsx";
 import FusionCharts from 'fusioncharts';
@@ -12,17 +12,18 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 class Water extends Component { 
     render(){
+      chartConfigs.dataSource.data = this.props.waterEntries;
       return(
         <div className="component" id="water">
           <div className="content">
-            <img src={water_icon} class="icon" alt="water" />
+            <img src={water_icon} className="icon" alt="water" />
             <h2>Water</h2>
-            <ReactFC data={this.props.waterEntries} {...chartConfigs} />
+            <ReactFC {...chartConfigs} />
           </div>
           <Button>Add water</Button>
         </div>          
       )
     }
-  }
+}
 
 export default Water;

@@ -9,7 +9,7 @@ class Exercise extends Component {
   render(){
     return(
       <div className="component" id="exercise">
-        <img src={exercise_icon} class="icon" alt="exercise" />
+        <img src={exercise_icon} className="icon" alt="exercise" />
         <h2>Exercise</h2>
         <img src={random_chart} alt="random-chart" />
         <Button>Add Exercise</Button>
