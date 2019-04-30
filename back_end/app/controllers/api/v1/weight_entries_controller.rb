@@ -1,29 +1,28 @@
 class WeightEntriesController < ApplicationController
 
   def index
-    @Weight_entries = WeightEntry.all.user(created_at: :desc)
-  end
+    @weight =  current_user.water_entries
+    render json: @weight
 
-  def show
-    #user = User.find(params:[:id]) remember sessions!
-    respond_to do |format|
-      format.json
-       render :json => @user.to_json
-     end
-  end
-
-  def new
   end
 
   def create
+    # have a look at how water entry was created (this was replicated rfom there)
+    @weight_entry = User.find(1).weight_entries.create(
+      weight: params[:weight],
+      date: params[:date]
+    )
   end
 
   def edit
   end
 
-  def update
-  end
-
   def destroy
   end
+
+  def day
+    @daily = current_user.weight_entries.daily_entries
+    render json: @daily
+  end
+
 end
