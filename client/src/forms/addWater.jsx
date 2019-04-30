@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
-
+import DateTime from 'react-datetime';
 
 export default class AddWater extends React.Component {
   constructor() {
@@ -9,6 +9,7 @@ export default class AddWater extends React.Component {
   }
   state = {
     volume: 440,
+    drunk_at: ""
   }
 
 
@@ -19,8 +20,10 @@ export default class AddWater extends React.Component {
 // Adding a onSubmit even will cover UX: enter + btn click to input form
   handleSubmit = (event) => {
     event.preventDefault();
+    let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
     const data = {
-      volume: this.state.volume
+      volume: this.state.volume,
+      drunk_at: momentpresent
     }
     // const waterData = new FormData();
     axios({
@@ -52,7 +55,8 @@ export default class AddWater extends React.Component {
           <Input 
             type="textarea" 
             name="volume" 
-            id="exampleText" 
+            id="exampleText"
+            placeholder="quantity"
             value={this.state.volume}
             onChange={this.handleChange}
           />
@@ -63,19 +67,11 @@ export default class AddWater extends React.Component {
           <Label for="exampleDate">Date</Label>
           <Input
             type="date"
-            name="date"
+            name="drunk_at"
             id="exampleDate"
-            placeholder="date placeholder"
-          />
-        </FormGroup>
-        <FormGroup>
-          {/* If this is blank then submitted date should be now */}
-          <Label for="exampleTime">Time</Label>
-          <Input
-            type="time"
-            name="time"
-            id="exampleTime"
-            placeholder="time placeholder"
+            placeholder="Date (empty if now)"
+            value={this.state.drunk_at}
+            onchange={this.handleChange}
           />
         </FormGroup>
         <Button type="submit">Add water</Button>
