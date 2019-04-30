@@ -1,0 +1,8 @@
+.btn-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-display button {
+    margin: 5rem;
+}
