@@ -14,7 +14,7 @@ class Water extends Component {
      // <div>
       //   <span>TESTING JSON RESPONSE</span>
       //   <ul>
-      //   { this.state.water_entries.map(water => <li>{water}</li>)}
+      //   { this.state.water_entries.map(water => <li>{water_entries}</li>)}
       //   </ul>
       // </div> 
   
@@ -33,7 +33,7 @@ class Water extends Component {
     return(
       <div className="component" id="water">
         <div className="content">
-          <img src={water_icon} class="icon" alt="water" />
+          <img src={water_icon} className="icon" alt="water" />
           <h2>Water</h2>
           <img src={random_chart} alt="random-chart" />
         </div>
