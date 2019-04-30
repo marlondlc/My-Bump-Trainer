@@ -11,7 +11,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     if @user.save
       render json: @user
     else
-      render json: @user.errors
+      render json: @user.errors #can we add :notice => "You dont have the authority to view these details"
     end
   end
 
