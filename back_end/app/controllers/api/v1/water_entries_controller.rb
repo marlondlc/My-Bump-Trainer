@@ -1,7 +1,7 @@
 class Api::V1::WaterEntriesController < Api::V1::ApplicationController
 
   def index
-    @waters =  User.find(1).water_entries  #for the time being use "User.find(1)" after we fix "current_user"
+    @waters =  User.find(1).water_entries  #for the time being use "User.find(1)" after we fix issue with "current_user" use this.
     render json: @waters
   end
 
@@ -24,6 +24,13 @@ class Api::V1::WaterEntriesController < Api::V1::ApplicationController
     @water_entry.save
     render json: @water_entry
   end
+
+  def destroy
+    @water_entry = User.find(1) # ALL the user.find(1) will be current users
+    @water_entry.destroy
+    render json: water_entry #can we add ", :notice => "Your water entry has been deleted" "
+  end
+
 
   #SENDING DATA:
   def month
