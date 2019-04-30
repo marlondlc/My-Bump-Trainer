@@ -17,7 +17,6 @@ export default class AddWater extends React.Component {
     this.setState({ [event.target.name]: event.target.value})
   }
 
-// Adding a onSubmit even will cover UX: enter + btn click to input form
   handleSubmit = (event) => {
     event.preventDefault();
     let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
