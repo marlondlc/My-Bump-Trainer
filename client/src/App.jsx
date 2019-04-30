@@ -4,6 +4,7 @@ import NavBar from './Navbar.jsx';
 import FoodCard from './food.jsx';
 import Exercise from './exercise';
 import WaterCard from './watercard.jsx';
+// import GenericCard from './genericcard.jsx';
 // import MyComponent from './test'
 require('typeface-roboto')
 
@@ -11,7 +12,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          spacing: '16',  
+          timePeriod: "Today",  
           waterEntries: [
               {
                   "label": "6am",
@@ -91,27 +92,84 @@ class App extends Component {
           foodPyramid: [
             {
               label: "Food and drinks high in fat, sugar and salt",
-              value: "1"
+              value: "15"
             },
             {
               label: "Fats, spreads and oils",
-              value: "3"
+              value: "11"
             },
             {
               label: "Meat, poultry, fish, eggs, beans and nuts",
-              value: "13"
+              value: "14"
             },
             {
               label: "Milk, yoghurt and cheese",
-              value: "18"
+              value: "8"
             },
             {
               label: "Wholemeal cereals and breads, potatoes, pasta and rice",
-              value: "25"
+              value: "40"
             },
             {
               label: "Vegetables, salad and fruit",
-              value: "40"
+              value: "12"
+            }
+          ],
+          exerciseEntries: [
+            {
+                "label": "6am",
+                "value": "0"
+            },      
+            {
+                "label": "8am",
+                "value": "30"
+            },  
+            {
+                "label": "10am",
+                "value": "0"
+            },
+            {
+                "label": "12pm",
+                "value": "0"
+              },
+              {
+                "label": "2pm",
+                "value": "0"
+              },
+              {
+                "label": "4pm",
+                "value": "0"
+              },
+              {
+                "label": "6pm",
+                "value": "30"
+              },
+              {
+                "label": "8pm",
+                "value": "0"
+              },
+              {
+                "label": "10pm",
+                "value": "0",
+              }
+          ],
+          totalWater: 2.0,
+          exerciseType: [
+            {
+              label: "Aerobic",
+              value: "30"
+            },
+            {
+              label: "Strength",
+              value: "15"
+            },
+            {
+              label: "Flexibility",
+              value: "60"
+            },
+            {
+              label: "Balance",
+              value: "15"
             }
           ]
         }
@@ -120,10 +178,12 @@ class App extends Component {
       return (
         <div>
           <NavBar />
-          <WaterCard waterEntries={this.state.waterEntries}/>
-          <FoodCard foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-          <Exercise />
-          {/* <MyComponent foodPyramid={this.state.foodPyramid}/> */}
+          <div className="components">
+            <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
+            <FoodCard foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+            <Exercise exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+            {/* <MyComponent /> */}
+          </div>
         </div>
     );
   }

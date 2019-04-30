@@ -8,7 +8,7 @@ const myDataSource = {
   },
 };
 
-const chartConfigs = {
+const waterConfigs = {
     type: 'splinearea',
     width: 380,
     height: 400,
@@ -16,4 +16,4 @@ const chartConfigs = {
     dataSource: myDataSource,
 };
 
-export default chartConfigs;
+export default waterConfigs;

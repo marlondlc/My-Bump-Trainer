@@ -1,21 +1,13 @@
-import React, { Component } from 'react';
-import exercise_icon from './docs/exercise_icon.png';
-import random_chart from './docs/random_chart.png'
-import { Button } from 'reactstrap';
-import './component.css'
+import React from 'react';
+import GenericCard from './genericcard'
 
-class Exercise extends Component {
+class ExerciseCard extends React.Component {
 
-  render(){
-    return(
-      <div className="component" id="exercise">
-        <img src={exercise_icon} className="icon" alt="exercise" />
-        <h2>Exercise</h2>
-        <img src={random_chart} alt="random-chart" />
-        <Button>Add Exercise</Button>
-      </div>          
-    )
+  render() {
+    return (
+      <GenericCard title="Your exercise" type="exercise" buttonLabel="Add exercise" timePeriod={this.props.timePeriod} chart1data={this.props.exerciseType} chart2data={this.props.exerciseEntries}/>
+    );
   }
 }
 
-export default Exercise;
+export default ExerciseCard;
