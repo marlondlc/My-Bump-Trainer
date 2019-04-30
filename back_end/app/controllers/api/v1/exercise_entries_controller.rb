@@ -1,4 +1,4 @@
-class ExerciseEntriesController < ApplicationController
+class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
 
   def index
     users = User.all

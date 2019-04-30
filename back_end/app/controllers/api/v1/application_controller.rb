@@ -1,8 +1,11 @@
-class Api::V1::ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+class Api::V1::ApplicationController < ActionController::API
 
-
-
+  include ActionController::Helpers
+  helper UserHelper
+  # def current_user
+  #   @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  # end
+  # helper_method :current_user
 end
 
 
