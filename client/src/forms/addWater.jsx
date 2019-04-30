@@ -2,6 +2,14 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 export default class AddWater extends React.Component {
+  state = {
+    volume: 440,
+  }
+
+  submitForm = () => {
+    
+  }
+
   render() {
     return (
       <Form>
@@ -12,7 +20,13 @@ export default class AddWater extends React.Component {
           </FormText>
         <FormGroup>
           <Label for="exampleText">Volume of water</Label>
-          <Input type="textarea" name="volume" id="exampleText" value="440"/>
+          <Input 
+            type="textarea" 
+            name="volume" 
+            id="exampleText" 
+            value={this.state.volume}
+            onChange={(e) => this.setState({volume: e.target.value})}
+          />
         </FormGroup>
         {/* Maybe insert a toggle that is now or enter date/time */}
         <FormGroup>

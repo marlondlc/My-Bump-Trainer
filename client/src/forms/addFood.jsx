@@ -32,7 +32,7 @@ export default class AddFood extends React.Component {
         <FormGroup>
           {/* If this is blank then submitted date should be now */}
           <Label for="exampleTime">Time</Label>
-          <Input
+        <Input
             type="time"
             name="time"
             id="exampleTime"

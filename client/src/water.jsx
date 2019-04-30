@@ -7,14 +7,23 @@ import axios from 'axios';
 
 class Water extends Component {
   state = {
-    water_entries = []
+    water_entries: []
   }
+
+      // this comment will be used for the map function listing elements of water data to the chart 
+     // <div>
+      //   <span>TESTING JSON RESPONSE</span>
+      //   <ul>
+      //   { this.state.water_entries.map(water => <li>{water}</li>)}
+      //   </ul>
+      // </div> 
   
   
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/v1/waters.json`)
+    axios.get(`/api/v1/water_entries`)
       .then(res => {
         const water_entries = res.data;
+        console.log(water_entries)
         this.setState({ water_entries });
       })
       .catch(error => console.log(error));
@@ -30,12 +39,7 @@ class Water extends Component {
         </div>
         <Button>Add water</Button>
       </div>
-      <div>
-        <span>TESTING JSON RESPONSE</span>
-        <ul>
-        { this.state.water_entries.map(water => <li>{water.json}</li>)}
-        </ul>
-      </div>      
+        
     )
   }
 }
