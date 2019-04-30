@@ -1,0 +1,25 @@
+                   List of relations
+ Schema |          Name           |   Type   |  Owner  
+--------+-------------------------+----------+---------
+ public | ar_internal_metadata    | table    | vagrant
+ public | exercise_entries        | table    | vagrant
+ public | exercise_entries_id_seq | sequence | vagrant
+ public | exercise_options        | table    | vagrant
+ public | exercise_options_id_seq | sequence | vagrant
+ public | exercise_types          | table    | vagrant
+ public | exercise_types_id_seq   | sequence | vagrant
+ public | food_entries            | table    | vagrant
+ public | food_entries_id_seq     | sequence | vagrant
+ public | food_options            | table    | vagrant
+ public | food_options_id_seq     | sequence | vagrant
+ public | food_types              | table    | vagrant
+ public | food_types_id_seq       | sequence | vagrant
+ public | schema_migrations       | table    | vagrant
+ public | users                   | table    | vagrant
+ public | users_id_seq            | sequence | vagrant
+ public | water_entries           | table    | vagrant
+ public | water_entries_id_seq    | sequence | vagrant
+ public | weight_entries          | table    | vagrant
+ public | weight_entries_id_seq   | sequence | vagrant
+(20 rows)
+
