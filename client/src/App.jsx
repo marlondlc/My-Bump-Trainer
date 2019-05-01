@@ -226,6 +226,7 @@ class App extends Component {
               <Main />
             </main>
           </div>
+          {localStorage.getItem('jwt') &&
           <div>
             <div className="components">
               <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
@@ -233,6 +234,7 @@ class App extends Component {
               <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             </div>
           </div>
+          } 
         </div>  
     );
   }
