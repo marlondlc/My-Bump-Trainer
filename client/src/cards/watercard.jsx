@@ -2,7 +2,8 @@
 
 import React from 'react';
 import axios from 'axios';
-import GenericCard from './genericcard'
+import GenericCard from './genericcard';
+import Dialog from '../forms/waterdialog';
 import waterConfigs from "../charts/water.jsx";
 import waterCylinder from "../charts/watercylinder";
 import FusionCharts from 'fusioncharts';
@@ -43,9 +44,10 @@ class WaterCard extends React.Component {
     const chart1 = <ReactFC {...waterCylinder} />
     waterConfigs.dataSource.data = this.props.waterEntries;
     const chart2 = <ReactFC {...waterConfigs} />
+    const dialog = <Dialog />
 
     return (
-      <GenericCard type="water" timePeriod={this.props.timePeriod} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Dialog from '../forms/fooddialog';
 import GenericCard from './genericcard'
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
@@ -35,9 +36,10 @@ class FoodCard extends React.Component {
     const chart2 = <ReactFC {...actualfoodPyramid} />
     foodConfigs.dataSource.data = this.props.foodEntries;
     const chart3 = <ReactFC {...foodConfigs} />
-    
+    const dialog = <Dialog />
+
     return (
-      <GenericCard type="food" timePeriod={this.props.timePeriod} chart1={chart1} chart2={chart2} chart3={chart3}/>
+      <GenericCard type="food" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2} chart3={chart3}/>
     );
   }
 }
