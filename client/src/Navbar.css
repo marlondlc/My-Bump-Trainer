@@ -1,3 +1,20 @@
 .App-header {
     background-color: blue
 }
+
+
+.nav-list {
+    height: 10vh;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    list-style: none;
+  }
+  
+  .nav-links {
+    text-decoration: nones;
+    color: black;
+    font-size: 18px;
+  }

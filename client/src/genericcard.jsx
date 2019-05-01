@@ -1,4 +1,3 @@
-// Push charts down to another component?
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,23 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
-import widgets from "fusioncharts/fusioncharts.widgets";
-// import waterCylinder from "./charts/watercylinder";
-import foodPyramid from "./charts/foodpyramid.jsx";
-import actualfoodPyramid from "./charts/actualfoodpyramid.jsx";
-import foodConfigs from "./charts/food.jsx";
-import waterConfigs from "./charts/water.jsx";
-import exerciseTarget from "./charts/exercisetarget";
-import exerciseConfigs from "./charts/exercise.jsx";
 import styles from './style'
-
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
-widgets(FusionCharts);
 
 class GenericCard extends React.Component {
   state = { 
@@ -47,12 +30,6 @@ class GenericCard extends React.Component {
 
   render() {
     const { classes } = this.props;
-    
-    // Can't do it like this. Think need to pass the chart itself.  
-    foodPyramid.dataSource.data = this.props.chart1data;
-    foodConfigs.dataSource.data = this.props.chart2data;
-    exerciseTarget.dataSource.data = this.props.chart1data;
-    exerciseConfigs.dataSource.data = this.props.chart2data;
 
     return (
       <Card className={classes.card}>
@@ -85,14 +62,6 @@ class GenericCard extends React.Component {
           subheader={this.props.timePeriod}
         />
         {this.props.chart1}
-        {/* {(() => {
-          switch (this.state.type) {
-            case "water": return <ReactFC {...waterCylinder}   />;
-            case "food": return <ReactFC {...foodPyramid} />;
-            case "exercise": return <ReactFC {...exerciseTarget} />;
-            default: return "X";
-          }
-        })()} */}
         <CardContent>
           <Typography component="p">
             {(() => {
@@ -127,22 +96,7 @@ class GenericCard extends React.Component {
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {this.props.chart2}
-          {/* {(() => {
-            switch (this.state.type) {
-              case "water": return <ReactFC {...waterConfigs} />;
-              case "food": return <ReactFC {...actualfoodPyramid} />;
-              case "exercise": return <ReactFC {...exerciseConfigs} />;
-              default: return "X";
-            }
-          })()} */}
-          {(() => {
-            switch (this.state.type) {
-              case "water": return "";
-              case "food": return <ReactFC {...foodConfigs}/> ;
-              case "exercise": return "";
-              default: return "X";
-            }
-          })()}
+            {this.props.chart3}
           </CardContent>
         </Collapse>
       </Card>

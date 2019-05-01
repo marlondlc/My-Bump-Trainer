@@ -1,6 +1,33 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from './Navbar';
+
+// NAV BAR REACT IMPORTS ----------------
+// import NavFooter from './NavFooter'
+import Navbar from './components/toolbar/Navbar';
+import SideDrawer from './components/SideDrawer/SideDrawer';
+import Backdrop from './components/Backdrop/Backdrop';
+// import ControlledTabs from './components/toolbar/ControlledTabs';
+
+
+// REACT ROUTER IMPORTS ----------------
+import { BrowserRouter, Route, Switch} from "react-router-dom"
+import Navigation from "./components/Navigation"
+
+// AXIOS, FETCHING DATA FROM BACKEND -------------
+// import axios from 'axios';
+
+
+// ROUTE COMPONENTS HERE : ----------------
+import Homepage from "./components/Home"
+// import WaterForm from "./components/FormsPages/WaterForm"
+// import FoodForm from "./components/FormsPages/FoodForm"
+// import ExerciseForm from "./components/FormsPages/ExerciseForm"
+import Error from "./components/Error"
+import AddFood from "./forms/addFood"
+import AddWater from "./forms/addWater"
+import AddExercise from "./forms/addExercise"
+// import Water from "./water"
+
 import FoodCard from './foodcard';
 import ExerciseCard from './exercisecard';
 import WaterCard from './watercard';
@@ -12,6 +39,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+          sideDrawerOpen: false,
           timePeriod: "Today",  
           waterEntries: [
               {
@@ -174,17 +202,48 @@ class App extends Component {
           ]
         }
     }
+
+    drawerToggleClickHandler = () => {
+      this.setState((prevState) => {
+        return {sideDrawerOpen: !prevState.sideDrawerOpen};
+      });
+    };
+  
+    backdropClickHandler = () => {
+      this.setState({sideDrawerOpen: false})
+    };
+
     render() {
       return (
         <div>
-          <NavBar />
-          <div className="components">
-            <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-            <FoodCard timePeriod={this.state.timePeriod} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-            <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
-            {/* <MyComponent /> */}
+          <div className="navbar-div" style={{height: '100%'}}>
+            <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+            <SideDrawer show={this.state.sideDrawerOpen} />
+              {Backdrop}
+            <main style={{marginTop: '64px'}}>
+              {/* <Water /> */}
+            </main>
+            <BrowserRouter>
+              <div>
+                <Navigation />
+                <Switch>
+                <Route path="/" component={Homepage} exact />
+                <Route path="/waterform" component={AddWater} exact/>
+                <Route path="/exerciseform" component={AddExercise} exact/>
+                <Route path="/foodform" component={AddFood} exact/>
+                <Route component={Error} />
+                </Switch>
+              </div>
+            </BrowserRouter>
           </div>
-        </div>
+          <div>
+            <div className="components">
+              <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
+              <FoodCard timePeriod={this.state.timePeriod} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+              <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+            </div>
+          </div>
+        </div>  
     );
   }
 }
