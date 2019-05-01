@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./css/App.css";
 
 // NAV BAR REACT IMPORTS ----------------
 // import NavFooter from './NavFooter'
@@ -28,9 +28,9 @@ import AddWater from "./forms/addWater"
 import AddExercise from "./forms/addExercise"
 // import Water from "./water"
 
-import FoodCard from './foodcard';
-import ExerciseCard from './exercisecard';
-import WaterCard from './watercard';
+import FoodCard from './cards/foodcard';
+import ExerciseCard from './cards/exercisecard';
+import WaterCard from './cards/watercard';
 // import GenericCard from './genericcard.jsx';
 // import MyComponent from './test'
 require('typeface-roboto')

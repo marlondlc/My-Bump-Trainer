@@ -1,9 +1,10 @@
-// Chart appearing too far left.
-// We could make the charts more modular
+// This needs to be updated so waterentries are being taken from state rather than props
+
 import React from 'react';
+import axios from 'axios';
 import GenericCard from './genericcard'
-import waterConfigs from "./charts/water.jsx";
-import waterCylinder from "./charts/watercylinder";
+import waterConfigs from "../charts/water.jsx";
+import waterCylinder from "../charts/watercylinder";
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
@@ -15,6 +16,28 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
 
 class WaterCard extends React.Component {
+  state = {
+    water_entries: []
+  }
+      // this comment will be used for the map function listing elements of water data to the chart 
+     // <div>
+      //   <span>TESTING JSON RESPONSE</span>
+      //   <ul>
+      //   { this.state.water_entries.map(water => <li>{water_entries}</li>)}
+      //   </ul>
+      // </div> 
+  
+  componentDidMount() {
+    axios.get(`/api/v1/water_entries`)
+      .then(res => {
+        const water_entries = res.data;
+        console.log(water_entries)
+        this.setState({ water_entries });
+      })
+      .catch(error => console.log(error));
+  }
+
+
   render() {
     waterCylinder.dataSource.value = this.props.totalWater;
     const chart1 = <ReactFC {...waterCylinder} />

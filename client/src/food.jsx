@@ -1,3 +1,5 @@
+// This will be replaced by foodcard. The logic has been copied into Foodcard.
+
 import React, { Component } from 'react';
 import food_icon from './docs/food_icon.png';
 import random_chart from './docs/random_chart.png'

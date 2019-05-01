@@ -1,3 +1,5 @@
+// this is being replaced by exercisecard. Logic from here has been moved to exercisecard.
+
 import React, { Component } from 'react';
 import exercise_icon from './docs/exercise_icon.png';
 import random_chart from './docs/random_chart.png'

@@ -1,3 +1,5 @@
+// this is being replaced by watercard.jsx
+
 import React, { Component } from 'react';
 import water_icon from './docs/water_icon.png';
 import random_chart from './docs/random_chart.png'
