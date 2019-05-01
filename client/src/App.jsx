@@ -13,8 +13,10 @@ import Backdrop from './components/Backdrop/Backdrop';
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 import Navigation from "./components/Navigation"
 
-// AXIOS, FETCHING DATA FROM BACKEND -------------
-import axios from 'axios';
+// AUTHENTICATION IMPORTS ------------
+import Login from "./authentication/login"
+import Logout from "./authentication/logout"
+// import Api from "./authentication/Api"
 
 
 // ROUTE COMPONENTS HERE : ----------------
@@ -26,14 +28,14 @@ import Error from "./components/Error"
 import AddFood from "./forms/addFood"
 import AddWater from "./forms/addWater"
 import AddExercise from "./forms/addExercise"
-import Water from "./water"
+// import Water from "./water"
+
 
 
 class App extends Component {
   state = {
     sideDrawerOpen: false
   }
-  
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -53,29 +55,40 @@ class App extends Component {
     }
 
     return (
+     
       <div className="navbar-div" style={{height: '100%'}}>
         <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer show={this.state.sideDrawerOpen} />
         {backdrop}
+
         <main style={{marginTop: '64px'}}>
-        <Water />
+        {/* <Water /> */}
         </main>
-        <BrowserRouter>
-          <div>
-            <Navigation />
-          <Switch>
-          <Route path="/" component={Homepage} exact />
-          <Route path="/waterform" component={AddWater} exact/>
-          <Route path="/exerciseform" component={AddExercise} exact/>
-          <Route path="/foodform" component={AddFood} exact/>
-          <Route component={Error} />
-          </Switch>
-          </div>
-        </BrowserRouter>
+        <Main />
       </div>
+      
 
     );
   }
 }
+
+// ALL APP ROUTES GO HERE ! ****
+const Main = () => (
+<BrowserRouter>
+<div>
+  <Navigation />
+<Switch>
+<Route path="/login" component={Login} exact />
+<Route path="/logout" component={Logout} exact />
+<Route path="/" component={Homepage} exact />
+<Route path="/waterform" component={AddWater} exact/>
+<Route path="/exerciseform" component={AddExercise} exact/>
+<Route path="/foodform" component={AddFood} exact/>
+<Route component={Error} />
+</Switch>
+</div>
+</BrowserRouter>
+
+);
 
 export default App;
