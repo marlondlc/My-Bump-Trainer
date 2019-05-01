@@ -1,5 +1,4 @@
-// Chart appearing too far left.
-// We could make the charts more modular
+// Push charts down to another component?
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,7 +23,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import waterCylinder from "./charts/watercylinder";
+// import waterCylinder from "./charts/watercylinder";
 import foodPyramid from "./charts/foodpyramid.jsx";
 import actualfoodPyramid from "./charts/actualfoodpyramid.jsx";
 import foodConfigs from "./charts/food.jsx";
@@ -48,9 +47,8 @@ class GenericCard extends React.Component {
 
   render() {
     const { classes } = this.props;
-    // Need to only pass 
-    waterCylinder.dataSource.value = this.props.chart1data;
-    waterConfigs.dataSource.data = this.props.chart2data;
+    
+    // Can't do it like this. Think need to pass the chart itself.  
     foodPyramid.dataSource.data = this.props.chart1data;
     foodConfigs.dataSource.data = this.props.chart2data;
     exerciseTarget.dataSource.data = this.props.chart1data;
@@ -76,24 +74,39 @@ class GenericCard extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title={this.props.title}
+          title={(() => {
+            switch (this.state.type) {
+              case "water": return "Your water";
+              case "food": return "Your food";
+              case "exercise": return "Your exercise";
+              default: return "X";
+            }
+          })()}
           subheader={this.props.timePeriod}
         />
-        {(() => {
+        {this.props.chart1}
+        {/* {(() => {
           switch (this.state.type) {
-            case "water": return <ReactFC {...waterCylinder} />;
+            case "water": return <ReactFC {...waterCylinder}   />;
             case "food": return <ReactFC {...foodPyramid} />;
             case "exercise": return <ReactFC {...exerciseTarget} />;
             default: return "X";
           }
-        })()}
+        })()} */}
         <CardContent>
           <Typography component="p">
-            {/* Insert text The recommended water consumption per day for a pregnant woman is 10 eight ounce glasses (2.3 litres) */}
+            {(() => {
+                switch (this.state.type) {
+                  case "water": return "The recommended water consumption per day for a pregnant woman is 10 eight ounce glasses (2.3 litres)";
+                  case "food": return "The recommended calorie consumption per day for a pregnant woman in the first trimester is 1,800.";
+                  case "exercise": return "The recommended exercise for a pregnant woman is 150 minutes of moderate-intensity physical activity per week (or 20 mins per day).";
+                  default: return "X";
+                }
+              })()}
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes[this.props.type]} >{this.props.buttonLabel}</Button>
+            <Button variant="contained" className={classes[this.props.type]} >Add {this.props.type}</Button>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -113,14 +126,15 @@ class GenericCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-          {(() => {
+            {this.props.chart2}
+          {/* {(() => {
             switch (this.state.type) {
               case "water": return <ReactFC {...waterConfigs} />;
               case "food": return <ReactFC {...actualfoodPyramid} />;
               case "exercise": return <ReactFC {...exerciseConfigs} />;
               default: return "X";
             }
-          })()}
+          })()} */}
           {(() => {
             switch (this.state.type) {
               case "water": return "";

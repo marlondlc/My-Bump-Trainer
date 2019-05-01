@@ -32,7 +32,7 @@ const styles = theme => ({
         backgroundColor: red[500],
         color: grey[50],
     },
-    exercisePalette: {
+    exercise: {
         backgroundColor: amber[500],
         color: grey[50],
     }

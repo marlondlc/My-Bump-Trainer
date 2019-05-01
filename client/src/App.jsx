@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from './Navbar.jsx';
-import FoodCard from './food.jsx';
-import Exercise from './exercise';
-import WaterCard from './watercard.jsx';
+import NavBar from './Navbar';
+import FoodCard from './foodcard';
+import ExerciseCard from './exercisecard';
+import WaterCard from './watercard';
 // import GenericCard from './genericcard.jsx';
 // import MyComponent from './test'
 require('typeface-roboto')
@@ -180,8 +180,8 @@ class App extends Component {
           <NavBar />
           <div className="components">
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-            <FoodCard foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-            <Exercise exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+            <FoodCard timePeriod={this.state.timePeriod} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+            <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             {/* <MyComponent /> */}
           </div>
         </div>
