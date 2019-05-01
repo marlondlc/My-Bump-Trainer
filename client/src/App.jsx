@@ -30,6 +30,8 @@ import AddWater from "./forms/addWater"
 import AddExercise from "./forms/addExercise"
 // import Water from "./water"
 
+
+
 class App extends Component {
   state = {
     sideDrawerOpen: false
@@ -70,6 +72,7 @@ class App extends Component {
   }
 }
 
+// ALL APP ROUTES GO HERE ! ****
 const Main = () => (
 <BrowserRouter>
 <div>
