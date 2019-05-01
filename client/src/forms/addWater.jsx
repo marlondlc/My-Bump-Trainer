@@ -69,7 +69,7 @@ export default class AddWater extends React.Component {
             id="exampleDate"
             placeholder="Date (empty if now)"
             value={this.state.drunk_at}
-            onchange={this.handleChange}
+            onChange={this.handleChange}
           />
         </FormGroup>
         <Button type="submit">Add water</Button>

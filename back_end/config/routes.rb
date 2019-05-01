@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
-      resources :water_entries, only: [:destroy]
-      resources :weight_entries, only: [:destroy]
+      resources :water_entries, only: [:destroy, :edit]
+      resources :weight_entries, only: [:destroy, :edit]
+      resources :food_entries, only: [:destroy, :edit]
+      resources :exercise_entries, only [:destroy, :edit]
       resources :water_entries, only: [:index, :create] do
         collection do
           get 'month'
@@ -27,7 +29,13 @@ Rails.application.routes.draw do
           get 'day'
         end
       end
-
+      resources :exercise_entries, only: [:index, :create] do
+        collection do
+          get 'month'
+          get 'week'
+          get 'day'
+        end
+      end
     end
   end
 end

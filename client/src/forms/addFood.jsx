@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export default class AddFood extends React.Component {
   state= {
+    serving_size: 1.2,
     ate_at: ""
   }
 
@@ -17,11 +18,12 @@ export default class AddFood extends React.Component {
     event.preventDefault();
     let momentpresent = this.state.ate_at ? this.state.ate_at : new Date().toISOString()
     const data = {
+      serving_size: this.state.serving_size,
       ate_at: momentpresent
     }
     axios({
       method: 'post',
-      url: 'api/vi/food_entries',
+      url: 'api/v1/food_entries',
       data: data
     })
     .then(function (response) {
@@ -42,10 +44,12 @@ export default class AddFood extends React.Component {
         <FormGroup>
           <Label for="foodSearch">Search</Label>
           <Input
-            type="search"
-            name="search"
+            type="float"
+            name="serving_size"
             id="foodType"
             placeholder="Search for a food"
+            value={this.state.serving_size}
+            onChange={this.handleChange}
           />
         </FormGroup>
         {/* Maybe insert a toggle that is now or enter date/time */}
@@ -56,12 +60,12 @@ export default class AddFood extends React.Component {
             type="date"
             name="date"
             id="exampleDate"
-            value="date placeholder"
-            onChange={this.state.ate_at}
+            value={this.state.ate_at}
+            onChange={this.handleChange}
           />
         </FormGroup>
      
-        <Button>Add food</Button>
+        <Button type="submit">Add food</Button>
       </Form>
     );
   }

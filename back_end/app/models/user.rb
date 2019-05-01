@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+  class User < ApplicationRecord
   has_many :weight_entries
   has_many :water_entries
   has_many :food_entries

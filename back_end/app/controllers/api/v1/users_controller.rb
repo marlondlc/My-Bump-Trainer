@@ -25,7 +25,8 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       :dob,
       :due_date,
       :height,
-      :water_bottle)
+      :water_bottle
+    )
   end
 
 end
