@@ -13,8 +13,9 @@ import Backdrop from './components/Backdrop/Backdrop';
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 import Navigation from "./components/Navigation"
 
-// AXIOS, FETCHING DATA FROM BACKEND -------------
-import axios from 'axios';
+// AUTHENTICATION IMPORTS ------------
+import Login from "./authentication/login"
+import Logout from "./authentication/logout"
 
 
 // ROUTE COMPONENTS HERE : ----------------
@@ -59,23 +60,30 @@ class App extends Component {
         {backdrop}
         <main style={{marginTop: '64px'}}>
         <Water />
+        <Main />
         </main>
-        <BrowserRouter>
-          <div>
-            <Navigation />
-          <Switch>
-          <Route path="/" component={Homepage} exact />
-          <Route path="/waterform" component={AddWater} exact/>
-          <Route path="/exerciseform" component={AddExercise} exact/>
-          <Route path="/foodform" component={AddFood} exact/>
-          <Route component={Error} />
-          </Switch>
-          </div>
-        </BrowserRouter>
-      </div>
+        </div>
 
     );
   }
 }
+
+const Main = () => (
+  <BrowserRouter>
+  <div>
+    <Navigation />
+  <Switch>
+  <Route path="/login" component={Login} exact />
+  <Route path="/logout" component={Logout} exact />
+  <Route path="/" component={Homepage} exact />
+  <Route path="/waterform" component={AddWater} exact/>
+  <Route path="/exerciseform" component={AddExercise} exact/>
+  <Route path="/foodform" component={AddFood} exact/>
+  <Route component={Error} />
+  </Switch>
+  </div>
+  </BrowserRouter>
+
+);
 
 export default App;
