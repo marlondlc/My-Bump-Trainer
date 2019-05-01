@@ -22,6 +22,7 @@ class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
   end
 
   def edit
+
   end
 
   def destroy
