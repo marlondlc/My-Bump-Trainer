@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { post } from 'axios';
+import Axios, { post } from 'axios';
 
 class Login extends Component {
   constructor() {
     super()
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   
 
@@ -14,10 +15,11 @@ class Login extends Component {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const request = {"auth": {"email": email, "password": password}};
-    post('/api/user_token', request)
+    post('/raiuser_token', request) //check post /path for confirmation of raiuser_token ******
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
+        Axios.defaults.headers.common["Authorization"] = 'Bearer ' + response.data.jwt
       })
       .catch(error => console.log('error', error));
   }      
