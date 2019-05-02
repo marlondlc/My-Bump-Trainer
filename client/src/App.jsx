@@ -19,11 +19,11 @@ import Logout from "./authentication/logout"
 // import Api from "./authentication/Api"
 
 // ROUTE COMPONENTS HERE : ----------------
-// import Homepage from "./components/Home"
-// // import WaterForm from "./components/FormsPages/WaterForm"
-// // import FoodForm from "./components/FormsPages/FoodForm"
-// // import ExerciseForm from "./components/FormsPages/ExerciseForm"
-// import Error from "./components/Error"
+import Homepage from "./components/Home"
+// import WaterForm from "./components/FormsPages/WaterForm"
+// import FoodForm from "./components/FormsPages/FoodForm"
+// import ExerciseForm from "./components/FormsPages/ExerciseForm"
+import Error from "./components/Error"
 // import AddFood from "./forms/addFood"
 // import AddWater from "./forms/addWater"
 // import AddExercise from "./forms/addExercise"
@@ -224,9 +224,10 @@ class App extends Component {
             <SideDrawer show={this.state.sideDrawerOpen} />
               {Backdrop}
             <main style={{marginTop: '64px'}}>
-              {/* <Main /> */}
+              <Main />
             </main>
           </div>
+          {localStorage.getItem('jwt') &&
           <div>
             <div className="components">
               <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
@@ -234,27 +235,28 @@ class App extends Component {
               <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             </div>
           </div>
+          } 
         </div>  
     );
   }
 }
 
 // ALL APP ROUTES GO HERE ! ****
-// const Main = () => (
-//   <BrowserRouter>
-//     <div>
-//       <Navigation />
-//         <Switch>
-//           <Route path="/login" component={Login} exact />
-//           <Route path="/logout" component={Logout} exact />
-//           <Route path="/" component={Homepage} exact />
-//           <Route path="/waterform" component={AddWater} exact/>
-//           <Route path="/exerciseform" component={AddExercise} exact/>
-//           <Route path="/foodform" component={AddFood} exact/>
-//           <Route component={Error} />
-//         </Switch>
-//     </div>
-//   </BrowserRouter>
-// );
+const Main = () => (
+  <BrowserRouter>
+    <div>
+      <Navigation />
+        <Switch>
+          <Route path="/login" component={Login} exact />
+          <Route path="/logout" component={Logout} exact />
+          <Route path="/" component={Homepage} exact />
+          {/* <Route path="/waterform" component={AddWater} exact/>
+          <Route path="/exerciseform" component={AddExercise} exact/>
+          <Route path="/foodform" component={AddFood} exact/> */}
+          <Route component={Error} />
+        </Switch>
+    </div>
+  </BrowserRouter>
+);
 
 export default App;
