@@ -41,7 +41,7 @@ class App extends Component {
         super(props)
         this.state = {
           sideDrawerOpen: false,
-          timePeriod: "Today",  
+          timePeriod: "day",  
           waterEntries: [
               {
                   "label": "6am",

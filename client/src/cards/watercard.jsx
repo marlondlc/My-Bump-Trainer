@@ -29,14 +29,17 @@ class WaterCard extends React.Component {
       // </div> 
   
   componentDidMount() {
-    axios.get(`/api/v1/water_entries`)
+    console.log(this.props.timePeriod)
+    axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
       .then(res => {
-        const water_entries = res.data;
+        const water_entries = res.data ;
         console.log(water_entries)
         this.setState({ water_entries });
       })
       .catch(error => console.log(error));
   }
+
+  // Create function that will transform the data iam ngetting from axios/get -- 
 
 
   render() {

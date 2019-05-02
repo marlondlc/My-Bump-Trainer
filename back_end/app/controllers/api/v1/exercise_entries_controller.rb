@@ -7,17 +7,13 @@ class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
 
   def create
     @exercise_entry = current_user.exercise_entries.new(
+      exercise_type: params[:exercise_type]
       start_time: params[:start_time],
       end_time: params[:end_time]
-      exercise_type: params[:exercise_type]
     )
 
     @exercise_entry.save
     render json: @exercise_entry
-  end
-
-  def edit
-
   end
 
   def destroy

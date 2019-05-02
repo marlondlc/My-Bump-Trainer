@@ -37,7 +37,7 @@ class Api::V1::WaterEntriesController < Api::V1::ApplicationController
   end
 
   def day
-    @daily = User.find(1).water_entries.daily_entries
+    @daily = current_user.water_entries.daily_entries
     render json: @daily
   end
 
