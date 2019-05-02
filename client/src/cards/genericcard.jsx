@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 // import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
@@ -75,7 +75,7 @@ class GenericCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes[this.props.type]} >Add {this.props.type}</Button>
+            {this.props.dialog}
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>

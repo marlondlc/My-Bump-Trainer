@@ -15,8 +15,8 @@ const myDataSource = {
 
   const waterCylinder = {
     type: "cylinder",
-    width: 600,
-    height: 400,
+    width: '80%',
+    height: '50%',
     dataFormat: "JSON",
     dataSource: myDataSource
 };

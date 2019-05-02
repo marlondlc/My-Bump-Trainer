@@ -2,7 +2,8 @@
 
 import React from 'react';
 import axios from 'axios';
-import GenericCard from './genericcard'
+import GenericCard from './genericcard';
+import Dialog from '../forms/waterdialog';
 import waterConfigs from "../charts/water.jsx";
 import waterCylinder from "../charts/watercylinder";
 import FusionCharts from 'fusioncharts';
@@ -19,14 +20,14 @@ class WaterCard extends React.Component {
   state = {
     water_entries: []
   }
-      // this comment will be used for the map function listing elements of water data to the chart 
+      // this comment will be used for the map function listing elements of water data to the chart
      // <div>
       //   <span>TESTING JSON RESPONSE</span>
       //   <ul>
       //   { this.state.water_entries.map(water => <li>{water_entries}</li>)}
       //   </ul>
-      // </div> 
-  
+      // </div>
+
   componentDidMount() {
     axios.get(`/api/v1/water_entries`)
       .then(res => {
@@ -40,12 +41,13 @@ class WaterCard extends React.Component {
 
   render() {
     waterCylinder.dataSource.value = this.props.totalWater;
-    const chart1 = <ReactFC {...waterCylinder} />
+    const chart1 = <ReactFC  {...waterCylinder} />
     waterConfigs.dataSource.data = this.props.waterEntries;
     const chart2 = <ReactFC {...waterConfigs} />
+    const dialog = <Dialog />
 
     return (
-      <GenericCard type="water" timePeriod={this.props.timePeriod} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
     );
   }
 }

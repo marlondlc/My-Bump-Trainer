@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import GenericCard from './genericcard'
+import Dialog from '../forms/exercisedialog';
 import exerciseTarget from "../charts/exercisetarget";
 import exerciseConfigs from "../charts/exercise.jsx";
 import FusionCharts from 'fusioncharts';
@@ -41,9 +42,10 @@ class ExerciseCard extends React.Component {
     const chart1 = <ReactFC {...exerciseTarget} />
     exerciseConfigs.dataSource.data = this.props.exerciseEntries;
     const chart2 = <ReactFC {...exerciseConfigs} />
+    const dialog = <Dialog />
 
     return (
-      <GenericCard type="exercise" timePeriod={this.props.timePeriod} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
     );
   }
 }

@@ -4,8 +4,10 @@ import "./css/App.css";
 // NAV BAR REACT IMPORTS ----------------
 // import NavFooter from './NavFooter'
 import Navbar from './components/toolbar/Navbar';
-import SideDrawer from './components/SideDrawer/SideDrawer';
+// import DrawerRight from './components/SideDrawer/DrawerRight';
 import Backdrop from './components/Backdrop/Backdrop';
+import FullWidthTabs from './components/toolbar/Navbottom';
+
 // import ControlledTabs from './components/toolbar/ControlledTabs';
 
 
@@ -41,16 +43,16 @@ class App extends Component {
         super(props)
         this.state = {
           sideDrawerOpen: false,
-          timePeriod: "Today",  
+          timePeriod: "Today",
           waterEntries: [
               {
                   "label": "6am",
                   "value": "0"
-              },      
+              },
               {
                   "label": "8am",
                   "value": "880"
-              },  
+              },
               {
                   "label": "10am",
                   "value": "880"
@@ -84,11 +86,11 @@ class App extends Component {
             {
                 "label": "6am",
                 "value": "0"
-            },      
+            },
             {
                 "label": "8am",
                 "value": "1000"
-            },  
+            },
             {
                 "label": "10am",
                 "value": "1000"
@@ -117,7 +119,7 @@ class App extends Component {
                 "label": "10pm",
                 "value": "8050",
               }
-          ], 
+          ],
           foodPyramid: [
             {
               label: "Food and drinks high in fat, sugar and salt",
@@ -148,11 +150,11 @@ class App extends Component {
             {
                 "label": "6am",
                 "value": "0"
-            },      
+            },
             {
                 "label": "8am",
                 "value": "30"
-            },  
+            },
             {
                 "label": "10am",
                 "value": "0"
@@ -209,7 +211,7 @@ class App extends Component {
         return {sideDrawerOpen: !prevState.sideDrawerOpen};
       });
     };
-  
+
     backdropClickHandler = () => {
       this.setState({sideDrawerOpen: false})
     };
@@ -219,10 +221,9 @@ class App extends Component {
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
             <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
-            <SideDrawer show={this.state.sideDrawerOpen} />
+
               {Backdrop}
             <main style={{marginTop: '64px'}}>
-              {/* <Water /> */}
               <Main />
             </main>
           </div>
@@ -233,7 +234,8 @@ class App extends Component {
               <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             </div>
           </div>
-        </div>  
+          <FullWidthTabs/>
+        </div>
     );
   }
 }

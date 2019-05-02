@@ -12,7 +12,7 @@ class Login extends Component {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const request = { auth: { email: email, password: password } };
-    post("/raiuser_token", request) //check post /path for confirmation of raiuser_token ******
+    post("/user_token", request)
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
