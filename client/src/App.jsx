@@ -20,9 +20,9 @@ import Logout from "./authentication/logout"
 
 // ROUTE COMPONENTS HERE : ----------------
 import Homepage from "./components/Home"
-// import WaterForm from "./components/FormsPages/WaterForm"
-// import FoodForm from "./components/FormsPages/FoodForm"
-// import ExerciseForm from "./components/FormsPages/ExerciseForm"
+import WaterForm from "./components/FormsPages/WaterForm"
+import FoodForm from "./components/FormsPages/FoodForm"
+import ExerciseForm from "./components/FormsPages/ExerciseForm"
 import Error from "./components/Error"
 import AddFood from "./forms/addFood"
 import AddWater from "./forms/addWater"
@@ -222,7 +222,6 @@ class App extends Component {
             <SideDrawer show={this.state.sideDrawerOpen} />
               {Backdrop}
             <main style={{marginTop: '64px'}}>
-              {/* <Water /> */}
               <Main />
             </main>
           </div>

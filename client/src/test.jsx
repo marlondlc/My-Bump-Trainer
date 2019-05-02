@@ -1,305 +1,341 @@
-// Chart appearing too far left.
-// We could make the charts more modular
 import React from 'react';
 import PropTypes from 'prop-types';
+import deburr from 'lodash/deburr';
+import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import chartConfigs from "./charts/water.jsx";
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
-import widgets from "fusioncharts/fusioncharts.widgets";
-import waterCylinder from "./charts/watercylinder";
-import styles from './style'
+import TextField from '@material-ui/core/TextField';
+import Popper from '@material-ui/core/Popper';
+import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import Chip from '@material-ui/core/Chip';
 
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
-widgets(FusionCharts);
+const suggestions = [
+  { label: 'Alfalfa Sprouts' },
+  { label: 'Apple Juice' },
+  { label: 'Apple' },
+  { label: 'Avocado' },
+  { label: 'Asparagus' },
+  { label: 'Almonds' },
+  { label: 'Almond Butter' },
+  { label: 'Apple Dumpling' },
+  { label: 'Apple Pie' },
+  { label: 'Anchovy' },
+  { label: 'Artichokes' },
+  { label: 'Ants, chocolate covered' },
+  { label: 'Almond milk' },
+  { label: 'Avocado Oil' },
+  { label: 'Avocado Spread' },
+  { label: 'Bahamas' },
+  { label: 'Bahrain' },
+  { label: 'Bangladesh' },
+  { label: 'Barbados' },
+  { label: 'Belarus' },
+  { label: 'Belgium' },
+  { label: 'Belize' },
+  { label: 'Benin' },
+  { label: 'Bermuda' },
+  { label: 'Bhutan' },
+  { label: 'Bolivia, Plurinational State of' },
+  { label: 'Bonaire, Sint Eustatius and Saba' },
+  { label: 'Bosnia and Herzegovina' },
+  { label: 'Botswana' },
+  { label: 'Bouvet Island' },
+  { label: 'Brazil' },
+  { label: 'British Indian Ocean Territory' },
+  { label: 'Brunei Darussalam' },
+];
 
-class WaterCard extends React.Component {
-  state = { expanded: false };
+function renderInput(inputProps) {
+  const { InputProps, classes, ref, ...other } = inputProps;
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
+  return (
+    <TextField
+      InputProps={{
+        inputRef: ref,
+        classes: {
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        },
+        ...InputProps,
+      }}
+      {...other}
+    />
+  );
+}
+
+function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
+  const isHighlighted = highlightedIndex === index;
+  const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
+
+  return (
+    <MenuItem
+      {...itemProps}
+      key={suggestion.label}
+      selected={isHighlighted}
+      component="div"
+      style={{
+        fontWeight: isSelected ? 500 : 400,
+      }}
+    >
+      {suggestion.label}
+    </MenuItem>
+  );
+}
+renderSuggestion.propTypes = {
+  highlightedIndex: PropTypes.number,
+  index: PropTypes.number,
+  itemProps: PropTypes.object,
+  selectedItem: PropTypes.string,
+  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+};
+
+function getSuggestions(value) {
+  const inputValue = deburr(value.trim()).toLowerCase();
+  const inputLength = inputValue.length;
+  let count = 0;
+
+  return inputLength === 0
+    ? []
+    : suggestions.filter(suggestion => {
+        const keep =
+          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+
+        if (keep) {
+          count += 1;
+        }
+
+        return keep;
+      });
+}
+
+class DownshiftMultiple extends React.Component {
+  state = {
+    inputValue: '',
+    selectedItem: [],
+  };
+
+  handleKeyDown = event => {
+    const { inputValue, selectedItem } = this.state;
+    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
+      this.setState({
+        selectedItem: selectedItem.slice(0, selectedItem.length - 1),
+      });
+    }
+  };
+
+  handleInputChange = event => {
+    this.setState({ inputValue: event.target.value });
+  };
+
+  handleChange = item => {
+    let { selectedItem } = this.state;
+
+    if (selectedItem.indexOf(item) === -1) {
+      selectedItem = [...selectedItem, item];
+    }
+
+    this.setState({
+      inputValue: '',
+      selectedItem,
+    });
+  };
+
+  handleDelete = item => () => {
+    this.setState(state => {
+      const selectedItem = [...state.selectedItem];
+      selectedItem.splice(selectedItem.indexOf(item), 1);
+      return { selectedItem };
+    });
   };
 
   render() {
     const { classes } = this.props;
-    chartConfigs.dataSource.data = this.props.waterEntries;
-    waterCylinder.dataSource.value = this.props.totalWater;
-    return (
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Water" className={classes.waterPalette}>
-              W
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Your water"
-          subheader="Today"
-        />
-        <ReactFC {...waterCylinder} />
+    const { inputValue, selectedItem } = this.state;
 
-        <CardContent>
-          <Typography component="p">
-            The recommended water consumption per day for a pregnant woman is 10 eight ounce glasses (2.3 litres)
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes.waterPalette} >Add water</Button>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
+    return (
+      <Downshift
+        id="downshift-multiple"
+        inputValue={inputValue}
+        onChange={this.handleChange}
+        selectedItem={selectedItem}
+      >
+        {({
+          getInputProps,
+          getItemProps,
+          isOpen,
+          inputValue: inputValue2,
+          selectedItem: selectedItem2,
+          highlightedIndex,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                startAdornment: selectedItem.map(item => (
+                  <Chip
+                    key={item}
+                    tabIndex={-1}
+                    label={item}
+                    className={classes.chip}
+                    onDelete={this.handleDelete(item)}
+                  />
+                )),
+                onChange: this.handleInputChange,
+                onKeyDown: this.handleKeyDown,
+                placeholder: 'Select multiple countries',
+              }),
+              label: 'Label',
             })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <ReactFC {...chartConfigs} />
-          </CardContent>
-        </Collapse>
-      </Card>
+            {isOpen ? (
+              <Paper className={classes.paper} square>
+                {getSuggestions(inputValue2).map((suggestion, index) =>
+                  renderSuggestion({
+                    suggestion,
+                    index,
+                    itemProps: getItemProps({ item: suggestion.label }),
+                    highlightedIndex,
+                    selectedItem: selectedItem2,
+                  }),
+                )}
+              </Paper>
+            ) : null}
+          </div>
+        )}
+      </Downshift>
     );
   }
 }
 
-WaterCard.propTypes = {
+DownshiftMultiple.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WaterCard);
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: 250,
+  },
+  container: {
+    flexGrow: 1,
+    position: 'relative',
+  },
+  paper: {
+    position: 'absolute',
+    zIndex: 1,
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0,
+  },
+  chip: {
+    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+  },
+  inputRoot: {
+    flexWrap: 'wrap',
+  },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
+  },
+  divider: {
+    height: theme.spacing.unit * 2,
+  },
+});
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import chartConfigs from "./charts/food.jsx";
-import foodPyramid from "./charts/foodpyramid.jsx";
-import actualfoodPyramid from "./charts/actualfoodpyramid.jsx";
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import widgets from "fusioncharts/fusioncharts.widgets";
-import styles from './style'
+let popperNode;
 
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
-widgets(FusionCharts);
+function IntegrationDownshift(props) {
+  const { classes } = props;
 
-class FoodCard extends React.Component {
-  state = { expanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    chartConfigs.dataSource.data = this.props.foodEntries;
-    foodPyramid.dataSource.data = this.props.foodPyramid;
-    return (
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Food" className={classes.foodPalette}>
-              F
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Your food"
-          subheader="Today"
-        />
-        <ReactFC {...foodPyramid} />
-
-        <CardContent>
-          <Typography component="p">
-            The recommended calorie consumption per day for a pregnant woman in the first trimester is 1,800.
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes.foodPalette} >Add food</Button>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
+  return (
+    <div className={classes.root}>
+      <Downshift id="downshift-simple">
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                placeholder: 'Search a country (start with a)',
+              }),
             })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <ReactFC {...actualfoodPyramid} />
-            <ReactFC {...chartConfigs} />
-          </CardContent>
-        </Collapse>
-      </Card>
-    );
-  }
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
+          </div>
+        )}
+      </Downshift>
+      <div className={classes.divider} />
+      <DownshiftMultiple classes={classes} />
+      <div className={classes.divider} />
+      <Downshift id="downshift-popper">
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                placeholder: 'With Popper',
+              }),
+              ref: node => {
+                popperNode = node;
+              },
+            })}
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              </div>
+            </Popper>
+          </div>
+        )}
+      </Downshift>
+    </div>
+  );
 }
 
-FoodCard.propTypes = {
+IntegrationDownshift.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FoodCard);
-
-// Chart is showing up too far left. Need to align
-
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import chartConfigs from "./charts/exercise.jsx";
-// import foodPyramid from "./charts/foodpyramid.jsx";
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import widgets from "fusioncharts/fusioncharts.widgets";
-import exerciseTarget from "./charts/exercisetarget";
-import styles from './style'
-
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
-widgets(FusionCharts);
-
-
-class ExerciseCard extends React.Component {
-  state = { expanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    chartConfigs.dataSource.data = this.props.exerciseEntries;
-    exerciseTarget.dataSource.data = this.props.exerciseType;
-    return (
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Exercise" className={classes.exercisePalette}>
-              E
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Your exercise"
-          subheader="Today"
-        />
-         <ReactFC {...exerciseTarget} />
-
-        <CardContent>
-          <Typography component="p">
-          Women are recommended to get 150 minutes of moderate-intensity physical activity each week (or 20 mins per day) during pregnancy.
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="contained" className={classes.exercisePalette} >Add exercise</Button>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <ReactFC {...chartConfigs} /> 
-          </CardContent>
-        </Collapse>
-      </Card>
-    );
-  }
-}
-
-ExerciseCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ExerciseCard);
+export default withStyles(styles)(IntegrationDownshift);

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :water_entries, only: [:destroy, :edit]
       resources :weight_entries, only: [:destroy, :edit]
       resources :food_entries, only: [:destroy, :edit]
-      resources :exercise_entries, only [:destroy, :edit]
+      resources :exercise_entries, only: [:destroy, :edit]
       resources :water_entries, only: [:index, :create] do
         collection do
           get 'month'
