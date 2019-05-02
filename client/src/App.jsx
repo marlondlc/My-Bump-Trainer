@@ -26,7 +26,7 @@ import ExerciseForm from "./components/FormsPages/ExerciseForm"
 import Error from "./components/Error"
 import AddFood from "./forms/addFood"
 import AddWater from "./forms/addWater"
-import AddExercise from "./forms/addExercise"
+// import AddExercise from "./forms/addExercise"
 // import Water from "./water"
 
 import FoodCard from './cards/foodcard';
@@ -249,7 +249,7 @@ const Main = () => (
           <Route path="/logout" component={Logout} exact />
           <Route path="/" component={Homepage} exact />
           <Route path="/waterform" component={AddWater} exact/>
-          <Route path="/exerciseform" component={AddExercise} exact/>
+          {/* <Route path="/exerciseform" component={AddExercise} exact/> */}
           <Route path="/foodform" component={AddFood} exact/>
           <Route component={Error} />
         </Switch>

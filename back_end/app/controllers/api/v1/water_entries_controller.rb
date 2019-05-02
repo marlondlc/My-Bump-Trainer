@@ -7,8 +7,9 @@ class Api::V1::WaterEntriesController < Api::V1::ApplicationController
 
   #RECEIVING DATA:
   def create
-
-    @water_entry = User.find(1).water_entries.create(
+    puts "-----CURRENT USER-----------"
+    puts current_user.inspect
+    @water_entry = current_user.water_entries.new(
       volume: params[:volume],
       drunk_at: params[:drunk_at]
     )
