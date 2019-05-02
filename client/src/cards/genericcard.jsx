@@ -73,6 +73,16 @@ class GenericCard extends React.Component {
                 }
               })()}
           </Typography>
+          <Typography component="p">
+            {(() => {
+                switch (this.state.type) {
+                  case "water": return `Today you've had ${this.props.totalWater} litres.`;
+                  case "food": return `Today you've had ${this.props.totalCalories} calories.`;
+                  case "exercise": return `Today you've done ${this.props.totalExercise} minutes exercise.`;
+                  default: return "X";
+                }
+              })()}
+          </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
             {this.props.dialog}

@@ -35,11 +35,11 @@ class FoodCard extends React.Component {
     const chart1 = <ReactFC {...foodPyramid} />
     const chart2 = <ReactFC {...actualfoodPyramid} />
     foodConfigs.dataSource.data = this.props.foodEntries;
-    const chart3 = <ReactFC {...foodConfigs} />
+    // const chart3 = <ReactFC {...foodConfigs} />
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="food" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2} chart3={chart3}/>
+      <GenericCard type="food" timePeriod={this.props.timePeriod} dialog={dialog} totalCalories={this.props.totalCalories} chart1={chart1} chart2={chart2}/>
     );
   }
 }

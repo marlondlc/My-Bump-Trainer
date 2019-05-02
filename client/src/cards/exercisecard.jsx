@@ -45,7 +45,7 @@ class ExerciseCard extends React.Component {
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} totalExercise={this.props.totalExercise} chart1={chart1} chart2={chart2}/>
     );
   }
 }
