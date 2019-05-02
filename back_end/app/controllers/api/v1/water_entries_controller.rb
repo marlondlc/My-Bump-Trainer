@@ -1,7 +1,7 @@
 class Api::V1::WaterEntriesController < Api::V1::ApplicationController
 
   def index
-    @waters =  User.find(1).water_entries  #for the time being use "User.find(1)" after we fix issue with "current_user" use this.
+    @waters =  current_user.water_entries #for the time being use "User.find(1)" after we fix issue with "current_user" use this.
     render json: @waters
   end
 

@@ -15,12 +15,12 @@ export default class AddExercise extends React.Component {
 
   // exercise equivalte to an id -- links to an id to DB
   // moment function to use for data (date to moment) formatting into fusionchart
-  momentDurationFormatSetup = (moment) => {
-  const startMoment = this.state.start_time
-  const endMoment = this.state.end_time
-  const durationSeconds = (endMoment - startMoment) / 1000;
-  const durationMinutes = durationSeconds / 60
-  const duration = moment.duration(durationSeconds, "seconds").format("mm");
+  // momentDurationFormatSetup = (moment) => {
+  // const startMoment = this.state.start_time
+  // const endMoment = this.state.end_time
+  // const durationSeconds = (endMoment - startMoment) / 1000;
+  // const durationMinutes = durationSeconds / 60
+  // const duration = moment.duration(durationSeconds, "seconds").format("mm");
   
 
   handleChange = (event) => {

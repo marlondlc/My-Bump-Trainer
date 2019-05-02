@@ -14,28 +14,29 @@ export default class AddExercise extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      volume: 440,
-      drunk_at: "",
-      timedate: "",
+      exercise_type: "",
+      start_time: "",
       open: false,
     }
   }  
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value})
+  handleChangeExercise = event => {
+    this.setState({ exercise_type: event.target.value })
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
+  handleChangeDate = event => {
+    this.setState({ start_time : event.target.value})
+  }
+
+  handleSubmit = () => {
+    let momentpresent = this.state.start_time ? this.state.start_time : new Date().toISOString()
     const data = {
-      volume: this.state.volume,
-      drunk_at: momentpresent
+      exercise_type: this.state.exercise_type,
+      start_time: momentpresent
     }
-    // const waterData = new FormData();
     axios({
      method: 'post',
-     url: '/api/v1/water_entries', //backend api/v1/water_entries (run rake route to see backend route)
+     url: '/api/v1/exercise_entries',
      data: data
     })
     .then(function (response) {
@@ -55,6 +56,11 @@ export default class AddExercise extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleCloseandSubmit = () => {
+    this.setState({ open: false })
+    this.handleSubmit();
+  }
 
   render() {
     return (
@@ -76,11 +82,12 @@ export default class AddExercise extends React.Component {
             <TextField
               autoFocus
               margin="dense"
-              id="volume"
-              label="Volume"
+              id="exercisename"
+              label="Exercise"
               type="text"
               fullWidth
-              defaultValue="440"
+              defaultValue="Pilates"
+              value={this.state.exerciseName}
               onChange={this.handleChange}
             />
             <TextField
@@ -88,9 +95,9 @@ export default class AddExercise extends React.Component {
               margin="dense"
               id="timedate"
               label="When"
-              type="text"
+              type="date"
               fullWidth
-              defaultValue="2pm 08 Apr 2019"
+              defaultValue={this.state.start_time}
               onChange={this.handleChange}
             />
           </DialogContent>
@@ -98,7 +105,7 @@ export default class AddExercise extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleCloseandSubmit} color="primary">
               Add exercise
             </Button>
           </DialogActions>

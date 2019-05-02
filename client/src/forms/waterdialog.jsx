@@ -8,7 +8,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import axios from 'axios';
-import DateTime from 'react-datetime';
 
 export default class AddWater extends React.Component {
   constructor(props) {
