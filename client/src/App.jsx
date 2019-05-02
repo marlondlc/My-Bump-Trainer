@@ -41,7 +41,7 @@ class App extends Component {
         super(props)
         this.state = {
           sideDrawerOpen: false,
-          timePeriod: "Today",
+          timePeriod: "day",
           totalWater: 2.0,
           totalCalories: 1600,
           totalExercise: 60,  
