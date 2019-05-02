@@ -12,11 +12,11 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import styles from '../css/style'
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
+import styles from '../css/style';
 
 class GenericCard extends React.Component {
   state = { 
@@ -46,11 +46,11 @@ class GenericCard extends React.Component {
               })()}
             </Avatar>
           }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
+          // action={
+          //   <IconButton>
+          //     <MoreVertIcon />
+          //   </IconButton>
+          // }
           title={(() => {
             switch (this.state.type) {
               case "water": return "Your water";
@@ -66,9 +66,9 @@ class GenericCard extends React.Component {
           <Typography component="p">
             {(() => {
                 switch (this.state.type) {
-                  case "water": return "The recommended water consumption per day for a pregnant woman is 10 eight ounce glasses (2.3 litres)";
-                  case "food": return "The recommended calorie consumption per day for a pregnant woman in the first trimester is 1,800.";
-                  case "exercise": return "The recommended exercise for a pregnant woman is 150 minutes of moderate-intensity physical activity per week (or 20 mins per day).";
+                  case "water": return "It's recommended that pregnant women drink 10 eight ounce glasses (2.3 litres) of water per day";
+                  case "food": return "It's recommended that pregnant women consume 1,800 calories per day in the first trimester.";
+                  case "exercise": return "It's recommended that pregnant women do 20 minutes of moderate-intensity physical activity per day.";
                   default: return "X";
                 }
               })()}
@@ -76,12 +76,12 @@ class GenericCard extends React.Component {
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
             {this.props.dialog}
-          <IconButton aria-label="Add to favorites">
+          {/* <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="Share">
             <ShareIcon />
-          </IconButton>
+          </IconButton> */}
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
