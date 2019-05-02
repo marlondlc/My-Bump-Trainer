@@ -8,27 +8,33 @@ export default class AddExercise extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      start_time = "",
-      end_time = ""
+      start_time: "",
+      end_time: ""
     }
   }
 
   //exercise equivalte to an id -- links to an id to DB
-
-  momentDurationFormatSetup(moment);
-  const durationSeconds = (endsAt - startsAt) / 1000;
-  const durationMinutes = durationSeconds / 60
+  // moment function to use for data (date to moment) formatting into fusionchart
+  // momentDurationFormatSetup = (moment) => {
+  // const startMoment = this.state.start_time
+  // const endMoment = this.state.end_time
+  // const durationSeconds = (endMoment - startMoment) / 1000;
+  // const durationMinutes = durationSeconds / 60
   // const duration = moment.duration(durationSeconds, "seconds").format("mm");
   
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let momentpresent = this.state.
-
+    let momentPresent = this.state.start_time ? this.state.start_time : new Date().toISOString()
+    let momentEnding = this.state.end_time ? this.state.end_time : new Date().toISOString()
+    const data = {
+      start_time: this.state.start_time,
+      end_time: this.state.end_time
+    }
   axios({
     method: 'post',
     url: '/api/v1/exercise_entries', 
@@ -45,7 +51,7 @@ export default class AddExercise extends React.Component {
  }
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <h2>What exercise have you done?</h2>
         <FormText color="muted">
             Search for an exercise type and click start. If you've already finished, just let us know the times.
@@ -54,7 +60,7 @@ export default class AddExercise extends React.Component {
           <Label for="exerciseSearch">Search</Label>
           <Input
             type="search"
-            name="search"
+            name="name"
             id="exerciseType"
             placeholder="Search for the type of exercise"
           />
