@@ -209,7 +209,7 @@ class Home extends Component {
           </div>
         </div>
         }
-        <BottomNav/> 
+        <BottomNav /> 
       </div>  
   );
 }

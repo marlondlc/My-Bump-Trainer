@@ -38,11 +38,11 @@ class App extends Component {
               <div>
                 <Navigation />
                   <Switch>
-                    <Route path="/login" render= {(routeProps) => (
+                    <Route path="/login" render={(routeProps) => (
                       <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
                       )} />
                     <Route path="/logout" component={Logout} exact />
-                    <Route path="/" render= {(props) => (
+                    <Route path="/" render={(props) => (
                       <Homepage {...props} currentUser={this.state.currentUser}/>
                       )} />
                     <Route component={Error} />

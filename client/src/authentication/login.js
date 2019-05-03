@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
-
+import Navbar from '../components/toolbar/Navbar'
 
 class Login extends Component {
   constructor() {
@@ -13,7 +13,7 @@ class Login extends Component {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const request = {"auth": {"email": email, "password": password}};
-    post('/user_token', request) //check post /path for confirmation of raiuser_token ******
+    post('/user_token', request) 
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
@@ -23,9 +23,9 @@ class Login extends Component {
       .then(response => {
         Axios.get(`/api/v1/users/1`)
         .then(response => {
-          console.log("HER THIS IS THE LONGIN", response.data)
+          // This props gets the user data from database show controller in users!!!
+          console.log(response.data)
           this.props.updateCurrentUser(response.data)
-          
           })
         })
       .catch(error => console.log("error", error));
@@ -36,7 +36,9 @@ class Login extends Component {
 
   render() {
     return (
+
       <div>
+      <Navbar />
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
