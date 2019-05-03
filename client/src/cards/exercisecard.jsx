@@ -10,6 +10,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
+import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePyramid, weekExercisePyramid, monthExercisePyramid, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -38,14 +39,33 @@ class ExerciseCard extends React.Component {
   }
 
   render() {
-    exerciseTarget.dataSource.data = this.props.exerciseType;
+    const timePeriod = this.props.timePeriod;
+    let averageExercise;
+    let exerciseEntries;
+    let exercisePie;
+
+    if (timePeriod === 'day') {
+      averageExercise = totalExerciseDay;
+      exerciseEntries = dayExerciseEntries;  
+      exercisePie = dayExercisePie;
+    } else if (timePeriod === 'week') {
+      averageExercise = averageExerciseWeek; 
+      exerciseEntries = weekExerciseEntries;
+      exercisePie = weekExercisePie;
+    } else if (timePeriod === 'month') {
+      averageExercise = averageExerciseMonth;
+      exerciseEntries = monthExerciseEntries;
+      exercisePie = monthExercisePie;
+    }
+
+    exerciseTarget.dataSource.data = exercisePie;
     const chart1 = <ReactFC {...exerciseTarget} />
-    exerciseConfigs.dataSource.data = this.props.exerciseEntries;
+    exerciseConfigs.dataSource.data = exerciseEntries;
     const chart2 = <ReactFC {...exerciseConfigs} />
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} totalExercise={this.props.totalExercise} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} totalExercise={averageExercise} chart1={chart1} chart2={chart2}/>
     );
   }
 }

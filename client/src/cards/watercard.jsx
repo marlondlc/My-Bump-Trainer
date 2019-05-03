@@ -12,7 +12,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
-import {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, averageWaterMonth, totalWaterMonth} from'../data/waterEntries';
+import {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, averageWaterMonth} from'../data/waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -45,28 +45,27 @@ class WaterCard extends React.Component {
 
   render() {
     const timePeriod = this.props.timePeriod;
+    let averageWater;
+    let waterEntries;
     if (timePeriod === 'day') {
-      waterCylinder.dataSource.value = totalWaterDay;  
+      averageWater = totalWaterDay;
+      waterEntries = dayWaterEntries;  
     } else if (timePeriod === 'week') {
-      waterCylinder.dataSource.value = averageWaterWeek;  
+      averageWater = averageWaterWeek; 
+      waterEntries = weekWaterEntries;
     } else if (timePeriod === 'month') {
-      waterCylinder.dataSource.value = averageWaterMonth;
+      averageWater = averageWaterMonth;
+      waterEntries = monthWaterEntries;
     }
-    // waterCylinder.dataSource.value = totalWater;
+    waterCylinder.dataSource.value = averageWater;
+    waterConfigs.dataSource.data = waterEntries;
+
     const chart1 = <ReactFC  {...waterCylinder} />
-    if (timePeriod === 'day') {
-      waterConfigs.dataSource.data = dayWaterEntries;  
-    } else if (timePeriod === 'week') {
-      waterConfigs.dataSource.data = weekWaterEntries;  
-    } else if (timePeriod === 'month') {
-      waterConfigs.dataSource.data = monthWaterEntries;
-    }
-    // waterConfigs.dataSource.data = dayWaterEntries;
     const chart2 = <ReactFC {...waterConfigs} />
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} totalWater={this.props.totalWater} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} averageWater={averageWater} chart1={chart1} chart2={chart2}/>
     );
   }
 }

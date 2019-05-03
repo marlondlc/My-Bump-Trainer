@@ -59,7 +59,7 @@ class GenericCard extends React.Component {
               default: return "X";
             }
           })()}
-          subheader={this.props.timePeriod}
+          subheader={"Your " + this.props.timePeriod}
         />
         {this.props.chart1}
         <CardContent>
@@ -76,9 +76,9 @@ class GenericCard extends React.Component {
           <Typography component="p">
             {(() => {
                 switch (this.state.type) {
-                  case "water": return `Today you've had ${this.props.totalWater} litres.`;
-                  case "food": return `Today you've had ${this.props.totalCalories} calories.`;
-                  case "exercise": return `Today you've done ${this.props.totalExercise} minutes exercise.`;
+                  case "water": return `You've had ${this.props.averageWater} litres per day.`;
+                  case "food": return `You've had ${this.props.averageCalories} calories per day.`;
+                  case "exercise": return `You've done ${this.props.totalExercise} minutes exercise per day.`;
                   default: return "X";
                 }
               })()}

@@ -5,7 +5,7 @@ const myDataSource = {
         upperlimit: "2.5",
         lowerlimitdisplay: "Desert",
         upperlimitdisplay: "Bursting",
-        numbersuffix: " mL",
+        numbersuffix: "litres",
         cylfillcolor: "#5D62B5",
         plottooltext: "Water consumption per day: <b>2.3 ltrs</b>",
         cylfillhoveralpha: "85",
@@ -15,8 +15,8 @@ const myDataSource = {
 
   const waterCylinder = {
     type: "cylinder",
-    width: '80%',
-    height: '50%',
+    width: '400',
+    height: '500',
     dataFormat: "JSON",
     dataSource: myDataSource
 };
