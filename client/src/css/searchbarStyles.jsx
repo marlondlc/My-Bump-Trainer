@@ -28,3 +28,5 @@ const styles = theme => ({
       height: theme.spacing.unit * 2,
     },
   });
+
+  export default styles;
