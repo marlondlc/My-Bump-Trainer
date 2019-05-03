@@ -47,8 +47,9 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    const { auth } = this.state;
+    // const open = Boolean(anchorEl);
+// removing anchorEl from const above as defined and not used
 
     return (
       <div className={classes.root}>

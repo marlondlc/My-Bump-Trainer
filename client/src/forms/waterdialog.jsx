@@ -8,7 +8,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import axios from 'axios';
-// import DateTime from 'react-datetime';
 
 export default class AddWater extends React.Component {
   constructor(props) {
@@ -16,17 +15,21 @@ export default class AddWater extends React.Component {
     this.state = {
       volume: 440,
       drunk_at: "",
-      timedate: "",
       open: false,
     }
   }  
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value})
+  handleChangeVolume = event => {
+    console.log("look EVENT NAME", [event.target.name])
+    console.log(event.target.value)
+    this.setState({ volume: event.target.value})
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleChangeDate = event => {
+    this.setState({ drunk_at: event.target.value })
+  }
+
+  handleSubmit = () => {
     let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
     const data = {
       volume: this.state.volume,
@@ -56,6 +59,11 @@ export default class AddWater extends React.Component {
     this.setState({ open: false });
   };
 
+  handleCloseandSubmit = () => {
+    this.setState({ open: false })
+    this.handleSubmit();
+  }
+
   render() {
     return (
       <div>
@@ -80,25 +88,25 @@ export default class AddWater extends React.Component {
               label="Volume"
               type="text"
               fullWidth
-              defaultValue="440"
-              onChange={this.handleChange}
+              value={this.state.volume}
+              onChange={this.handleChangeVolume}
             />
             <TextField
               autoFocus
               margin="dense"
               id="timedate"
               label="When"
-              type="text"
+              type="date"
               fullWidth
-              defaultValue="2pm 08 Apr 2019"
-              onChange={this.handleChange}
+              value={this.state.drunk_at}
+              onInputCapture={this.handleChangeDate}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleCloseandSubmit} color="primary">
               Add water
             </Button>
           </DialogActions>

@@ -9,10 +9,10 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const request = { auth: { email: email, password: password } };
-    post("/user_token", request)
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const request = {"auth": {"email": email, "password": password}};
+    post('/user_token', request) //check post /path for confirmation of raiuser_token ******
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
