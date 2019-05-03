@@ -1,14 +1,15 @@
 class Api::V1::WaterEntriesController < Api::V1::ApplicationController
 
   def index
-    @waters =  User.find(1).water_entries  #for the time being use "User.find(1)" after we fix issue with "current_user" use this.
+    @waters =  current_user.water_entries #for the time being use "User.find(1)" after we fix issue with "current_user" use this.
     render json: @waters
   end
 
   #RECEIVING DATA:
   def create
-
-    @water_entry = User.find(1).water_entries.create(
+    puts "-----CURRENT USER-----------"
+    puts current_user.inspect
+    @water_entry = current_user.water_entries.new(
       volume: params[:volume],
       drunk_at: params[:drunk_at]
     )

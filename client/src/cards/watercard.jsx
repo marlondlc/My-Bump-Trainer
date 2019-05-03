@@ -47,7 +47,7 @@ class WaterCard extends React.Component {
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} totalWater={this.props.totalWater} chart1={chart1} chart2={chart2}/>
     );
   }
 }

@@ -6,13 +6,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+// import AccountCircle from "@material-ui/icons/AccountCircle";
 import DrawerRight from "../SideDrawer/DrawerRight";
 // import Switch from "@material-ui/core/Switch";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import FormGroup from "@material-ui/core/FormGroup";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+// import MenuItem from "@material-ui/core/MenuItem";
+// import Menu from "@material-ui/core/Menu";
 
 const styles = {
   root: {
@@ -47,8 +47,9 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    const { auth } = this.state;
+    // const open = Boolean(anchorEl);
+// removing anchorEl from const above as defined and not used
 
     return (
       <div className={classes.root}>
