@@ -3,7 +3,7 @@ import "./css/App.css";
 
 // REACT ROUTER IMPORTS ----------------
 import { BrowserRouter, Route, Switch} from "react-router-dom"
-import Navigation from "./components/Navigation"
+// import Navigation from "./components/Navigation"
 
 // AUTHENTICATION IMPORTS ------------
 import Login from "./authentication/login"
@@ -20,7 +20,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          timePeriod: "day",
+          timePeriod: "week",
         }
     }
 
@@ -41,7 +41,7 @@ class App extends Component {
 const Main = () => (
   <BrowserRouter>
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
         <Switch>
           <Route path="/login" component={Login} exact />
           <Route path="/logout" component={Logout} exact />

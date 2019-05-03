@@ -1,6 +1,6 @@
 const myDataSource = {
   "chart": {
-      "caption": "How much water you've drank today",
+      "caption": "How much water you've drank",
       "subCaption": "In mL",
       "xAxisName": "Time",
       "yAxisName": "Water (mL)",
@@ -10,7 +10,7 @@ const myDataSource = {
 
 const waterConfigs = {
     type: 'splinearea',
-    width: 400,
+    width: 300,
     height: 400,
     dataFormat: 'json',
     dataSource: myDataSource,

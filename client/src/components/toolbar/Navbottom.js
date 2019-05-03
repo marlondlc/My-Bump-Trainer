@@ -42,7 +42,8 @@ class FullWidthTabs extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
+// removed theme from above const
 
     return (
       <div className={classes.root}>

@@ -14,7 +14,7 @@ class Home extends Component {
       super(props)
       this.state = {
         sideDrawerOpen: false,
-        timePeriod: "day",
+        timePeriod: "week",
         totalWater: 2.0,
         totalCalories: 1600,
         totalExercise: 60,  

@@ -11,7 +11,8 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
-import widgets from "fusioncharts/fusioncharts.widgets";
+import widgets from 'fusioncharts/fusioncharts.widgets';
+import {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, averageWaterMonth, totalWaterMonth} from'../data/waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -30,6 +31,7 @@ class WaterCard extends React.Component {
 
   componentDidMount() {
     console.log(this.props.timePeriod)
+    // console.log('this is the function', waterWeekAverage)
     axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
       .then(res => {
         const water_entries = res.data ;
@@ -41,11 +43,25 @@ class WaterCard extends React.Component {
 
   // Create function that will transform the data iam ngetting from axios/get -- 
 
-
   render() {
-    waterCylinder.dataSource.value = this.props.totalWater;
+    const timePeriod = this.props.timePeriod;
+    if (timePeriod === 'day') {
+      waterCylinder.dataSource.value = totalWaterDay;  
+    } else if (timePeriod === 'week') {
+      waterCylinder.dataSource.value = averageWaterWeek;  
+    } else if (timePeriod === 'month') {
+      waterCylinder.dataSource.value = averageWaterMonth;
+    }
+    // waterCylinder.dataSource.value = totalWater;
     const chart1 = <ReactFC  {...waterCylinder} />
-    waterConfigs.dataSource.data = this.props.waterEntries;
+    if (timePeriod === 'day') {
+      waterConfigs.dataSource.data = dayWaterEntries;  
+    } else if (timePeriod === 'week') {
+      waterConfigs.dataSource.data = weekWaterEntries;  
+    } else if (timePeriod === 'month') {
+      waterConfigs.dataSource.data = monthWaterEntries;
+    }
+    // waterConfigs.dataSource.data = dayWaterEntries;
     const chart2 = <ReactFC {...waterConfigs} />
     const dialog = <Dialog />
 
