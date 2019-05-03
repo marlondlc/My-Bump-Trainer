@@ -6,7 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import IntegrationDownshift from '../test'
+import IntegrationDownshift from '../components/searchbar';
+
 
 import axios from 'axios';
 // import DateTime from 'react-datetime';
@@ -54,6 +55,41 @@ export default class AddFood extends React.Component {
   };
 
   render() {
+    const suggestions = [
+      { label: 'Alfalfa Sprouts', servingSize: "1 Tbsp" },
+      { label: 'Apple Juice' },
+      { label: 'Apple' },
+      { label: 'Avocado' },
+      { label: 'Asparagus' },
+      { label: 'Almonds' },
+      { label: 'Almond Butter' },
+      { label: 'Apple Dumpling' },
+      { label: 'Apple Pie' },
+      { label: 'Anchovy' },
+      { label: 'Artichokes' },
+      { label: 'Ants, chocolate covered' },
+      { label: 'Almond milk' },
+      { label: 'Avocado Oil' },
+      { label: 'Avocado Spread' },
+      { label: 'Bahamas' },
+      { label: 'Bahrain' },
+      { label: 'Bangladesh' },
+      { label: 'Barbados' },
+      { label: 'Belarus' },
+      { label: 'Belgium' },
+      { label: 'Belize' },
+      { label: 'Benin' },
+      { label: 'Bermuda' },
+      { label: 'Bhutan' },
+      { label: 'Bolivia, Plurinational State of' },
+      { label: 'Bonaire, Sint Eustatius and Saba' },
+      { label: 'Bosnia and Herzegovina' },
+      { label: 'Botswana' },
+      { label: 'Bouvet Island' },
+      { label: 'Brazil' },
+      { label: 'British Indian Ocean Territory' },
+      { label: 'Brunei Darussalam' },
+    ];
     return (
       <div>
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
@@ -69,7 +105,7 @@ export default class AddFood extends React.Component {
             <DialogContentText>
               Search for the food you've eaten and enter the number of servings you've had.
             </DialogContentText>
-            <IntegrationDownshift/>
+            <IntegrationDownshift suggestions={suggestions}/>
             <TextField
               autoFocus
               margin="dense"

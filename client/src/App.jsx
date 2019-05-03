@@ -41,7 +41,14 @@ class App extends Component {
         super(props)
         this.state = {
           sideDrawerOpen: false,
+<<<<<<< HEAD
           timePeriod: "day",  
+=======
+          timePeriod: "day",
+          totalWater: 2.0,
+          totalCalories: 1600,
+          totalExercise: 60,  
+>>>>>>> 7b64c47367335c59f8baac73331253e71f11b95a
           waterEntries: [
               {
                   "label": "6am",
@@ -182,7 +189,6 @@ class App extends Component {
                 "value": "0",
               }
           ],
-          totalWater: 2.0,
           exerciseType: [
             {
               label: "Aerobic",
@@ -229,8 +235,8 @@ class App extends Component {
           <div>
             <div className="components">
               <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-              <FoodCard timePeriod={this.state.timePeriod} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-              <ExerciseCard timePeriod={this.state.timePeriod} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+              <FoodCard timePeriod={this.state.timePeriod} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+              <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             </div>
           </div>
           } 

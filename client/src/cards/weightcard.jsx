@@ -1,9 +1,10 @@
+// for when we implement weight
 import React from 'react';
 import axios from 'axios';
 import GenericCard from './genericcard'
-import Dialog from '../forms/exercisedialog';
-import exerciseTarget from "../charts/exercisetarget";
-import exerciseConfigs from "../charts/exercise.jsx";
+// import Dialog from '../forms/weightdialog';
+// import exerciseTarget from "../charts/exercisetarget";
+// import exerciseConfigs from "../charts/exercise.jsx";
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
@@ -14,9 +15,9 @@ import widgets from "fusioncharts/fusioncharts.widgets";
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
 
-class ExerciseCard extends React.Component {
+class WeightCard extends React.Component {
   state = {
-    exercise_entries: []
+    weight_entries: []
   }
 
     // this comment will be used for the map function listing elements of water data to the chart 
@@ -27,25 +28,23 @@ class ExerciseCard extends React.Component {
       //   </ul>
       // </div> 
 
-  componentDidMount() {
-    axios.get(`/api/v1/exercise_entries`)
-      .then(res => {
-        const exercise_entries = res.data;
-        console.log(exercise_entries)
-        this.setState({ exercise_entries });
-      })
-      .catch(error => console.log(error));
-  }
+  // componentDidMount() {
+  //   axios.get(`/api/v1/exercise_entries`)
+  //     .then(res => {
+  //       const exercise_entries = res.data;
+  //       console.log(exercise_entries)
+  //       this.setState({ exercise_entries });
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
   render() {
-    exerciseTarget.dataSource.data = this.props.exerciseType;
-    const chart1 = <ReactFC {...exerciseTarget} />
-    exerciseConfigs.dataSource.data = this.props.exerciseEntries;
-    const chart2 = <ReactFC {...exerciseConfigs} />
+    weightTarget.dataSource.data = this.props.weightType;
+    const chart1 = <ReactFC {...weightTarget} />
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} totalExercise={this.props.totalExercise} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="weight" timePeriod={this.props.timePeriod} dialog={dialog} chart1={chart1} chart2={chart2}/>
     );
   }
 }
