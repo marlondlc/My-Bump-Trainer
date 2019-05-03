@@ -30,7 +30,8 @@ const styles = {
 class MenuAppBar extends React.Component {
   state = {
     auth: true,
-    anchorEl: null
+    anchorEl: null,
+    funfact: [{}]
   };
 
   handleChange = event => {
@@ -74,6 +75,12 @@ class MenuAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+            <Typography variant="h8" color="inherit" className={classes.grow}>
+              {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
+             
+               Funfact: Your baby is 20 weeks old ! Equivalent to an Artichoke
+              <img src="http://placekitten.com/25/25" alt="Kitten" height="25" width="25" />
+            </Typography>
             <Typography variant="h6" color="inherit" className={classes.grow} />
             {auth && <DrawerRight />}
           </Toolbar>

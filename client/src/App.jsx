@@ -16,6 +16,7 @@ import Error from "./components/Error"
 
 require('typeface-roboto')
 
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -24,12 +25,30 @@ class App extends Component {
         }
     }
 
+    updateCurrentUser = (user) => {
+      this.setState({currentUser: user})
+    }
+
     render() {
       return (
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
             <main style={{marginTop: '64px'}}>
-              <Main />
+            <BrowserRouter>
+              <div>
+                <Navigation />
+                  <Switch>
+                    <Route path="/login" render= {(routeProps) => (
+                      <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+                      )} />
+                    <Route path="/logout" component={Logout} exact />
+                    <Route path="/" render= {(props) => (
+                      <Homepage {...props} currentUser={this.state.currentUser}/>
+                      )} />
+                    <Route component={Error} />
+                  </Switch>
+              </div>
+              </BrowserRouter>
             </main>
           </div>
         </div>  
@@ -38,18 +57,20 @@ class App extends Component {
 }
 
 // ALL APP ROUTES GO HERE ! ****
-const Main = () => (
-  <BrowserRouter>
-    <div>
-      <Navigation />
-        <Switch>
-          <Route path="/login" component={Login} exact />
-          <Route path="/logout" component={Logout} exact />
-          <Route path="/" component={Homepage} exact />
-          <Route component={Error} />
-        </Switch>
-    </div>
-  </BrowserRouter>
-);
+// const Main = () => (
+//   // <BrowserRouter>
+//   //   <div>
+//   //     <Navigation />
+//   //       <Switch>
+//   //         <Route path="/login" render= {(routeProps) => (
+//   //           <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+//   //           )} />
+//   //         <Route path="/logout" component={Logout} exact />
+//   //         <Route path="/" component={Homepage} exact />
+//   //         <Route component={Error} />
+//   //       </Switch>
+//   //   </div>
+//   // </BrowserRouter>
+// );
 
 export default App;

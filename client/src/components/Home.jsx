@@ -7,7 +7,7 @@ import WaterCard from '../cards/watercard';
 import Navbar from '../components/toolbar/Navbar';
 import SideDrawer from '../components/SideDrawer/DrawerRight';
 import Backdrop from '../components/Backdrop/Backdrop';
-import FullWidthTabs from '../components/toolbar/Navbottom';
+import BottomNav from '../components/toolbar/Navbottom';
 
 class Home extends Component {
   constructor(props) {
@@ -193,7 +193,7 @@ class Home extends Component {
     return (
       <div>
         <div className="navbar-div" style={{height: '100%'}}>
-          <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+          <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
           <SideDrawer show={this.state.sideDrawerOpen} />
             {Backdrop}
           {/* <main style={{marginTop: '64px'}}>
@@ -209,7 +209,7 @@ class Home extends Component {
           </div>
         </div>
         }
-        <FullWidthTabs/> 
+        <BottomNav/> 
       </div>  
   );
 }

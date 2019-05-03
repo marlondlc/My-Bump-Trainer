@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
 
+
 class Login extends Component {
   constructor() {
     super();
@@ -19,8 +20,19 @@ class Login extends Component {
         Axios.defaults.headers.common["Authorization"] =
           "Bearer " + response.data.jwt;
       })
+      .then(response => {
+        Axios.get(`/api/v1/users/1`)
+        .then(response => {
+          console.log("HER THIS IS THE LONGIN", response.data)
+          this.props.updateCurrentUser(response.data)
+          
+          })
+        })
       .catch(error => console.log("error", error));
   }
+
+
+
 
   render() {
     return (
