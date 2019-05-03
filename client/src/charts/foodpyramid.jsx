@@ -11,8 +11,8 @@ const myDataSource = {
 
   const foodPyramid = {
     type: "pyramid",
-    width: 600,
-    height: 400,
+    width: '80%',
+    height: '50%',
     dataFormat: "JSON",
     dataSource: myDataSource
 };

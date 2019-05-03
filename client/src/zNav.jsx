@@ -1,7 +1,6 @@
 
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './Navbar.css'
 import { Navbar, Container } from 'react-bootstrap'
 // import User from './User.jsx';

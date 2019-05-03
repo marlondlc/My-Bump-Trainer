@@ -8,17 +8,17 @@ const myDataSource = {
         "plotgradientcolor": "#ffc107",
         "plotfillangle": "100",
         "plotfillalpha": "80",
-        "plotfillratio": "0,80",  
+        "plotfillratio": "0,80",
         "theme": "fusion",
     },
   };
-  
+
   const exerciseConfigs = {
       type: 'column2d',
-      width: 380,
+      width: 400,
       height: 400,
       dataFormat: 'json',
       dataSource: myDataSource,
   };
-  
+
   export default exerciseConfigs;

@@ -8,17 +8,17 @@ const myDataSource = {
         "plotgradientcolor": "#ff694f",
         "plotfillangle": "100",
         "plotfillalpha": "80",
-        "plotfillratio": "0,80",  
+        "plotfillratio": "0,80",
         "theme": "fusion",
     },
   };
-  
+
   const chartConfigs = {
       type: 'splinearea',
-      width: 380,
-      height: 400,
+      width: '80%',
+      height: '50%',
       dataFormat: 'json',
       dataSource: myDataSource,
   };
-  
+
   export default chartConfigs;

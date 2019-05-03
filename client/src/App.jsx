@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import "./css/App.css";
 
-// NAV BAR REACT IMPORTS ----------------
-// import NavFooter from './NavFooter'
-import Navbar from './components/toolbar/Navbar';
-import SideDrawer from './components/SideDrawer/SideDrawer';
-import Backdrop from './components/Backdrop/Backdrop';
-// import ControlledTabs from './components/toolbar/ControlledTabs';
-
-
 // REACT ROUTER IMPORTS ----------------
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 import Navigation from "./components/Navigation"
@@ -20,35 +12,18 @@ import Logout from "./authentication/logout"
 
 // ROUTE COMPONENTS HERE : ----------------
 import Homepage from "./components/Home"
-// import WaterForm from "./components/FormsPages/WaterForm"
-// import FoodForm from "./components/FormsPages/FoodForm"
-// import ExerciseForm from "./components/FormsPages/ExerciseForm"
 import Error from "./components/Error"
-// import AddFood from "./forms/addFood"
-// import AddWater from "./forms/addWater"
-// import AddExercise from "./forms/addExercise"
-// import Water from "./water"
 
-import FoodCard from './cards/foodcard';
-import ExerciseCard from './cards/exercisecard';
-import WaterCard from './cards/watercard';
-// import GenericCard from './genericcard.jsx';
-// import MyComponent from './test'
 require('typeface-roboto')
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          sideDrawerOpen: false,
-<<<<<<< HEAD
-          timePeriod: "day",  
-=======
           timePeriod: "day",
           totalWater: 2.0,
           totalCalories: 1600,
           totalExercise: 60,  
->>>>>>> 7b64c47367335c59f8baac73331253e71f11b95a
           waterEntries: [
               {
                   "label": "6am",
@@ -207,39 +182,18 @@ class App extends Component {
               value: "15"
             }
           ]
+
         }
     }
-
-    drawerToggleClickHandler = () => {
-      this.setState((prevState) => {
-        return {sideDrawerOpen: !prevState.sideDrawerOpen};
-      });
-    };
-  
-    backdropClickHandler = () => {
-      this.setState({sideDrawerOpen: false})
-    };
 
     render() {
       return (
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
-            <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
-            <SideDrawer show={this.state.sideDrawerOpen} />
-              {Backdrop}
             <main style={{marginTop: '64px'}}>
               <Main />
             </main>
           </div>
-          {localStorage.getItem('jwt') &&
-          <div>
-            <div className="components">
-              <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-              <FoodCard timePeriod={this.state.timePeriod} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-              <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
-            </div>
-          </div>
-          } 
         </div>  
     );
   }
@@ -254,9 +208,6 @@ const Main = () => (
           <Route path="/login" component={Login} exact />
           <Route path="/logout" component={Logout} exact />
           <Route path="/" component={Homepage} exact />
-          {/* <Route path="/waterform" component={AddWater} exact/>
-          <Route path="/exerciseform" component={AddExercise} exact/>
-          <Route path="/foodform" component={AddFood} exact/> */}
           <Route component={Error} />
         </Switch>
     </div>

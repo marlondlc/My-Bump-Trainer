@@ -7,10 +7,10 @@ export default class AddWater extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      volume: 440,
+      volume: 480,
       drunk_at: ""
     }
-  }  
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value})
@@ -45,14 +45,14 @@ export default class AddWater extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <h2>Add your water intake</h2>
         <FormText color="muted">
-            If you've just finished one of your regular bottles just hit "Add water". 
+            If you've just finished one of your regular bottles just hit "Add water".
             Otherwise let us know how much you've had to drink and when.
           </FormText>
         <FormGroup>
           <Label for="exampleText">Volume of water</Label>
-          <Input 
-            type="textarea" 
-            name="volume" 
+          <Input
+            type="textarea"
+            name="volume"
             id="exampleText"
             placeholder="quantity"
             value={this.state.volume}
