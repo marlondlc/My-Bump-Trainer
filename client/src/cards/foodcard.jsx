@@ -78,13 +78,38 @@ class FoodCard extends React.Component {
       recommendedCalories = caloriesPerDayRec.thirdTrimester;
     }
 
-    // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
-    // This needs to be adjusted for food
+    // This gets data for comparisons
+    const actualTreatsPercentage = foodPyramid.find( group => group.label === 'Food and drinks high in fat, sugar and salt' ).value;
+    // const actualFatsPercentage = foodPyramid.find( group => group.label === 'Fats, spreads and oils' ).value;
+    // const actualProteinPercentage = foodPyramid.find( group => group.label === 'Meat, poultry, fish, eggs, beans and nuts' ).value;
+    // const actualDairyPercentage = foodPyramid.find( group => group.label === 'Milk, yoghurt and cheese' ).value;
+    // const actualCarbsPercentage = foodPyramid.find( group => group.label === 'Wholemeal cereals and breads, potatoes, pasta and rice' ).value;
+    const actualVegePercentage = foodPyramid.find( group => group.label === 'Vegetables, salad and fruit' ).value;
+    const recTreatsPercentage = foodPyramidRec.find( group => group.label === 'Food and drinks high in fat, sugar and salt' ).value;
+    // const recFatsPercentage = foodPyramidRec.find( group => group.label === 'Fats, spreads and oils' ).value;
+    // const recProteinPercentage = foodPyramidRec.find( group => group.label === 'Meat, poultry, fish, eggs, beans and nuts' ).value;
+    // const recDairyPercentage = foodPyramidRec.find( group => group.label === 'Milk, yoghurt and cheese' ).value;
+    // const recCarbsPercentage = foodPyramidRec.find( group => group.label === 'Wholemeal cereals and breads, potatoes, pasta and rice' ).value;
+    const recVegePercentage = foodPyramidRec.find( group => group.label === 'Vegetables, salad and fruit' ).value;
+
+    let eatMoreVeges = false;
+    if ((actualVegePercentage - recVegePercentage ) <= 0) {
+      eatMoreVeges = true;
+    }
+
+    let eatLessSweets = false;
+    if ((recTreatsPercentage - actualTreatsPercentage ) <= 0) {
+      eatLessSweets = true;
+    }  
+
+    // This compares the consumed with the recommended to create a messsage that can be passed to generic card
     let message;
     if ((recommendedCalories - averageFood) >= 0) {
         message = 'Wohoo you are meeting the recommendations.' ;
-    } else {
-        message = `This ${timePeriod} you are ${Math.round(averageFood - recommendedCalories)} cal over the recommendations.`
+    } else if (eatMoreVeges && eatLessSweets) {
+        message = `Try replacing sugary treats with fruit or vegetables.`
+    } else if (eatLessSweets &! eatMoreVeges ) {
+        message = `Try replacing sugary drinks with water.`
     }
 
     return (

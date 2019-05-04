@@ -4,6 +4,7 @@ import "../css/Home.css"
 import FoodCard from '../cards/foodcard';
 import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
+// import Advice from '../advice/advice'
 import Navbar from '../components/toolbar/Navbar';
 // import SideDrawer from '../components/SideDrawer/DrawerRight';
 // import Backdrop from '../components/Backdrop/Backdrop';
@@ -18,167 +19,6 @@ class Home extends Component {
         sideDrawerOpen: false,
         timePeriod: "week",
         trimester: "first",
-        totalWater: 2.0,
-        totalCalories: 1600,
-        totalExercise: 60,
-        waterEntries: [
-            {
-                "label": "6am",
-                "value": "0"
-            },
-            {
-                "label": "8am",
-                "value": "880"
-            },
-            {
-                "label": "10am",
-                "value": "880"
-            },
-            {
-                "label": "12pm",
-                "value": "880"
-              },
-              {
-                "label": "2pm",
-                "value": "1200"
-              },
-              {
-                "label": "4pm",
-                "value": "1640"
-              },
-              {
-                "label": "6pm",
-                "value": "1860"
-              },
-              {
-                "label": "8pm",
-                "value": "2200"
-              },
-              {
-                "label": "10pm",
-                "value": "2200",
-              }
-          ],
-        foodEntries: [
-          {
-              "label": "6am",
-              "value": "0"
-          },
-          {
-              "label": "8am",
-              "value": "1000"
-          },
-          {
-              "label": "10am",
-              "value": "1000"
-          },
-          {
-              "label": "12pm",
-              "value": "3000"
-            },
-            {
-              "label": "2pm",
-              "value": "3000"
-            },
-            {
-              "label": "4pm",
-              "value": "3050"
-            },
-            {
-              "label": "6pm",
-              "value": "3050"
-            },
-            {
-              "label": "8pm",
-              "value": "7050"
-            },
-            {
-              "label": "10pm",
-              "value": "8050",
-            }
-        ],
-        foodPyramid: [
-          {
-            label: "Food and drinks high in fat, sugar and salt",
-            value: "15"
-          },
-          {
-            label: "Fats, spreads and oils",
-            value: "11"
-          },
-          {
-            label: "Meat, poultry, fish, eggs, beans and nuts",
-            value: "14"
-          },
-          {
-            label: "Milk, yoghurt and cheese",
-            value: "8"
-          },
-          {
-            label: "Wholemeal cereals and breads, potatoes, pasta and rice",
-            value: "40"
-          },
-          {
-            label: "Vegetables, salad and fruit",
-            value: "12"
-          }
-        ],
-        exerciseEntries: [
-          {
-              "label": "6am",
-              "value": "0"
-          },
-          {
-              "label": "8am",
-              "value": "30"
-          },
-          {
-              "label": "10am",
-              "value": "0"
-          },
-          {
-              "label": "12pm",
-              "value": "0"
-            },
-            {
-              "label": "2pm",
-              "value": "0"
-            },
-            {
-              "label": "4pm",
-              "value": "0"
-            },
-            {
-              "label": "6pm",
-              "value": "30"
-            },
-            {
-              "label": "8pm",
-              "value": "0"
-            },
-            {
-              "label": "10pm",
-              "value": "0",
-            }
-        ],
-        exerciseType: [
-          {
-            label: "Aerobic",
-            value: "30"
-          },
-          {
-            label: "Strength",
-            value: "15"
-          },
-          {
-            label: "Flexibility",
-            value: "60"
-          },
-          {
-            label: "Balance",
-            value: "15"
-          }
-        ]
       }
   }
 
@@ -214,6 +54,7 @@ class Home extends Component {
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
             <FoodCard timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
             <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+            {/* <Advice timePeriod={this.state.timePeriod} /> */}
           </div>
         </div>
         }

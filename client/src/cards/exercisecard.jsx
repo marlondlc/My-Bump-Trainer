@@ -11,6 +11,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
 import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
+import {exercisePerDayRec} from '../data/recommendations';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -71,6 +72,14 @@ class ExerciseCard extends React.Component {
     // This is the popup where people can enter exercise choices. Need to be able to pass exercise list to this.
     const dialog = <Dialog />
 
+    // This compares the exercise with the recommended to create a messsage that can be passed to generic card
+    let message;
+    if ((exercisePerDayRec - averageExercise) <= 0) {
+        message = 'Wohoo you are meeting the recommendations.' ;
+    } else {
+        message = `Try increasing your exercise by ${exercisePerDayRec - averageExercise} minutes per day`
+    }
+
     return (
 
       // This passes variables to the generic card component which renders the card
@@ -78,6 +87,7 @@ class ExerciseCard extends React.Component {
         type="exercise" 
         timePeriod={this.props.timePeriod} 
         dialog={dialog} 
+        message={message}
         totalExercise={averageExercise} 
         chart1={chart1} 
         chart2={chart2}/>

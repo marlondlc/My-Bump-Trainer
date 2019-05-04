@@ -66,9 +66,9 @@ class GenericCard extends React.Component {
           <Typography component="p">
             {(() => {
                 switch (this.state.type) {
-                  case "water": return "It's recommended that pregnant women drink 10 eight ounce glasses (2.3 litres) of water per day";
-                  case "food": return `It's recommended that pregnant women consume ${this.props.recommendedCalories} calories per day in the ${this.props.trimester} trimester.`;
-                  case "exercise": return "It's recommended that pregnant women do 20 minutes of moderate-intensity physical activity per day.";
+                  case "water": return "Recommendation: 10 eight ounce glasses (2.3 litres) of water per day";
+                  case "food": return `Recommendation ${this.props.trimester} trimester: ${this.props.recommendedCalories} calories per day.`;
+                  case "exercise": return "Recommendation: 20 minutes of moderate-intensity physical activity per day.";
                   default: return "X";
                 }
               })()}
@@ -76,9 +76,9 @@ class GenericCard extends React.Component {
           <Typography component="p">
             {(() => {
                 switch (this.state.type) {
-                  case "water": return `You've had ${this.props.averageWater} litres per day. ${this.props.message}`;
-                  case "food": return `You've had ${this.props.averageCalories} calories per day. ${this.props.message}`;
-                  case "exercise": return `You've done ${this.props.totalExercise} minutes exercise per day.`;
+                  case "water": return `Actual: ${this.props.averageWater} litres. ${this.props.message}`;
+                  case "food": return `Actual: ${this.props.averageCalories} calories. ${this.props.message}`;
+                  case "exercise": return `Actual: ${this.props.totalExercise} minutes. ${this.props.message}`;
                   default: return "X";
                 }
               })()}

@@ -31,7 +31,7 @@ class WaterCard extends React.Component {
       // </div>
 
   componentDidMount() {
-    console.log(this.props.timePeriod)
+    // console.log(this.props.timePeriod)
     // console.log('this is the function', waterWeekAverage)
     axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
       .then(res => {
@@ -76,7 +76,7 @@ class WaterCard extends React.Component {
     if ((2.3 - averageWater) <= 0) {
         message = 'Wohoo you are meeting the recommendations.' ;
     } else {
-        message = `This ${timePeriod} you are ${Math.round((2.3 - averageWater) * 1000)} mL under the recommendations.`
+        message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
     }
 
     return (
