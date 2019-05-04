@@ -24,7 +24,12 @@ class App extends Component {
         super(props)
         this.state = {
           timePeriod: "week",
+          updateCurrentUser: ''
         }
+    }
+
+    updateCurrentUser = (user) => {
+      this.setState({currentUser: user})
     }
 
     render() {
@@ -32,7 +37,24 @@ class App extends Component {
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
             <main style={{marginTop: '64px'}}>
-              <Main />
+            <BrowserRouter>
+              <div>
+                {/* <Navigation /> */}
+                  <Switch>
+                    <Route path="/login" render={(routeProps) => (
+                      <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+                      )} />
+                    <Route path="/logout" component={Logout} exact />
+                    <Route path="/" render={(props) => (
+                      <Homepage {...props} currentUser={this.state.currentUser} />
+                      )} />
+                    <Route component={Error} />
+                    <Route path="/profile" render={(props) => (
+                      <UserProfile {...props} currentUser={this.state.currentUser}/>
+                    )} />
+                  </Switch>
+              </div>
+              </BrowserRouter>
             </main>
           </div>
         </div>
@@ -40,20 +62,5 @@ class App extends Component {
   }
 }
 
-// ALL APP ROUTES GO HERE ! ****
-const Main = () => (
-  <BrowserRouter>
-    <div>
-      {/* <Navigation /> */}
-        <Switch>
-          <Route path="/login" component={Login} exact />
-          <Route path="/logout" component={Logout} exact />
-          <Route path="/" component={Homepage} exact />
-          <Route path="/profile" component={UserProfile} exact/>
-          <Route component={Error} />
-        </Switch>
-    </div>
-  </BrowserRouter>
-);
 
 export default App;
