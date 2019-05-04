@@ -1,32 +1,35 @@
 import React, { Component } from "react";
 // import {Link} from 'react-router-dom'
-import "./Home.css"
+import "../css/Home.css"
 import FoodCard from '../cards/foodcard';
 import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
 import Navbar from '../components/toolbar/Navbar';
-import SideDrawer from '../components/SideDrawer/DrawerRight';
-import Backdrop from '../components/Backdrop/Backdrop';
-import BottomNav from '../components/toolbar/Navbottom';
+// import SideDrawer from '../components/SideDrawer/DrawerRight';
+// import Backdrop from '../components/Backdrop/Backdrop';
+import FullWidthTabs from '../components/toolbar/Navbottom';
+// import { UserForm } from './user -NOT BEING USED/UserForm';
+import Footer from '../components/toolbar/Footer';
 
 class Home extends Component {
   constructor(props) {
       super(props)
       this.state = {
         sideDrawerOpen: false,
-        timePeriod: "month",
+        timePeriod: "week",
+        trimester: "first",
         totalWater: 2.0,
         totalCalories: 1600,
-        totalExercise: 60,  
+        totalExercise: 60,
         waterEntries: [
             {
                 "label": "6am",
                 "value": "0"
-            },      
+            },
             {
                 "label": "8am",
                 "value": "880"
-            },  
+            },
             {
                 "label": "10am",
                 "value": "880"
@@ -60,11 +63,11 @@ class Home extends Component {
           {
               "label": "6am",
               "value": "0"
-          },      
+          },
           {
               "label": "8am",
               "value": "1000"
-          },  
+          },
           {
               "label": "10am",
               "value": "1000"
@@ -93,7 +96,7 @@ class Home extends Component {
               "label": "10pm",
               "value": "8050",
             }
-        ], 
+        ],
         foodPyramid: [
           {
             label: "Food and drinks high in fat, sugar and salt",
@@ -124,11 +127,11 @@ class Home extends Component {
           {
               "label": "6am",
               "value": "0"
-          },      
+          },
           {
               "label": "8am",
               "value": "30"
-          },  
+          },
           {
               "label": "10am",
               "value": "0"
@@ -192,31 +195,36 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="navbar-div" style={{height: '100%'}}>
-          <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
-          <SideDrawer show={this.state.sideDrawerOpen} />
-            {Backdrop}
-          {/* <main style={{marginTop: '64px'}}>
-            <Main />
-          </main> */}
+        <div>
+          <div className="navbar-div" style={{height: '100%'}}>
+            <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
+
+            {/* <SideDrawer show={this.state.sideDrawerOpen} />
+              {Backdrop} */}
+            {/* <main style={{marginTop: '64px'}}>
+              <Main />
+            </main> */}
+          </div>
+          <div><FullWidthTabs/>
+</div>
         </div>
         {localStorage.getItem('jwt') &&
         <div>
           <div className="components">
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-            <FoodCard timePeriod={this.state.timePeriod} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+            <FoodCard timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
             <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
           </div>
         </div>
         }
-        <BottomNav /> 
-      </div>  
+        <Footer/>
+      </div>
   );
 }
 }
 
 // const Homepage = () => {
- 
+
 //     return (
 
 //         <div>

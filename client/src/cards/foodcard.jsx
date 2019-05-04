@@ -7,11 +7,12 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
-import widgets from "fusioncharts/fusioncharts.widgets";
-import foodPyramidchart from "../charts/foodpyramid.jsx";
-import actualfoodPyramid from "../charts/actualfoodpyramid.jsx";
-import foodConfigs from "../charts/food.jsx";
+import widgets from 'fusioncharts/fusioncharts.widgets';
+import foodPyramidchart from '../charts/foodpyramid.jsx';
+import actualfoodPyramid from '../charts/actualfoodpyramid.jsx';
+import foodConfigs from '../charts/food.jsx';
 import {dayFoodEntries, weekFoodEntries, monthFoodEntries, totalFoodDay, averageFoodWeek, averageFoodMonth, dayFoodPyramid, weekFoodPyramid, monthFoodPyramid} from'../data/foodEntries';
+import {foodPyramidRec, caloriesPerDayRec} from '../data/recommendations';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -32,6 +33,7 @@ class FoodCard extends React.Component {
   }
   
   render() {
+    // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
     let averageFood;
     let foodEntries;
@@ -51,17 +53,53 @@ class FoodCard extends React.Component {
       foodPyramid = monthFoodPyramid;
     }
 
+    // This sets the data for the charts
     foodPyramidchart.dataSource.data = foodPyramid;
     foodConfigs.dataSource.data = foodEntries;
+    actualfoodPyramid.dataSource.data = foodPyramidRec;
 
+    // This sets the charts to variables which can be passed to the generic chart
     const chart1 = <ReactFC {...foodPyramidchart} />
     const chart2 = <ReactFC {...actualfoodPyramid} />
-    
-    // const chart3 = <ReactFC {...foodConfigs} />
+      
+    // const chart3 = <ReactFC {...foodConfigs} /> //this is an extra chart we can use
+
+    // This is the popup where people can enter food choices. Need to be able to pass food list to this.
     const dialog = <Dialog />
 
+    // This looks at which trimester the user is in (from props) and determines the recommended calories
+    const trimester = this.props.trimester;
+    let recommendedCalories;
+    if (trimester === 'first') {
+      recommendedCalories = caloriesPerDayRec.firstTrimester;
+    } else if (trimester === 'second') {
+      recommendedCalories = caloriesPerDayRec.secondTrimester; 
+    } else if (trimester === 'third') {
+      recommendedCalories = caloriesPerDayRec.thirdTrimester;
+    }
+
+    // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
+    // This needs to be adjusted for food
+    let message;
+    if ((recommendedCalories - averageFood) >= 0) {
+        message = 'Wohoo you are meeting the recommendations.' ;
+    } else {
+        message = `This ${timePeriod} you are ${Math.round(averageFood - recommendedCalories)} cal over the recommendations.`
+    }
+
     return (
-      <GenericCard type="food" timePeriod={timePeriod} dialog={dialog} averageCalories={averageFood} chart1={chart1} chart2={chart2}/>
+
+      // This passes variables to the generic card component which renders the card
+      <GenericCard 
+        type="food" 
+        timePeriod={timePeriod} 
+        dialog={dialog} 
+        trimester={this.props.trimester}
+        recommendedCalories={recommendedCalories}
+        message={message}
+        averageCalories={averageFood} 
+        chart1={chart1} 
+        chart2={chart2}/>
     );
   }
 }

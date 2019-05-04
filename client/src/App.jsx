@@ -8,11 +8,14 @@ import { BrowserRouter, Route, Switch} from "react-router-dom"
 // AUTHENTICATION IMPORTS ------------
 import Login from "./authentication/login"
 import Logout from "./authentication/logout"
+// import userProfile from "./components/userProfile"
+// import Users from './components/user -NOT BEING USED/UserForm'
 // import Api from "./authentication/Api"
 
 // ROUTE COMPONENTS HERE : ----------------
 import Homepage from "./components/Home"
 import Error from "./components/Error"
+import UserProfile from "./components/UserProfile"
 
 require('typeface-roboto')
 
@@ -51,12 +54,12 @@ class App extends Component {
               </BrowserRouter>
             </main>
           </div>
-        </div>  
+        </div>
     );
   }
 }
 
-// ALL APP ROUTES GO HERE ! ****
+// ALL APP ROUTES GO HERE ! **** Implemented in render because of Axios async issue with rendering userInfo
 // const Main = () => (
 //   // <BrowserRouter>
 //   //   <div>

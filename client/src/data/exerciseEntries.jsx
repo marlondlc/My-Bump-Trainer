@@ -227,13 +227,4 @@ const averageExerciseWeek = Math.round(totalExerciseWeek/7, 2);
 const totalExerciseMonth = totalExercisefunction(monthExerciseEntries);
 const averageExerciseMonth = Math.round(totalExerciseMonth/21, 2);
 
-// if ((2.3 - averageWaterWeek) < 0) {
-//     let drinkMore = 'yes';
-//     let drinkLess = 'no';
-// } else {
-//     drink
-// }
-
-
-
 export {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie};

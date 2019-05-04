@@ -10,7 +10,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePyramid, weekExercisePyramid, monthExercisePyramid, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
+import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -39,6 +39,8 @@ class ExerciseCard extends React.Component {
   }
 
   render() {
+    
+    // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
     let averageExercise;
     let exerciseEntries;
@@ -58,14 +60,27 @@ class ExerciseCard extends React.Component {
       exercisePie = monthExercisePie;
     }
 
+    // This sets the data for the charts
     exerciseTarget.dataSource.data = exercisePie;
-    const chart1 = <ReactFC {...exerciseTarget} />
     exerciseConfigs.dataSource.data = exerciseEntries;
+
+    // This sets the charts to variables which can be passed to the generic chart
+    const chart1 = <ReactFC {...exerciseTarget} />
     const chart2 = <ReactFC {...exerciseConfigs} />
+
+    // This is the popup where people can enter exercise choices. Need to be able to pass exercise list to this.
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="exercise" timePeriod={this.props.timePeriod} dialog={dialog} totalExercise={averageExercise} chart1={chart1} chart2={chart2}/>
+
+      // This passes variables to the generic card component which renders the card
+      <GenericCard 
+        type="exercise" 
+        timePeriod={this.props.timePeriod} 
+        dialog={dialog} 
+        totalExercise={averageExercise} 
+        chart1={chart1} 
+        chart2={chart2}/>
     );
   }
 }

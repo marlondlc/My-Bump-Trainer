@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
-// import Navbar from '../components/toolbar/Navbar'
+import Navbar from "../components/toolbar/Navbar";
+import Footer from "../components/toolbar/Footer";
 
 class Login extends Component {
   constructor() {
@@ -38,7 +39,9 @@ class Login extends Component {
     return (
 
       <div>
-      {/* <Navbar /> */}
+        <div className="navbar-div" style={{ height: "100%" }}>
+          <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+        </div>
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -63,6 +66,7 @@ class Login extends Component {
             Submit
           </button>
         </form>
+        <Footer />
       </div>
     );
   }

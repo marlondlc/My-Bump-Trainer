@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import IntegrationDownshift from '../components/searchbarExercise';
 
 import axios from 'axios';
 // import DateTime from 'react-datetime';
@@ -76,20 +77,9 @@ export default class AddExercise extends React.Component {
           <DialogTitle id="form-dialog-title">Add exercise</DialogTitle>
           <DialogContent>
             <DialogContentText>
-                If you've just finished one of your regular bottles just hit "Add exercise". 
-                Otherwise let us know how much you've had to drink and when.
+              Search for the exercise and add a start and finish time.
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="exercisename"
-              label="Exercise"
-              type="text"
-              fullWidth
-              defaultValue="Pilates"
-              value={this.state.exerciseName}
-              onChange={this.handleChange}
-            />
+            <IntegrationDownshift/>
             <TextField
               autoFocus
               margin="dense"

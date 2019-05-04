@@ -17,6 +17,7 @@ import {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, ave
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
 
+// We're not using the axios yet so the state is not being used to pass data to the charts
 class WaterCard extends React.Component {
   state = {
     water_entries: []
@@ -44,6 +45,8 @@ class WaterCard extends React.Component {
   // Create function that will transform the data iam ngetting from axios/get -- 
 
   render() {
+
+    // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
     let averageWater;
     let waterEntries;
@@ -57,16 +60,37 @@ class WaterCard extends React.Component {
       averageWater = averageWaterMonth;
       waterEntries = monthWaterEntries;
     }
+    // This sets the data for the charts
     waterCylinder.dataSource.value = averageWater;
     waterConfigs.dataSource.data = waterEntries;
 
+    // This sets the charts to variables which can be passed to the generic chart
     const chart1 = <ReactFC  {...waterCylinder} />
     const chart2 = <ReactFC {...waterConfigs} />
+
+    // This is the popup where people can enter water
     const dialog = <Dialog />
 
+    // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
+    let message;
+    if ((2.3 - averageWater) <= 0) {
+        message = 'Wohoo you are meeting the recommendations.' ;
+    } else {
+        message = `This ${timePeriod} you are ${Math.round((2.3 - averageWater) * 1000)} mL under the recommendations.`
+    }
+
     return (
-      <GenericCard type="water" timePeriod={this.props.timePeriod} dialog={dialog} averageWater={averageWater} chart1={chart1} chart2={chart2}/>
-    );
+      // This passes variables to the generic card component which renders the card
+      <GenericCard 
+        type="water" 
+        message={message} 
+        timePeriod={this.props.timePeriod} 
+        dialog={dialog} 
+        averageWater={averageWater} 
+        chart1={chart1} 
+        chart2={chart2}
+      />
+    )
   }
 }
 
