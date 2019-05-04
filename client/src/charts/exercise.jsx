@@ -16,7 +16,7 @@ const myDataSource = {
   const exerciseConfigs = {
       type: 'column2d',
       width: 400,
-      height: 400,
+      height: 500,
       dataFormat: 'json',
       dataSource: myDataSource,
   };

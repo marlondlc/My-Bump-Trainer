@@ -8,9 +8,10 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import foodPyramid from "../charts/foodpyramid.jsx";
+import foodPyramidchart from "../charts/foodpyramid.jsx";
 import actualfoodPyramid from "../charts/actualfoodpyramid.jsx";
 import foodConfigs from "../charts/food.jsx";
+import {dayFoodEntries, weekFoodEntries, monthFoodEntries, totalFoodDay, averageFoodWeek, averageFoodMonth, dayFoodPyramid, weekFoodPyramid, monthFoodPyramid} from'../data/foodEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -31,15 +32,36 @@ class FoodCard extends React.Component {
   }
   
   render() {
-    foodPyramid.dataSource.data = this.props.foodPyramid;
-    const chart1 = <ReactFC {...foodPyramid} />
+    const timePeriod = this.props.timePeriod;
+    let averageFood;
+    let foodEntries;
+    let foodPyramid;
+
+    if (timePeriod === 'day') {
+      averageFood = totalFoodDay;
+      foodEntries = dayFoodEntries;  
+      foodPyramid = dayFoodPyramid;
+    } else if (timePeriod === 'week') {
+      averageFood = averageFoodWeek; 
+      foodEntries = weekFoodEntries;
+      foodPyramid = weekFoodPyramid;
+    } else if (timePeriod === 'month') {
+      averageFood = averageFoodMonth;
+      foodEntries = monthFoodEntries;
+      foodPyramid = monthFoodPyramid;
+    }
+
+    foodPyramidchart.dataSource.data = foodPyramid;
+    foodConfigs.dataSource.data = foodEntries;
+
+    const chart1 = <ReactFC {...foodPyramidchart} />
     const chart2 = <ReactFC {...actualfoodPyramid} />
-    foodConfigs.dataSource.data = this.props.foodEntries;
+    
     // const chart3 = <ReactFC {...foodConfigs} />
     const dialog = <Dialog />
 
     return (
-      <GenericCard type="food" timePeriod={this.props.timePeriod} dialog={dialog} totalCalories={this.props.totalCalories} chart1={chart1} chart2={chart2}/>
+      <GenericCard type="food" timePeriod={timePeriod} dialog={dialog} averageCalories={averageFood} chart1={chart1} chart2={chart2}/>
     );
   }
 }
