@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
-import Navbar from '../components/toolbar/Navbar'
+// import Navbar from '../components/toolbar/Navbar'
 
 class Login extends Component {
   constructor() {
@@ -38,7 +38,7 @@ class Login extends Component {
     return (
 
       <div>
-      <Navbar />
+      {/* <Navbar /> */}
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

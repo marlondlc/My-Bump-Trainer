@@ -31,11 +31,11 @@ class MenuAppBar extends React.Component {
   state = {
     auth: true,
     anchorEl: null,
-    funfact: [{
-      
- 
-      
-    }]
+    funfact: {
+      id:5,
+      email:'',
+      name:''
+    }
   };
 
   handleChange = event => {
@@ -49,18 +49,27 @@ class MenuAppBar extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-
+  
+  
   render() {
     const { classes } = this.props;
     const { auth } = this.state;
+
+    const funfactsUser1 = "Your baby is 8 weeks old. It's the size of a rasberry right now!"
+    const funfactsUser2 = "Your baby is 20 weeks old. It's the size of an Artichoke right now!"
+
     // const open = Boolean(anchorEl);
-// removing anchorEl from const above as defined and not used
+    // removing anchorEl from const above as defined and not used
     
     // Ternary variable solving the async backend issue
     // the find will get me an element without the array. So in render {userFunfacts.text} {userFunfacts.image}
-    // const userFunFacts = this.props.currentUser.id ? this.state.funfacts.find(element => element.id === this.props.currentUser.id) : null
     // console.log("SHOW ME THIS", userFunFacts)
+    // const userFunFacts = this.props.currentUser.id ? this.state.funfacts.find(element => element.id === this.props.currentUser.id):null
+    console.log("PLZ SHOW THIS", this.props.currentUser)
 
+   
+
+  
 
     return (
       <div className={classes.root}>
@@ -87,11 +96,8 @@ class MenuAppBar extends React.Component {
             </IconButton>
             <Typography variant="h8" color="inherit" className={classes.grow}>
               {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
-           
-                {/* {userFunfacts.text}
-                {userFunfacts.image} */}
-              
-               Funfact: Your baby is 20 weeks old ! Equivalent to an Artichoke
+              {/* {userFunFacts.email} */}
+              <a>  : Your baby is 20 weeks old ! Equivalent to an Artichoke</a>
               <img src="http://placekitten.com/25/25" alt="Kitten" height="25" width="25" />
             </Typography>
             <Typography variant="h6" color="inherit" className={classes.grow} />
