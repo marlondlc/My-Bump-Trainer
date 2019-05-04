@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
+import Navbar from "../components/toolbar/Navbar";
+import Footer from "../components/toolbar/Footer";
 
 class Login extends Component {
   constructor() {
@@ -9,10 +11,10 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const request = {"auth": {"email": email, "password": password}};
-    post('/user_token', request) //check post /path for confirmation of raiuser_token ******
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const request = { auth: { email: email, password: password } };
+    post("/user_token", request) //check post /path for confirmation of raiuser_token ******
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
@@ -25,6 +27,9 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <div className="navbar-div" style={{ height: "100%" }}>
+          <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+        </div>
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -49,6 +54,7 @@ class Login extends Component {
             Submit
           </button>
         </form>
+        <Footer />
       </div>
     );
   }

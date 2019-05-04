@@ -5,9 +5,11 @@ import FoodCard from '../cards/foodcard';
 import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
 import Navbar from '../components/toolbar/Navbar';
-import SideDrawer from '../components/SideDrawer/DrawerRight';
-import Backdrop from '../components/Backdrop/Backdrop';
+// import SideDrawer from '../components/SideDrawer/DrawerRight';
+// import Backdrop from '../components/Backdrop/Backdrop';
 import FullWidthTabs from '../components/toolbar/Navbottom';
+// import { UserForm } from './user -NOT BEING USED/UserForm';
+import Footer from '../components/toolbar/Footer';
 
 class Home extends Component {
   constructor(props) {
@@ -18,16 +20,16 @@ class Home extends Component {
         trimester: "first",
         totalWater: 2.0,
         totalCalories: 1600,
-        totalExercise: 60,  
+        totalExercise: 60,
         waterEntries: [
             {
                 "label": "6am",
                 "value": "0"
-            },      
+            },
             {
                 "label": "8am",
                 "value": "880"
-            },  
+            },
             {
                 "label": "10am",
                 "value": "880"
@@ -61,11 +63,11 @@ class Home extends Component {
           {
               "label": "6am",
               "value": "0"
-          },      
+          },
           {
               "label": "8am",
               "value": "1000"
-          },  
+          },
           {
               "label": "10am",
               "value": "1000"
@@ -94,7 +96,7 @@ class Home extends Component {
               "label": "10pm",
               "value": "8050",
             }
-        ], 
+        ],
         foodPyramid: [
           {
             label: "Food and drinks high in fat, sugar and salt",
@@ -125,11 +127,11 @@ class Home extends Component {
           {
               "label": "6am",
               "value": "0"
-          },      
+          },
           {
               "label": "8am",
               "value": "30"
-          },  
+          },
           {
               "label": "10am",
               "value": "0"
@@ -193,13 +195,18 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="navbar-div" style={{height: '100%'}}>
-          <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
-          <SideDrawer show={this.state.sideDrawerOpen} />
-            {Backdrop}
-          {/* <main style={{marginTop: '64px'}}>
-            <Main />
-          </main> */}
+        <div>
+          <div className="navbar-div" style={{height: '100%'}}>
+            <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+
+            {/* <SideDrawer show={this.state.sideDrawerOpen} />
+              {Backdrop} */}
+            {/* <main style={{marginTop: '64px'}}>
+              <Main />
+            </main> */}
+          </div>
+          <div><FullWidthTabs/>
+</div>
         </div>
         {localStorage.getItem('jwt') &&
         <div>
@@ -210,14 +217,14 @@ class Home extends Component {
           </div>
         </div>
         }
-        <FullWidthTabs/> 
-      </div>  
+        <Footer/>
+      </div>
   );
 }
 }
 
 // const Homepage = () => {
- 
+
 //     return (
 
 //         <div>
