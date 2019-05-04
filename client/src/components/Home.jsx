@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import {Link} from 'react-router-dom'
-import "./Home.css"
+import "../css/Home.css"
 import FoodCard from '../cards/foodcard';
 import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
@@ -15,6 +15,7 @@ class Home extends Component {
       this.state = {
         sideDrawerOpen: false,
         timePeriod: "week",
+        trimester: "first",
         totalWater: 2.0,
         totalCalories: 1600,
         totalExercise: 60,  
@@ -204,7 +205,7 @@ class Home extends Component {
         <div>
           <div className="components">
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-            <FoodCard timePeriod={this.state.timePeriod} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+            <FoodCard timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
             <ExerciseCard timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
           </div>
         </div>

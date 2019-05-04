@@ -67,7 +67,7 @@ class GenericCard extends React.Component {
             {(() => {
                 switch (this.state.type) {
                   case "water": return "It's recommended that pregnant women drink 10 eight ounce glasses (2.3 litres) of water per day";
-                  case "food": return "It's recommended that pregnant women consume 1,800 calories per day in the first trimester.";
+                  case "food": return `It's recommended that pregnant women consume ${this.props.recommendedCalories} calories per day in the ${this.props.trimester} trimester.`;
                   case "exercise": return "It's recommended that pregnant women do 20 minutes of moderate-intensity physical activity per day.";
                   default: return "X";
                 }
@@ -77,7 +77,7 @@ class GenericCard extends React.Component {
             {(() => {
                 switch (this.state.type) {
                   case "water": return `You've had ${this.props.averageWater} litres per day. ${this.props.message}`;
-                  case "food": return `You've had ${this.props.averageCalories} calories per day.`;
+                  case "food": return `You've had ${this.props.averageCalories} calories per day. ${this.props.message}`;
                   case "exercise": return `You've done ${this.props.totalExercise} minutes exercise per day.`;
                   default: return "X";
                 }

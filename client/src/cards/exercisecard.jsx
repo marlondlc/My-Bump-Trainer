@@ -10,7 +10,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePyramid, weekExercisePyramid, monthExercisePyramid, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
+import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);

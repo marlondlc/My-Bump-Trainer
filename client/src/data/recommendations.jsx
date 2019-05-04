@@ -1,4 +1,4 @@
-const actualFoodPyramid = [
+const foodPyramidRec = [
     {
       label: "Food and drinks high in fat, sugar and salt",
       value: "1"
@@ -25,15 +25,15 @@ const actualFoodPyramid = [
     }
   ]
 
- const waterPerDay = 2.3;
+ const waterPerDayRec = 2.3;
  
- const caloriesPerDay = {
+ const caloriesPerDayRec = {
      firstTrimester: 2550,
      secondTrimester: 2890,
      thirdTrimester: 3000,
  }
 
- const exercisePerWeek = 150;
- const exercisePerDay = 20;
+ const exercisePerWeekRec = 150;
+ const exercisePerDayRec = 20;
 
- export {actualFoodPyramid, waterPerDay, caloriesPerDay, secondTrimester, thirdTrimester};
+ export {foodPyramidRec, waterPerDayRec, caloriesPerDayRec, exercisePerDayRec, exercisePerWeekRec};
