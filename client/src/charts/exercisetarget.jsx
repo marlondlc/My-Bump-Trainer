@@ -1,6 +1,6 @@
 const myDataSource =  {
     chart: {
-      caption: "Exercise today",
+      caption: "Your Exercise",
     //   subcaption: "In minutes",
       showpercentvalues: "1",
       // defaultcenterlabel: "per Type",
@@ -10,7 +10,7 @@ const myDataSource =  {
       showLabels: "0",
       plottooltext:
         "<b>$percentValue</b> of your exercise was <b>$label</b>",
-      centerlabel: "# Users: $value",
+      // centerlabel: "# Users: $value",
       theme: "fusion"
     },
   };

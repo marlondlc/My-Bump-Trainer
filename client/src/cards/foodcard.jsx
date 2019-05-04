@@ -32,6 +32,7 @@ class FoodCard extends React.Component {
   }
   
   render() {
+    // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
     let averageFood;
     let foodEntries;
@@ -51,17 +52,38 @@ class FoodCard extends React.Component {
       foodPyramid = monthFoodPyramid;
     }
 
+    // This sets the data for the charts
     foodPyramidchart.dataSource.data = foodPyramid;
     foodConfigs.dataSource.data = foodEntries;
 
+    // This sets the charts to variables which can be passed to the generic chart
     const chart1 = <ReactFC {...foodPyramidchart} />
     const chart2 = <ReactFC {...actualfoodPyramid} />
     
-    // const chart3 = <ReactFC {...foodConfigs} />
+    // const chart3 = <ReactFC {...foodConfigs} /> //this is an extra chart we can use
+
+    // This is the popup where people can enter food choices. Need to be able to pass food list to this.
     const dialog = <Dialog />
 
+    // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
+    // This needs to be adjusted for food
+    // let message;
+    // if ((2.3 - averageWater) <= 0) {
+    //     message = 'Wohoo you are meeting the recommendations.' ;
+    // } else {
+    //     message = `This ${timePeriod} you are ${Math.round((2.3 - averageWater) * 1000)} mL under the recommendations.`
+    // }
+
     return (
-      <GenericCard type="food" timePeriod={timePeriod} dialog={dialog} averageCalories={averageFood} chart1={chart1} chart2={chart2}/>
+
+      // This passes variables to the generic card component which renders the card
+      <GenericCard 
+        type="food" 
+        timePeriod={timePeriod} 
+        dialog={dialog} 
+        averageCalories={averageFood} 
+        chart1={chart1} 
+        chart2={chart2}/>
     );
   }
 }

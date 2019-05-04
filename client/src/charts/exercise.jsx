@@ -1,6 +1,6 @@
 const myDataSource = {
     "chart": {
-        "caption": "Exercise today",
+        "caption": "Your Exercise",
         "subCaption": "In Minutes",
         "xAxisName": "Time",
         "yAxisName": "Minutes",
@@ -15,7 +15,7 @@ const myDataSource = {
 
   const exerciseConfigs = {
       type: 'column2d',
-      width: 400,
+      width: 380,
       height: 500,
       dataFormat: 'json',
       dataSource: myDataSource,

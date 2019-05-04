@@ -76,7 +76,7 @@ class GenericCard extends React.Component {
           <Typography component="p">
             {(() => {
                 switch (this.state.type) {
-                  case "water": return `You've had ${this.props.averageWater} litres per day.`;
+                  case "water": return `You've had ${this.props.averageWater} litres per day. ${this.props.message}`;
                   case "food": return `You've had ${this.props.averageCalories} calories per day.`;
                   case "exercise": return `You've done ${this.props.totalExercise} minutes exercise per day.`;
                   default: return "X";

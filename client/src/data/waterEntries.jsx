@@ -63,7 +63,7 @@ const weekWaterEntries = [
         "value": "2.000"
     },
     {
-        "label": "Sunday",
+        "label": "S",
         "value": ".500"
     },
 ]
@@ -168,14 +168,5 @@ const totalWaterWeek = totalWaterfunction(weekWaterEntries);
 const averageWaterWeek = Math.round(totalWaterWeek/7, 2);
 const totalWaterMonth = totalWaterfunction(monthWaterEntries);
 const averageWaterMonth = Math.round(totalWaterMonth/21, 2);
-
-// if ((2.3 - averageWaterWeek) < 0) {
-//     let drinkMore = 'yes';
-//     let drinkLess = 'no';
-// } else {
-//     drink
-// }
-
-
 
 export {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, totalWaterMonth, averageWaterMonth};
