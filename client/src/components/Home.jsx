@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-// import {Link} from 'react-router-dom'
 import "./Home.css"
 import FoodCard from '../cards/foodcard';
 import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
 import Navbar from '../components/toolbar/Navbar';
-// import SideDrawer from '../components/SideDrawer/DrawerRight';
-// import Backdrop from '../components/Backdrop/Backdrop';
 import FullWidthTabs from '../components/toolbar/Navbottom';
 // import { UserForm } from './user -NOT BEING USED/UserForm';
 import Footer from '../components/toolbar/Footer';
@@ -208,7 +205,7 @@ class Home extends Component {
 </div>
         </div>
         {localStorage.getItem('jwt') &&
-        <div>
+        <div style={{padding: '10px 0 100px 0'}}>
           <div className="components">
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
             <FoodCard timePeriod={this.state.timePeriod} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>

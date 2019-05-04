@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import SvgIcon from '@material-ui/core/SvgIcon';
+// import SvgIcon from '@material-ui/core/SvgIcon';
 // import IconButton from "@material-ui/core/IconButton";
 // import MenuIcon from "@material-ui/icons/Menu";
 // import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -28,25 +28,17 @@ const styles = {
   }
 };
 
-function DotIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z" />
-    </SvgIcon>
-  );
-}
+
 
 
 
 class MenuAppBar extends React.Component {
   state = {
-    auth: true,
+
     anchorEl: null
   };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
+
 
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -58,7 +50,7 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { auth } = this.state;
+
     // const open = Boolean(anchorEl);
     // removing anchorEl from const above as defined and not used
 

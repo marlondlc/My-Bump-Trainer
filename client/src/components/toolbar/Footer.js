@@ -64,29 +64,27 @@ const styles = {
     marginTop: 30,
     backgroundColor: `#26418f`,
     borderTop: "solid 3px #5c6bc0",
-    paddingTop: "16px",
-    overflowX: "hidden"
+    paddingTop: "10px",
+    overflowX: "hidden",
+    position: 'fixed',
+    width: '100%',
+    bottom: 0,
   },
   footerSections: {
-    margin: "0 16px"
+    margin: "0 10px"
   },
   subFooter: {
     backgroundColor: "#5c6bc0",
     padding: "8px 16px 8px 16px",
-    marginTop: "8px"
+    marginTop: "8px",
+    fontSize: "1px"
   },
   footerText: {
     color: "#fff",
-    fontSize: "18px",
+    fontSize: "6px",
     lineHeight: 1.5
   },
-  // invertedBtnDark: {
-  //   color: "#fff",
-  //   backgroundColor: "transparent",
-  //   border: "2px #fff solid",
-  //   boxShadow: "none",
-  //   margin: "8px"
-  // },
+
   white: {
     color: "#ffffff"
   },

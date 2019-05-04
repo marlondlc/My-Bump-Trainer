@@ -6,26 +6,20 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import Navbar from '../components/toolbar/Navbar';
-// import CardActions from '@material-ui/core/CardActions';
-// import IconButton from '@material-ui/core/IconButton';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import SideDrawer from '../components/SideDrawer/DrawerRight';
-// import Backdrop from '../components/Backdrop/Backdrop';
-import { Divider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import { Divider } from '@material-ui/core';
 import Footer from '../components/toolbar/Footer';
 
 
 const styles = theme => ({
   card: {
     maxWidth: 800,
+    marginTop: 30,
   },
   media: {
     height: 0,
-    paddingTop: '40%', // 16:9
+    paddingTop: '5%', // 16:9
   },
   actions: {
     display: 'flex',
@@ -47,6 +41,11 @@ const styles = theme => ({
     width: 60,
     height: 60,
   },
+  // paper: {
+  //   padding: theme.spacing.unit * 2,
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
+  // },
 });
 
 class UserProfile extends React.Component {
@@ -87,35 +86,33 @@ class UserProfile extends React.Component {
           />
 
           <CardContent>
-            <h5>
-              BIO:
-            </h5>
-            <Typography component="subtitle2">
-              Enim hot chicken subway tile, yuccie est keytar distillery selvage offal portland iceland. Tumeric roof party flannel, cillum +1 taiyaki unicorn paleo hot chicken stumptown. Consequat shaman shabby chic, incididunt veniam chartreuse hashtag mollit. Plaid polaroid neutra tilde. Squid drinking vinegar ugh narwhal 3 wolf moon YOLO palo santo chillwave normcore dolore jianbing mollit et VHS. Vaporware fixie aliquip est irony woke veniam vape meh.
-              <br/>
-              Oh. You need a little dummy text for your mockup? How quaint.
-              <br/>
-              I bet you’re still using Bootstrap too…
-            </Typography>
+
+
             <br/>
-            <Typography component="p">
-            last_name
-            </Typography>
-            <Typography component="p">
-            Due date
-            </Typography>
-            <Typography component="p">
-            last_name
-            </Typography>
-            <Typography component="p">
-            Due date
-            </Typography>
-            <Typography component="p">
-            last_name
-            </Typography>
-            <Typography component="p">
-            Due date
-            </Typography>
+            <Grid container spacing={24}>
+
+                <Grid item xs={12} sm={6}>
+                    <p>First name: Sheila</p>
+
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                    <p>Last name: Bridges </p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                  <p>DOB: Dec,12,2020 </p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                    <p>Due date: Dec,12,2020 </p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                    <p>Weight: 190lbs</p>
+                </Grid>
+
+           </Grid>
 
           </CardContent>
 
