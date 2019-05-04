@@ -3,16 +3,19 @@ import "./css/App.css";
 
 // REACT ROUTER IMPORTS ----------------
 import { BrowserRouter, Route, Switch} from "react-router-dom"
-import Navigation from "./components/Navigation"
+// import Navigation from "./components/Navigation"
 
 // AUTHENTICATION IMPORTS ------------
 import Login from "./authentication/login"
 import Logout from "./authentication/logout"
+// import userProfile from "./components/userProfile"
+// import Users from './components/user -NOT BEING USED/UserForm'
 // import Api from "./authentication/Api"
 
 // ROUTE COMPONENTS HERE : ----------------
 import Homepage from "./components/Home"
 import Error from "./components/Error"
+import UserProfile from "./components/UserProfile"
 
 require('typeface-roboto')
 
@@ -32,7 +35,7 @@ class App extends Component {
               <Main />
             </main>
           </div>
-        </div>  
+        </div>
     );
   }
 }
@@ -41,11 +44,12 @@ class App extends Component {
 const Main = () => (
   <BrowserRouter>
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
         <Switch>
           <Route path="/login" component={Login} exact />
           <Route path="/logout" component={Logout} exact />
           <Route path="/" component={Homepage} exact />
+          <Route path="/profile" component={UserProfile} exact/>
           <Route component={Error} />
         </Switch>
     </div>

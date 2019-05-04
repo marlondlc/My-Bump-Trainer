@@ -10,7 +10,7 @@ const myDataSource = {
 
 const waterConfigs = {
     type: 'splinearea',
-    width: 400,
+    width: 380,
     height: 400,
     dataFormat: 'json',
     dataSource: myDataSource,

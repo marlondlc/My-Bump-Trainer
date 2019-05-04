@@ -15,8 +15,8 @@ const myDataSource = {
 
   const chartConfigs = {
       type: 'splinearea',
-      width: '80%',
-      height: '50%',
+      width: 380,
+      height: 400,
       dataFormat: 'json',
       dataSource: myDataSource,
   };

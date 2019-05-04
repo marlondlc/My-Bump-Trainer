@@ -8,9 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import SvgIcon from '@material-ui/core/SvgIcon';
 // import Link from "react-router-dom"
 
 const styles = {
@@ -22,11 +21,25 @@ const styles = {
   },
 };
 
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
+
+function ProfileIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M22,4H14V7H10V4H2A2,2 0 0,0 0,6V20A2,2 0 0,0 2,22H22A2,2 0 0,0 24,20V6A2,2 0 0,0 22,4M8,9A2,2 0 0,1 10,11A2,2 0 0,1 8,13A2,2 0 0,1 6,11A2,2 0 0,1 8,9M12,17H4V16C4,14.67 6.67,14 8,14C9.33,14 12,14.67 12,16V17M20,18H14V16H20V18M20,14H14V12H20V14M20,10H14V8H20V10M13,6H11V2H13V6Z" />
+    </SvgIcon>
+  );
+}
+
+
 class DrawerRight extends React.Component {
   state = {
-    top: false,
-    left: false,
-    bottom: false,
     right: false,
   };
 
@@ -42,10 +55,10 @@ class DrawerRight extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['login/logout'].map((text, index) => (
+          {['login/logout'].map((text) => (
             <a href="/login">
               <ListItem button key={text}>
-                <ListItemIcon> <AccountCircle /> </ListItemIcon>
+                <ListItemIcon> <AccountCircle className={classes.icon} color="primary"/> </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </a>
@@ -53,11 +66,24 @@ class DrawerRight extends React.Component {
         </List>
         <Divider />
         <List>
-          {['My account', 'Home'].map((text, index) => (
+          {['Profile'].map((text, index) => (
+            < a href="/profile">
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon><ProfileIcon className={classes.icon} color="primary"/> </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
+            </a>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['Home'].map((text, index) => (
+            <a href='/'>
+            <ListItem button key={text}>
+              <ListItemIcon><HomeIcon className={classes.icon} color="primary" /></ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+            </a>
           ))}
         </List>
       </div>

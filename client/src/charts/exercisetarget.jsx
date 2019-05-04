@@ -16,8 +16,8 @@ const myDataSource =  {
 
   const exerciseTarget = {
     type: "doughnut2d",
-    width: '80%',
-    height: '50%',
+    width: 380,
+    height: 400,
     dataFormat: "JSON",
     dataSource: myDataSource
 };
