@@ -94,7 +94,7 @@ class MenuAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton> */}
-            <Typography variant="h8" color="inherit" className={classes.grow}>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
               {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
               {/* {userFunFacts.email} */}
               {/* {userFunFacts.dueDate} */}

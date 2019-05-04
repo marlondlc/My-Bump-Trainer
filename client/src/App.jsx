@@ -46,9 +46,12 @@ class App extends Component {
                       )} />
                     <Route path="/logout" component={Logout} exact />
                     <Route path="/" render={(props) => (
-                      <Homepage {...props} currentUser={this.state.currentUser}/>
+                      <Homepage {...props} currentUser={this.state.currentUser} />
                       )} />
                     <Route component={Error} />
+                    {/* <Route path="/profile" render={(props) => (
+                      <UserProfile {...props} currentUser={this.state.currentUser}/>
+                    )} /> */}
                   </Switch>
               </div>
               </BrowserRouter>
@@ -59,21 +62,5 @@ class App extends Component {
   }
 }
 
-// ALL APP ROUTES GO HERE ! **** Implemented in render because of Axios async issue with rendering userInfo
-// const Main = () => (
-//   // <BrowserRouter>
-//   //   <div>
-//   //     <Navigation />
-//   //       <Switch>
-//   //         <Route path="/login" render= {(routeProps) => (
-//   //           <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-//   //           )} />
-//   //         <Route path="/logout" component={Logout} exact />
-//   //         <Route path="/" component={Homepage} exact />
-//   //         <Route component={Error} />
-//   //       </Switch>
-//   //   </div>
-//   // </BrowserRouter>
-// );
 
 export default App;

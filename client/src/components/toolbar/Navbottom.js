@@ -26,6 +26,7 @@ const styles = theme => ({
     marginBotttom: 30
   }
 });
+const map = ['day', 'week', 'month']
 
 class FullWidthTabs extends React.Component {
   state = {
@@ -34,6 +35,7 @@ class FullWidthTabs extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.switchTab(map[value])
   };
 
   handleChangeIndex = index => {
