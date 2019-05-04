@@ -35,7 +35,7 @@ class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
   end
 
   def day
-    @daily = User.find(1).exercise_entries.daily_entries
+    @daily = current_user.exercise_entries.daily_entries
     render json: @daily
   end
 end

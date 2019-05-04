@@ -49,9 +49,7 @@ class MenuAppBar extends React.Component {
     }
   };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
+
 
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });

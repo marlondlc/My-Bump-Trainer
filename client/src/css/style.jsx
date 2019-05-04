@@ -5,7 +5,9 @@ import amber from '@material-ui/core/colors/amber';
 
 const styles = theme => ({
     card: {
+      marginTop: 80,
       maxWidth: 400,
+      marginBottom: 80,
     },
     media: {
       height: 0,

@@ -49,9 +49,9 @@ class App extends Component {
                       <Homepage {...props} currentUser={this.state.currentUser} />
                       )} />
                     <Route component={Error} />
-                    {/* <Route path="/profile" render={(props) => (
+                    <Route path="/profile" render={(props) => (
                       <UserProfile {...props} currentUser={this.state.currentUser}/>
-                    )} /> */}
+                    )} />
                   </Switch>
               </div>
               </BrowserRouter>
