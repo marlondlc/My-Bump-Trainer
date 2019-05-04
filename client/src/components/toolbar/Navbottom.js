@@ -23,9 +23,12 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: "100%",
-    marginBotttom: 30
+    marginBotttom: 30,
+    position: 'fixed',
+    zIndex: '999'
   }
 });
+const map = ['day', 'week', 'month']
 
 class FullWidthTabs extends React.Component {
   state = {
@@ -34,6 +37,7 @@ class FullWidthTabs extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.switchTab(map[value])
   };
 
   handleChangeIndex = index => {
@@ -44,7 +48,7 @@ class FullWidthTabs extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} >
         <AppBar position="relative" color="default">
           <Tabs
             value={this.state.value}

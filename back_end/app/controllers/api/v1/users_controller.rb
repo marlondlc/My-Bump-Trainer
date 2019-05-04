@@ -5,6 +5,11 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = current_user
+    render json: @user
+  end
+
   def create
     @user = User.new(user_params)
 

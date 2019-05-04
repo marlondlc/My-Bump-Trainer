@@ -6,8 +6,6 @@ import ExerciseCard from '../cards/exercisecard';
 import WaterCard from '../cards/watercard';
 // import Advice from '../advice/advice'
 import Navbar from '../components/toolbar/Navbar';
-// import SideDrawer from '../components/SideDrawer/DrawerRight';
-// import Backdrop from '../components/Backdrop/Backdrop';
 import FullWidthTabs from '../components/toolbar/Navbottom';
 // import { UserForm } from './user -NOT BEING USED/UserForm';
 import Footer from '../components/toolbar/Footer';
@@ -32,12 +30,16 @@ class Home extends Component {
     this.setState({sideDrawerOpen: false})
   };
 
+  switchTab = (value) => {
+    this.setState({timePeriod: value})
+  }
+
   render() {
     return (
       <div>
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
-            <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+            <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
 
             {/* <SideDrawer show={this.state.sideDrawerOpen} />
               {Backdrop} */}
@@ -45,11 +47,12 @@ class Home extends Component {
               <Main />
             </main> */}
           </div>
-          <div><FullWidthTabs/>
+          <div>
+          <FullWidthTabs switchTab={this.switchTab}/>
 </div>
         </div>
         {localStorage.getItem('jwt') &&
-        <div>
+        <div style={{padding: '10px 0 100px 0'}}>
           <div className="components">
             <WaterCard timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
             <FoodCard timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>

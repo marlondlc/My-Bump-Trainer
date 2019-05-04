@@ -1,13 +1,13 @@
 class Api::V1::FoodEntriesController < Api::V1::ApplicationController
 
   def index
-   @food = User.find(1).food_entries
+   @food = current_user.food_entries
    render json: @food
   end
 
 
   def create
-    @food_entry = User.find(1).food_entries.create(
+    @food_entry = curent_user.food_entries.new(
       serving_size: params[:serving_size],
       ate_at: params[:ate_at]
     )
@@ -24,7 +24,7 @@ class Api::V1::FoodEntriesController < Api::V1::ApplicationController
   end
 
   def destroy
-    @food_entry = User.find(1) # ALL the user.find(1) will be current users
+    @food_entry = current_user # ALL the user.find(1) will be current users
     @food_entry.destroy
     render json: food_entry #can we add ", :notice => "Your food entry has been deleted" "
 
@@ -42,7 +42,7 @@ class Api::V1::FoodEntriesController < Api::V1::ApplicationController
   end
 
   def day
-    @daily = User.find(1).food_entries.daily_entries
+    @daily = current_user.food_entries.daily_entries
     render json: @daily
   end
 
