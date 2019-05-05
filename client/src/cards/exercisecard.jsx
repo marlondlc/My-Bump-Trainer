@@ -101,6 +101,10 @@ class ExerciseCard extends React.Component {
     // This is the popup where people can enter exercise choices. Need to be able to pass exercise list to this.
     const dialog = <Dialog />
 
+    // This is some data for recommendations
+    // const actualAerobic = exercisePie.find( group => group.label === 'Aerobic' ).value;
+    // const recTreatsPercentage = foodPyramidRec.find( group => group.label === 'Food and drinks high in fat, sugar and salt' ).value;
+
     // This compares the exercise with the recommended to create a messsage that can be passed to generic card
     let message;
     if ((exercisePerDayRec - averageExercise) <= 0) {
