@@ -46,9 +46,12 @@ class App extends Component {
                       <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
                       )} />
                     <Route path="/logout" component={Logout} exact />
-                    <Route path="/profile" render={(props) => (
+                    {/* <Route path="/profile" render={(props) => (
                       <UserProfile {...props} currentUser={this.state.currentUser} />
-                    )} />
+                    )} /> */}
+                    <Route path="/:handle" render={(props) => (
+                      <UserProfile {...props} currentUser={this.state.currentUser} />
+                      )} />
                     <Route path="/" render={(props) => (
                       <Homepage {...props} currentUser={this.state.currentUser} />
                       )} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -10,6 +10,7 @@ import Navbar from '../components/toolbar/Navbar';
 import Grid from '@material-ui/core/Grid';
 import { Divider } from '@material-ui/core';
 import Footer from '../components/toolbar/Footer';
+import axios from 'axios';
 
 
 const styles = theme => ({
@@ -48,17 +49,28 @@ const styles = theme => ({
   // },
 });
 
-class UserProfile extends React.Component {
+class UserProfile extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      expended: false,
+      currentUser: ""
+    }
 }
-state = {
-  expanded: false,
-  currentUser: ''
-}
+
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
+
+  componentDidMount() {
+    axios.get(`/api/v1/users/current_user`)
+      .then(res => {
+        const currentUser = res.data ;
+        this.setState({ currentUser });
+      })
+      .catch(error => console.log(error));
+  }
+
 
   render() {
     const { classes } = this.props;
