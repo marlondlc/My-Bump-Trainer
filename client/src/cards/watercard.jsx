@@ -12,7 +12,8 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
-import {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, averageWaterMonth} from'../data/waterEntries';
+import {U1dayWaterEntries, U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
+import {U2dayWaterEntries, U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth} from'../data/User2/U2waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -48,18 +49,43 @@ class WaterCard extends React.Component {
 
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
+    
+    let currentUser = false;
+    let currentUserId;
+    if (this.props.currentUser) {
+      currentUser = true;
+      currentUserId = this.props.currentUser.id;
+    }
+
     let averageWater;
     let waterEntries;
-    if (timePeriod === 'day') {
-      averageWater = totalWaterDay;
-      waterEntries = dayWaterEntries;  
-    } else if (timePeriod === 'week') {
-      averageWater = averageWaterWeek; 
-      waterEntries = weekWaterEntries;
-    } else if (timePeriod === 'month') {
-      averageWater = averageWaterMonth;
-      waterEntries = monthWaterEntries;
+
+    if (currentUser) {
+      if (currentUserId === 6) {
+        if (timePeriod === 'day') {
+          averageWater = U1totalWaterDay;
+          waterEntries = U1dayWaterEntries;  
+        } else if (timePeriod === 'week') {
+          averageWater = U1averageWaterWeek; 
+          waterEntries = U1weekWaterEntries;
+        } else if (timePeriod === 'month') {
+          averageWater = U1averageWaterMonth;
+          waterEntries = U1monthWaterEntries;
+        }
+      } else {
+        if (timePeriod === 'day') {
+          averageWater = U2totalWaterDay;
+          waterEntries = U2dayWaterEntries;  
+        } else if (timePeriod === 'week') {
+          averageWater = U2averageWaterWeek; 
+          waterEntries = U2weekWaterEntries;
+        } else if (timePeriod === 'month') {
+          averageWater = U2averageWaterMonth;
+          waterEntries = U2monthWaterEntries;
+        }
+      }
     }
+    
     // This sets the data for the charts
     waterCylinder.dataSource.value = averageWater;
     waterConfigs.dataSource.data = waterEntries;
@@ -73,8 +99,10 @@ class WaterCard extends React.Component {
 
     // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
     let message;
-    if ((2.3 - averageWater) <= 0) {
+    if ((2.3 - averageWater) === 0) {
         message = 'Wohoo you are meeting the recommendations.' ;
+    } else if ((2.3 - averageWater) < 0) {
+      message = 'You are exceeding expectations. Remember your bladder can only hold so much!' 
     } else {
         message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
     }

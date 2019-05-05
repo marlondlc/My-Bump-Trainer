@@ -1,54 +1,58 @@
-const dayFoodEntries = [
+const U2dayFoodEntries = [
+    {
+      label: "4am",
+      value: "200"
+    },
     {
         label: "6am",
         value: "0"
     },      
     {
         label: "8am",
-        value: "1000"
+        value: "0"
     },  
     {
         label: "10am",
-        value: "1000"
+        value: "300"
     },
     {
         label: "12pm",
-        value: "3000"
+        value: "1500"
       },
       {
         label: "2pm",
-        value: "3000"
+        value: "0"
       },
       {
         label: "4pm",
-        value: "3050"
+        value: "200"
       },
       {
         label: "6pm",
-        value: "3050"
+        value: "800"
       },
       {
         label: "8pm",
-        value: "7050"
+        value: "0"
       },
       {
         label: "10pm",
-        value: "8050",
+        value: "0",
       }
 ]
 
-const weekFoodEntries = [
+const U2weekFoodEntries = [
     {
         label: "M",
-        value: "2000"
+        value: "3000"
     },      
     {
         label: "T",
-        value: "2200"
+        value: "2500"
     },  
     {
         label: "W",
-        value: "2500"
+        value: "3500"
     },
     {
         label: "T",
@@ -56,86 +60,86 @@ const weekFoodEntries = [
       },
       {
         label: "F",
-        value: "3000"
-      },
-      {
-        label: "S",
         value: "4000"
       },
       {
         label: "S",
-        value: "3050"
+        value: "2500"
+      },
+      {
+        label: "S",
+        value: "3000"
       }
 ]
 
-const monthFoodEntries = [
+const U2monthFoodEntries = [
     {
         label: "1",
-        value: "1500"
+        value: "4500"
     },      
     {
         label: "2",
-        value: "1600"
+        value: "2900"
     },  
     {
         label: "3",
-        value: "1800"
+        value: "3200"
     },
     {
         label: "4",
-        value: "2200"
+        value: "3000"
       },
       {
         label: "5",
-        value: "2600"
+        value: "3000"
       },
       {
         label: "6",
-        value: "2200"
-      },
-      {
-        label: "7",
-        value: "2500"
-      },
-      {
-        label: "8",
         value: "3200"
       },
       {
+        label: "7",
+        value: "2800"
+      },
+      {
+        label: "8",
+        value: "3500"
+      },
+      {
         label: "9",
-        value: "3000",
+        value: "2800",
       },
       {
         label: "10",
-        value: "1500"
+        value: "4200"
     },      
     {
         label: "11",
-        value: "1200"
+        value: "2800"
     },  
     {
         label: "12",
-        value: "1800"
+        value: "4000"
     },
     {
         label: "13",
-        value: "3000"
+        value: "2800"
       },
       {
         label: "14",
-        value: "3000"
-      },
-      {
-        label: "15",
         value: "2000"
       },
       {
+        label: "15",
+        value: "4000"
+      },
+      {
         label: "16",
-        value: "2200"
+        value: "3500"
       },
       {
         label: "17",
-        value: "2500"
+        value: "4000"
       },
       {
         label: "18",
@@ -143,30 +147,57 @@ const monthFoodEntries = [
       },
       {
         label: "19",
-        value: "3000"
+        value: "4000"
     },      
     {
         label: "20",
-        value: "4000"
+        value: "2500"
     },  
     {
         label: "21",
-        value: "3050"
+        value: "3000"
     }
 ]
 
-const dayFoodPyramid = [
+const U2dayFoodPyramid = [
     {
       label: "Food and drinks high in fat, sugar and salt",
-      value: "15"
+      value: "5"
     },
     {
       label: "Fats, spreads and oils",
-      value: "11"
+      value: "5"
     },
     {
       label: "Meat, poultry, fish, eggs, beans and nuts",
-      value: "14"
+      value: "20"
+    },
+    {
+      label: "Milk, yoghurt and cheese",
+      value: "10"
+    },
+    {
+      label: "Wholemeal cereals and breads, potatoes, pasta and rice",
+      value: "10"
+    },
+    {
+      label: "Vegetables, salad and fruit",
+      value: "50"
+    }
+]
+
+const U2weekFoodPyramid = [
+    {
+      label: "Food and drinks high in fat, sugar and salt",
+      value: "1"
+    },
+    {
+      label: "Fats, spreads and oils",
+      value: "6"
+    },
+    {
+      label: "Meat, poultry, fish, eggs, beans and nuts",
+      value: "23"
     },
     {
       label: "Milk, yoghurt and cheese",
@@ -174,26 +205,26 @@ const dayFoodPyramid = [
     },
     {
       label: "Wholemeal cereals and breads, potatoes, pasta and rice",
-      value: "40"
+      value: "12"
     },
     {
       label: "Vegetables, salad and fruit",
-      value: "12"
+      value: "50"
     }
 ]
 
-const weekFoodPyramid = [
+const U2monthFoodPyramid = [
     {
       label: "Food and drinks high in fat, sugar and salt",
-      value: "19"
+      value: "2"
     },
     {
       label: "Fats, spreads and oils",
-      value: "11"
+      value: "8"
     },
     {
       label: "Meat, poultry, fish, eggs, beans and nuts",
-      value: "10"
+      value: "22"
     },
     {
       label: "Milk, yoghurt and cheese",
@@ -201,38 +232,11 @@ const weekFoodPyramid = [
     },
     {
       label: "Wholemeal cereals and breads, potatoes, pasta and rice",
-      value: "42"
-    },
-    {
-      label: "Vegetables, salad and fruit",
-      value: "10"
-    }
-]
-
-const monthFoodPyramid = [
-    {
-      label: "Food and drinks high in fat, sugar and salt",
       value: "12"
     },
     {
-      label: "Fats, spreads and oils",
-      value: "10"
-    },
-    {
-      label: "Meat, poultry, fish, eggs, beans and nuts",
-      value: "17"
-    },
-    {
-      label: "Milk, yoghurt and cheese",
-      value: "10"
-    },
-    {
-      label: "Wholemeal cereals and breads, potatoes, pasta and rice",
-      value: "38"
-    },
-    {
       label: "Vegetables, salad and fruit",
-      value: "12"
+      value: "48"
     }
 ]
 
@@ -244,11 +248,11 @@ const totalFoodfunction = (entries) => {
     return sumtotalFood;
 }
 
-const totalFoodDay = totalFoodfunction(dayFoodEntries);
-const totalFoodWeek = totalFoodfunction(weekFoodEntries);
-const averageFoodWeek = Math.round(totalFoodWeek/7, 2);
-const totalFoodMonth = totalFoodfunction(monthFoodEntries);
-const averageFoodMonth = Math.round(totalFoodMonth/21, 2);
+const U2totalFoodDay = totalFoodfunction(U2dayFoodEntries);
+const totalFoodWeek = totalFoodfunction(U2weekFoodEntries);
+const U2averageFoodWeek = Math.round(totalFoodWeek/7, 2);
+const totalFoodMonth = totalFoodfunction(U2monthFoodEntries);
+const U2averageFoodMonth = Math.round(totalFoodMonth/21, 2);
 
 // if ((2.3 - averageWaterWeek) < 0) {
 //     let drinkMore = 'yes';
@@ -259,4 +263,4 @@ const averageFoodMonth = Math.round(totalFoodMonth/21, 2);
 
 
 
-export {dayFoodEntries, weekFoodEntries, monthFoodEntries, totalFoodDay, averageFoodWeek, averageFoodMonth, dayFoodPyramid, weekFoodPyramid, monthFoodPyramid};
+export {U2dayFoodEntries, U2weekFoodEntries, U2monthFoodEntries, U2totalFoodDay, U2averageFoodWeek, U2averageFoodMonth, U2dayFoodPyramid, U2weekFoodPyramid, U2monthFoodPyramid};

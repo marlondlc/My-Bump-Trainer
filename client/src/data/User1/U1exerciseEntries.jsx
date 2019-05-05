@@ -1,4 +1,4 @@
-const dayExerciseEntries = [
+const U1dayExerciseEntries = [
     {
         label: "6am",
         value: "0"
@@ -37,7 +37,7 @@ const dayExerciseEntries = [
       }
 ]
 
-const weekExerciseEntries = [
+const U1weekExerciseEntries = [
     {
         label: "M",
         value: "50"
@@ -68,7 +68,7 @@ const weekExerciseEntries = [
       }
 ]
 
-const monthExerciseEntries = [
+const U1monthExerciseEntries = [
     {
         label: "1",
         value: "0"
@@ -155,7 +155,7 @@ const monthExerciseEntries = [
     }
 ]
 
-const dayExercisePie = [
+const U1dayExercisePie = [
     {
         label: "Aerobic",
         value: "30"
@@ -174,7 +174,7 @@ const dayExercisePie = [
     }
 ]
 
-const weekExercisePie = [
+const U1weekExercisePie = [
     {
         label: "Aerobic",
         value: "65"
@@ -193,7 +193,7 @@ const weekExercisePie = [
     }
 ]
 
-const monthExercisePie = [
+const U1monthExercisePie = [
     {
         label: "Aerobic",
         value: "180"
@@ -221,10 +221,10 @@ const totalExercisefunction = (entries) => {
     return totalExercise;
 }
 
-const totalExerciseDay = totalExercisefunction(dayExerciseEntries);
-const totalExerciseWeek = totalExercisefunction(weekExerciseEntries);
-const averageExerciseWeek = Math.round(totalExerciseWeek/7, 2);
-const totalExerciseMonth = totalExercisefunction(monthExerciseEntries);
-const averageExerciseMonth = Math.round(totalExerciseMonth/21, 2);
+const U1totalExerciseDay = totalExercisefunction(U1dayExerciseEntries);
+const totalExerciseWeek = totalExercisefunction(U1weekExerciseEntries);
+const U1averageExerciseWeek = Math.round(totalExerciseWeek/7, 2);
+const totalExerciseMonth = totalExercisefunction(U1monthExerciseEntries);
+const U1averageExerciseMonth = Math.round(totalExerciseMonth/21, 2);
 
-export {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie};
+export {U1dayExerciseEntries, U1weekExerciseEntries, U1monthExerciseEntries, U1totalExerciseDay, U1averageExerciseWeek, U1averageExerciseMonth, U1dayExercisePie, U1weekExercisePie, U1monthExercisePie};

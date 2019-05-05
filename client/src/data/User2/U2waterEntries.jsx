@@ -1,11 +1,15 @@
-const dayWaterEntries = [
+const U2dayWaterEntries = [
+    {
+        "label": "4am",
+        "value": "0.5"
+    },
     {
         "label": "6am",
         "value": "0"
     },      
     {
         "label": "8am",
-        "value": ".880"
+        "value": "0.5"
     },  
     {
         "label": "10am",
@@ -17,15 +21,15 @@ const dayWaterEntries = [
     },
     {
         "label": "2pm",
-        "value": ".440"
+        "value": "0.5"
     },
     {
         "label": "4pm",
-        "value": ".440"
+        "value": "0.5"
     },
     {
         "label": "6pm",
-        "value": ".440"
+        "value": "0.5"
     },
     {
         "label": "8pm",
@@ -37,121 +41,121 @@ const dayWaterEntries = [
     }
 ]
 
-const weekWaterEntries = [
+const U2weekWaterEntries = [
     {
         "label": "M",
-        "value": "1.500"
+        "value": "2.5"
     },      
     {
         "label": "T",
-        "value": "1.800"
+        "value": "2.5"
     },  
     {
         "label": "W",
-        "value": "2.500"
+        "value": "2"
     },
     {
         "label": "T",
-        "value": "1.500"
+        "value": "2"
     },
     {
         "label": "F",
-        "value": "1.800"
+        "value": "3"
     },
     {
         "label": "S",
-        "value": "2.000"
+        "value": "2"
     },
     {
         "label": "S",
-        "value": ".500"
+        "value": "1.5"
     },
 ]
 
-const monthWaterEntries = [
+const U2monthWaterEntries = [
     {
         "label": "1",
-        "value": "1.500"
+        "value": "2.5"
     },      
     {
         "label": "2",
-        "value": "1.800"
+        "value": "2.5"
     },  
     {
         "label": "3",
-        "value": "2.500"
+        "value": "2.5"
     },
     {
         "label": "4",
-        "value": "1.500"
+        "value": "2.5"
     },
     {
         "label": "5",
-        "value": "1.600"
+        "value": "3"
     },
     {
         "label": "6",
-        "value": "1.800"
+        "value": "2"
     },
     {
         "label": "7",
-        "value": "1.300"
+        "value": "1.5"
     },
     {
         "label": "8",
-        "value": "1.500"
+        "value": "2.5"
     },      
     {
         "label": "9",
-        "value": "1.500"
+        "value": "2.5"
     },  
     {
         "label": "10",
-        "value": "2.500"
+        "value": "1.5"
     },
     {
         "label": "11",
-        "value": "1.500"
+        "value": "3"
     },
     {
         "label": "12",
-        "value": "1.600"
+        "value": "2.5"
     },
     {
         "label": "13",
-        "value": "2.000"
+        "value": "1.5"
     },
     {
         "label": "14",
-        "value": "2.200"
+        "value": "1"
     },
     {
         "label": "15",
-        "value": "1.500"
+        "value": "2.5"
     },      
     {
         "label": "16",
-        "value": "2.000"
+        "value": "2.5"
     },  
     {
         "label": "17",
-        "value": "2.500"
+        "value": "2"
     },
     {
         "label": "18",
-        "value": "2.300"
+        "value": "2"
     },
     {
         "label": "19",
-        "value": ".700"
+        "value": "3"
     },
     {
         "label": "20",
-        "value": "2.000"
+        "value": "2"
     },
     {
         "label": "21",
-        "value": "1.500"
+        "value": "1.5"
     },
 ]
 
@@ -163,10 +167,10 @@ const totalWaterfunction = (entries) => {
     return sumtotalWater;
 }
 
-const totalWaterDay = totalWaterfunction(dayWaterEntries);
-const totalWaterWeek = totalWaterfunction(weekWaterEntries);
-const averageWaterWeek = Math.round(totalWaterWeek/7, 2);
-const totalWaterMonth = totalWaterfunction(monthWaterEntries);
-const averageWaterMonth = Math.round(totalWaterMonth/21, 2);
+const U2totalWaterDay = totalWaterfunction(U2dayWaterEntries);
+const totalWaterWeek = totalWaterfunction(U2weekWaterEntries);
+const U2averageWaterWeek = Math.round(totalWaterWeek/7, 2);
+const totalWaterMonth = totalWaterfunction(U2monthWaterEntries);
+const U2averageWaterMonth = Math.round(totalWaterMonth/21, 2);
 
-export {dayWaterEntries, weekWaterEntries, monthWaterEntries, totalWaterDay, averageWaterWeek, totalWaterMonth, averageWaterMonth};
+export {U2dayWaterEntries, U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth};

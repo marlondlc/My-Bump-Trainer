@@ -65,8 +65,8 @@ class MenuAppBar extends React.Component {
     const { auth } = this.state;
 
     // Hardcoded funfact, to be replaced with below ternary fct which finds different elements for specific user logged in
-    const funfactsUser1 = "Your baby is 8 weeks old. It's the size of a rasberry right now!"
-    const funfactsUser2 = "Your baby is 20 weeks old. It's the size of an Artichoke right now!"
+    // const funfactsUser1 = "Your baby is 8 weeks old. It's the size of a rasberry right now!"
+    // const funfactsUser2 = "Your baby is 20 weeks old. It's the size of an Artichoke right now!"
 
     // const open = Boolean(anchorEl);
     // removing anchorEl from const above as defined and not used

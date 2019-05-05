@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import classNames from "classnames";
+import Esme from "../SideDrawer/Esme";
 
 class Footer extends Component {
   render() {
@@ -36,7 +37,6 @@ class Footer extends Component {
                 item
                 xs={12}
               />
-              TESTING => Put fun fact here!
             </Grid>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -51,8 +51,9 @@ class Footer extends Component {
             variant="subheading"
             component={"span"}
           >
-            © {currentYear} No name Company!!! fix this
+            © {currentYear} Bump Trainer Inc
           </Typography>
+          <Esme />
         </Grid>
       </div>
     );

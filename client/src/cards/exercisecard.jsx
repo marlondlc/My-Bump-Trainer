@@ -10,7 +10,8 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import {dayExerciseEntries, weekExerciseEntries, monthExerciseEntries, totalExerciseDay, averageExerciseWeek, averageExerciseMonth, dayExercisePie, weekExercisePie, monthExercisePie} from'../data/exerciseEntries';
+import {U1dayExerciseEntries, U1weekExerciseEntries, U1monthExerciseEntries, U1totalExerciseDay, U1averageExerciseWeek, U1averageExerciseMonth, U1dayExercisePie, U1weekExercisePie, U1monthExercisePie} from'../data/User1/U1exerciseEntries';
+import {U2dayExerciseEntries, U2weekExerciseEntries, U2monthExerciseEntries, U2totalExerciseDay, U2averageExerciseWeek, U2averageExerciseMonth, U2dayExercisePie, U2weekExercisePie, U2monthExercisePie} from'../data/User2/U2exerciseEntries';
 import {exercisePerDayRec} from '../data/recommendations';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
@@ -43,22 +44,50 @@ class ExerciseCard extends React.Component {
     
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
+
+    let currentUser = false;
+    let currentUserId;
+    if (this.props.currentUser) {
+      currentUser = true;
+      currentUserId = this.props.currentUser.id;
+    }
+
+    console.log(this.props.currentUser)
+
     let averageExercise;
     let exerciseEntries;
     let exercisePie;
 
-    if (timePeriod === 'day') {
-      averageExercise = totalExerciseDay;
-      exerciseEntries = dayExerciseEntries;  
-      exercisePie = dayExercisePie;
-    } else if (timePeriod === 'week') {
-      averageExercise = averageExerciseWeek; 
-      exerciseEntries = weekExerciseEntries;
-      exercisePie = weekExercisePie;
-    } else if (timePeriod === 'month') {
-      averageExercise = averageExerciseMonth;
-      exerciseEntries = monthExerciseEntries;
-      exercisePie = monthExercisePie;
+    if (currentUser) {
+      if (currentUserId === 6) {
+        if (timePeriod === 'day') {
+          averageExercise = U1totalExerciseDay;
+          exerciseEntries = U1dayExerciseEntries;  
+          exercisePie = U1dayExercisePie;
+        } else if (timePeriod === 'week') {
+          averageExercise = U1averageExerciseWeek; 
+          exerciseEntries = U1weekExerciseEntries;
+          exercisePie = U1weekExercisePie;
+        } else if (timePeriod === 'month') {
+          averageExercise = U1averageExerciseMonth;
+          exerciseEntries = U1monthExerciseEntries;
+          exercisePie = U1monthExercisePie;
+        }
+      } else {
+        if (timePeriod === 'day') {
+          averageExercise = U2totalExerciseDay;
+          exerciseEntries = U2dayExerciseEntries;  
+          exercisePie = U2dayExercisePie;
+        } else if (timePeriod === 'week') {
+          averageExercise = U2averageExerciseWeek; 
+          exerciseEntries = U2weekExerciseEntries;
+          exercisePie = U2weekExercisePie;
+        } else if (timePeriod === 'month') {
+          averageExercise = U2averageExerciseMonth;
+          exerciseEntries = U2monthExerciseEntries;
+          exercisePie = U2monthExercisePie;
+        }
+      }
     }
 
     // This sets the data for the charts

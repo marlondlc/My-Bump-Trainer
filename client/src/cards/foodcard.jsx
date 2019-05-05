@@ -11,7 +11,8 @@ import widgets from 'fusioncharts/fusioncharts.widgets';
 import foodPyramidchart from '../charts/foodpyramid.jsx';
 import actualfoodPyramid from '../charts/actualfoodpyramid.jsx';
 import foodConfigs from '../charts/food.jsx';
-import {dayFoodEntries, weekFoodEntries, monthFoodEntries, totalFoodDay, averageFoodWeek, averageFoodMonth, dayFoodPyramid, weekFoodPyramid, monthFoodPyramid} from'../data/foodEntries';
+import {U1dayFoodEntries, U1weekFoodEntries, U1monthFoodEntries, U1totalFoodDay, U1averageFoodWeek, U1averageFoodMonth, U1dayFoodPyramid, U1weekFoodPyramid, U1monthFoodPyramid} from'../data/User1/U1foodEntries';
+import {U2dayFoodEntries, U2weekFoodEntries, U2monthFoodEntries, U2totalFoodDay, U2averageFoodWeek, U2averageFoodMonth, U2dayFoodPyramid, U2weekFoodPyramid, U2monthFoodPyramid} from'../data/User2/U2foodEntries';
 import {foodPyramidRec, caloriesPerDayRec} from '../data/recommendations';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
@@ -26,7 +27,7 @@ class FoodCard extends React.Component {
     axios.get(`/api/v1/food_entries`)
       .then(res => {
         const food_entries = res.data;
-        console.log(food_entries)
+        // console.log(food_entries)
         this.setState({ food_entries });
       })
       .catch(error => console.log(error));
@@ -35,22 +36,48 @@ class FoodCard extends React.Component {
   render() {
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
+
+    let currentUser = false;
+    let currentUserId;
+    if (this.props.currentUser) {
+      currentUser = true;
+      currentUserId = this.props.currentUser.id;
+    }
+
     let averageFood;
     let foodEntries;
     let foodPyramid;
 
-    if (timePeriod === 'day') {
-      averageFood = totalFoodDay;
-      foodEntries = dayFoodEntries;  
-      foodPyramid = dayFoodPyramid;
-    } else if (timePeriod === 'week') {
-      averageFood = averageFoodWeek; 
-      foodEntries = weekFoodEntries;
-      foodPyramid = weekFoodPyramid;
-    } else if (timePeriod === 'month') {
-      averageFood = averageFoodMonth;
-      foodEntries = monthFoodEntries;
-      foodPyramid = monthFoodPyramid;
+    if (currentUser) {
+      if (currentUserId === 6) {
+        if (timePeriod === 'day') {
+          averageFood = U1totalFoodDay;
+          foodEntries = U1dayFoodEntries;  
+          foodPyramid = U1dayFoodPyramid;
+        } else if (timePeriod === 'week') {
+          averageFood = U1averageFoodWeek; 
+          foodEntries = U1weekFoodEntries;
+          foodPyramid = U1weekFoodPyramid;
+        } else if (timePeriod === 'month') {
+          averageFood = U1averageFoodMonth;
+          foodEntries = U1monthFoodEntries;
+          foodPyramid = U1monthFoodPyramid;
+        }
+      } else {
+        if (timePeriod === 'day') {
+          averageFood = U2totalFoodDay;
+          foodEntries = U2dayFoodEntries;  
+          foodPyramid = U2dayFoodPyramid;
+        } else if (timePeriod === 'week') {
+          averageFood = U2averageFoodWeek; 
+          foodEntries = U2weekFoodEntries;
+          foodPyramid = U2weekFoodPyramid;
+        } else if (timePeriod === 'month') {
+          averageFood = U2averageFoodMonth;
+          foodEntries = U2monthFoodEntries;
+          foodPyramid = U2monthFoodPyramid;
+        }
+      }
     }
 
     // This sets the data for the charts
