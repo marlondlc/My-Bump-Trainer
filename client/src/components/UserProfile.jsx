@@ -49,8 +49,13 @@ const styles = theme => ({
 });
 
 class UserProfile extends React.Component {
-  state = { expanded: false };
-
+  constructor(props) {
+    super(props)
+}
+state = {
+  expanded: false,
+  currentUser: ''
+}
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };

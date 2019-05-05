@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios, { post } from "axios";
-import Navbar from "../components/toolbar/Navbar";
-import Footer from "../components/toolbar/Footer";
+// import Navbar from "../components/toolbar/Navbar";
+// import Footer from "../components/toolbar/Footer";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -86,9 +86,9 @@ class Login extends Component {
     return (
 
       <div>
-        <div className="navbar-div" style={{ height: "100%" }}>
+        {/* <div className="navbar-div" style={{ height: "100%" }}>
           <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
-        </div>
+        </div> */}
         <main className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
@@ -147,7 +147,7 @@ class Login extends Component {
             Submit
           </button>
         </form> */}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
