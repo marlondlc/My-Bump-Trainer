@@ -102,13 +102,42 @@ class ExerciseCard extends React.Component {
     const dialog = <Dialog />
 
     // This is some data for recommendations
-    // const actualAerobic = exercisePie.find( group => group.label === 'Aerobic' ).value;
-    // const recTreatsPercentage = foodPyramidRec.find( group => group.label === 'Food and drinks high in fat, sugar and salt' ).value;
+    const actualAerobic = exercisePie.find( group => group.label === 'Aerobic' ).value;
+    const actualBalance = exercisePie.find( group => group.label === 'Balance' ).value;
+    const actualStrength = exercisePie.find( group => group.label === 'Strength' ).value;
+    const actualFlexibility = exercisePie.find( group => group.label === 'Flexibility' ).value;
+    
+    let moreAerobic = false;
+    if (averageExercise - actualAerobic > 20) {
+      moreAerobic = true
+    }
+
+    let moreBalance = false;
+    if (10 - actualBalance > 0) {
+      moreBalance = true; 
+    }
+
+    let moreStrength = false;
+    if (15 - actualStrength > 0) {
+      moreStrength = true;
+    }
+
+    let moreFlexibility = false;
+    if (15 - actualFlexibility > 0) {
+      moreFlexibility = true;
+    }
 
     // This compares the exercise with the recommended to create a messsage that can be passed to generic card
     let message;
     if ((exercisePerDayRec - averageExercise) <= 0) {
+      if (moreAerobic) {
+        message = "Try doing a bit more aerobic exercise. It's a good idea to do at least 20 mins per day"
+      }
+      else if (moreStrength || moreBalance || moreFlexibility) {
+        message = "You're meeting the recommendations, but try to ensure you are doing Strength, Balance and Flexibiilty exercises as well as Aerobic"
+      } else {
         message = 'Wohoo you are meeting the recommendations.' ;
+      }
     } else {
         message = `Try increasing your exercise by ${exercisePerDayRec - averageExercise} minutes per day`
     }
