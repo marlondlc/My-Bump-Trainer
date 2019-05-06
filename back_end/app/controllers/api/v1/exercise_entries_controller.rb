@@ -17,7 +17,7 @@ class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
   end
 
   def destroy
-    @exercise_entry = User.find(1) # ALL the user.find(1) will be current users
+    @exercise_entry = current_user
     @exercise_entry.destroy
     render json: exercise_entry
   end
@@ -30,7 +30,7 @@ class Api::V1::ExerciseEntriesController < Api::V1::ApplicationController
   end
 
   def week
-    @weekly = User.find(1).exercise_entries.weekly_entries
+    @weekly = current_user.exercise_entries.weekly_entries
     render json: @weekly
   end
 

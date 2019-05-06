@@ -35,6 +35,12 @@ class Home extends Component {
     this.setState({timePeriod: value})
   }
 
+  componentDidMount = () => {
+    if (!this.props.currentUser) {
+      this.props.history.push("/login");
+    }
+  }
+
   render() {
     return (
       <div>

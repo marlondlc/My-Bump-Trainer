@@ -43,13 +43,36 @@ class WaterCard extends React.Component {
       .catch(error => console.log(error));
   }
 
+
+
   // Create function that will transform the data iam ngetting from axios/get -- 
 
   render() {
 
-    // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
+    //---- Here this is determining which data is going to be passed to the chart depending on the timeperiod. ----
+        // **map function to return an object containing every water entry in function of every hours**
+    const test = this.state.water_entries.map(e => {
+      return {
+        hours:  (new Date(e.drunk_at)).getUTCHours(),
+        value: e.volume
+
+      }
+    })
+
+    console.log(test)
+       // map function to get every hours water_entries
+    // const test2 = this.state.water_entries.map(e => (new Date(e.drunk_at)).getUTCHours())
+    // console.log('HOUR ENTRIES', test2)
     const timePeriod = this.props.timePeriod;
+    const sumvolumedaily = this.state.water_entries.map(e => e.volume).reduce((a, b) => a + b, 0)
+    // const averagevolumedaily = this.state.water_entries.map(e => e.water_entries).reduce((a, b) =>
     
+    // )
+
+    const average = sumvolumedaily / (this.state.water_entries).length
+
+    console.log("test average ml per day", average)
+
     let currentUser = false;
     let currentUserId;
     if (this.props.currentUser) {
@@ -57,42 +80,57 @@ class WaterCard extends React.Component {
       currentUserId = this.props.currentUser.id;
     }
 
+
+
+    
+    console.log('MAP DATE', sumvolumedaily)
     let averageWater;
     let waterEntries;
-
-    if (currentUser) {
-      if (currentUserId === 6) {
-        if (timePeriod === 'day') {
-          averageWater = U1totalWaterDay;
-          waterEntries = U1dayWaterEntries;  
-        } else if (timePeriod === 'week') {
-          averageWater = U1averageWaterWeek; 
-          waterEntries = U1weekWaterEntries;
-        } else if (timePeriod === 'month') {
-          averageWater = U1averageWaterMonth;
-          waterEntries = U1monthWaterEntries;
-        }
-      } else {
-        if (timePeriod === 'day') {
-          averageWater = U2totalWaterDay;
-          waterEntries = U2dayWaterEntries;  
-        } else if (timePeriod === 'week') {
-          averageWater = U2averageWaterWeek; 
-          waterEntries = U2weekWaterEntries;
-        } else if (timePeriod === 'month') {
-          averageWater = U2averageWaterMonth;
-          waterEntries = U2monthWaterEntries;
-        }
-      }
+    if (timePeriod === 'day') {
+      averageWater = sumvolumedaily / 1000;
+      waterEntries = test;  
+    } else if (timePeriod === 'week') {
+      averageWater = averageWaterWeek; 
+      waterEntries = weekWaterEntries;
+    } else if (timePeriod === 'month') {
+      averageWater = averageWaterMonth;
+      waterEntries = monthWaterEntries;
     }
+
+    // if (currentUser) {
+    //   if (currentUserId === 6) {
+    //     if (timePeriod === 'day') {
+    //       averageWater = U1totalWaterDay;
+    //       waterEntries = U1dayWaterEntries;  
+    //     } else if (timePeriod === 'week') {
+    //       averageWater = U1averageWaterWeek; 
+    //       waterEntries = U1weekWaterEntries;
+    //     } else if (timePeriod === 'month') {
+    //       averageWater = U1averageWaterMonth;
+    //       waterEntries = U1monthWaterEntries;
+    //     }
+    //   } else {
+    //     if (timePeriod === 'day') {
+    //       averageWater = U2totalWaterDay;
+    //       waterEntries = U2dayWaterEntries;  
+    //     } else if (timePeriod === 'week') {
+    //       averageWater = U2averageWaterWeek; 
+    //       waterEntries = U2weekWaterEntries;
+    //     } else if (timePeriod === 'month') {
+    //       averageWater = U2averageWaterMonth;
+    //       waterEntries = U2monthWaterEntries;
+    //     }
+    //   }
     
     // This sets the data for the charts
-    waterCylinder.dataSource.value = averageWater;
-    waterConfigs.dataSource.data = waterEntries;
+    waterCylinder.dataSource.value = averageWater
+    waterCylinder.dataSource.chart.plottooltext = `Water average per day ${averageWater}`
+    waterConfigs.dataSource.data = waterEntries 
+
 
     // This sets the charts to variables which can be passed to the generic chart
     const chart1 = <ReactFC  {...waterCylinder} />
-    const chart2 = <ReactFC {...waterConfigs} />
+    const chart2 = <ReactFC {...waterConfigs} plottooltext/>
 
     // This is the popup where people can enter water
     const dialog = <Dialog />
