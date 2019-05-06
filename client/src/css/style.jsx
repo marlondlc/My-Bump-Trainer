@@ -59,7 +59,10 @@ const styles = theme => ({
     exercise: {
         backgroundColor: amber[500],
         color: grey[50],
-    }
+    },
+    chip: {
+      margin: theme.spacing.unit,
+    },
   });
 
   export default styles;

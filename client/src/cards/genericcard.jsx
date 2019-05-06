@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
+import Chip from '@material-ui/core/Chip';
 import CardHeader from '@material-ui/core/CardHeader';
 // import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -27,6 +28,7 @@ class GenericCard extends React.Component {
     expanded: false,
     recexpand: false,
     type: this.props.type,
+    chart: this.props.chart1
    };
 
   handleExpandClick = () => {
@@ -38,6 +40,15 @@ class GenericCard extends React.Component {
       recexpand: recexpand ? panel : false,
     });
   };
+
+  handleClick = () => {
+    if (this.state.chart === this.props.chart1) {
+      this.setState({chart: this.props.chart2})
+    } else {
+      this.setState({chart: this.props.chart1})
+    }
+    console.log(this.state.chart)
+  }
 
   render() {
     const { classes } = this.props;
@@ -73,6 +84,11 @@ class GenericCard extends React.Component {
           })()}
           subheader={this.props.recommendation}
         />
+        <Chip
+          label="Clickable Chip"
+          onClick={this.handleClick}
+          className={classes.chip}
+        />
         {/* Put something in here to show the total water/exercise/food that they have done */}
         {/* {this.props.averageWater} */}
         <Paper className={classes.root} elevation={1}>
@@ -97,7 +113,7 @@ class GenericCard extends React.Component {
               })()}
           </Typography>
         </Paper>
-        {this.props.chart1}
+        {this.state.chart}
 
         <ExpansionPanel className={classes.rec} recexpand={recexpand === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
