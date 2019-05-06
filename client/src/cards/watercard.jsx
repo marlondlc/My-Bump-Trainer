@@ -49,9 +49,13 @@ class WaterCard extends React.Component {
   render() {
 
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
-    // const test = this.state.water_entries.map(e => e.volume)
-    // console.log(test)
+    const test = this.state.water_entries.map(e => e.volume)
+    console.log('VOLUME ENTRIES', test)
+    const test2 = this.state.water_entries.map(e => e.drunk_at.getHours())
+    console.log('HOUR ENTRIES', test2)
     const timePeriod = this.props.timePeriod;
+    const test3 = this.state.water_entries.map(e => e.drunk_at)
+    console.log('MAP DATE', test3)
     let averageWater;
     let waterEntries;
     if (timePeriod === 'day') {
