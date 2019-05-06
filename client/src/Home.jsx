@@ -61,9 +61,9 @@ class Home extends Component {
         {localStorage.getItem('jwt') &&
         <div style={{padding: '10px 0 100px 0'}}>
           <div className="components">
-            <WaterCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
-            <FoodCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
-            <ExerciseCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
+            <WaterCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} totalWater={this.state.totalWater} waterEntries={this.state.waterEntries}/>
+            <FoodCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} totalCalories={this.state.totalCalories} foodEntries={this.state.foodEntries} foodPyramid={this.state.foodPyramid}/>
+            <ExerciseCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} totalExercise={this.state.totalExercise} exerciseType={this.state.exerciseType} exerciseEntries={this.state.exerciseEntries} />
             {/* <Advice timePeriod={this.state.timePeriod} /> */}
                 
           </div>
