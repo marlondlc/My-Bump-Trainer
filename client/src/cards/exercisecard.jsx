@@ -129,17 +129,64 @@ class ExerciseCard extends React.Component {
 
     // This compares the exercise with the recommended to create a messsage that can be passed to generic card
     let message;
+    let video;
     if ((exercisePerDayRec - averageExercise) <= 0) {
       if (moreAerobic) {
         message = "Try doing a bit more aerobic exercise. It's a good idea to do at least 20 mins per day"
+        switch (this.props.trimester) {
+            case 'first':
+                video = 'https://www.youtube.com/embed/9i1RFqR1Xk'
+                break;
+            case 'second':
+                video = 'https://www.youtube.com/embed/0BDbn9cFxt0'
+                break;
+            case 'third':
+                video = 'https://www.youtube.com/embed/Pd7_vi0GV1c'
+                break;
+            default:
+                video = 'https://youtu.be/embed/NckS85-1etQ'
+        }
       }
       else if (moreStrength || moreBalance || moreFlexibility) {
         message = "You're meeting the recommendations, but try to ensure you are doing Strength, Balance and Flexibiilty exercises as well as Aerobic"
+        if (moreBalance) {
+            video = 'https://www.youtube.com/embed/cZ18qPmuXug'
+        } else if (moreFlexibility &! moreBalance) {
+            switch (this.props.trimester) {
+                case 'first':
+                    video = 'https://www.youtube.com/embed/1bTSrM_Qdc4'
+                    break;
+                case 'second':
+                    video = 'https://www.youtube.com/embed/Hy13X6zURrg'
+                    break;
+                case 'third':
+                    video = 'https://www.youtube.com/embed/OCUkbWRHDlM'
+                    break;
+                default:
+                    video = 'https://www.youtube.com/embed/Us3fW73_8Js'
+            }
+        } else {
+            switch (this.props.trimester) {
+                case 'first':
+                    video = 'https://www.youtube.com/embed/7D4zvnGletw'
+                    break;
+                case 'second':
+                    video = 'https://www.youtube.com/embed/5nck_40G7LY'
+                    break;
+                case 'third':
+                    video = 'https://www.youtube.com/embed/uPJf96XZGps'
+                    break;
+                default:
+                    video = 'https://www.youtube.com/embed/gNGOGWnvMqQ'
+            }
+        } 
       } else {
-        message = 'Wohoo you are meeting the recommendations.' ;
+        message = 'Wohoo you are meeting the recommendations.';
+        video = 'https://www.youtube.com/embed/SVMRCH5CpGA'
       }
     } else {
         message = `Try increasing your exercise by ${exercisePerDayRec - averageExercise} minutes per day`
+        video = 'https://www.youtube.com/embed/chmJYspx0A'
     }
 
     return (
@@ -150,6 +197,7 @@ class ExerciseCard extends React.Component {
         timePeriod={this.props.timePeriod} 
         dialog={dialog} 
         message={message}
+        video={video}
         totalExercise={averageExercise} 
         chart1={chart1} 
         chart2={chart2}/>

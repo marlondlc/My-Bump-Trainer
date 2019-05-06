@@ -46,7 +46,7 @@ const styles = theme => ({
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
       paddingBottom: theme.spacing.unit * 2,
-      backgroundColor: yellow[50],
+      backgroundColor: yellow[100],
     },
     water: {
       backgroundColor: blue[500],
@@ -60,7 +60,6 @@ const styles = theme => ({
         backgroundColor: amber[500],
         color: grey[50],
     }
-
   });
 
   export default styles;

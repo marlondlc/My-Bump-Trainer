@@ -6,10 +6,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../css/style';
 
 import axios from 'axios';
 
-export default class AddWater extends React.Component {
+class AddWater extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -65,9 +67,10 @@ export default class AddWater extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="outlined" className={classes.water} onClick={this.handleClickOpen}>
           Add water
         </Button>
         <Dialog
@@ -115,3 +118,5 @@ export default class AddWater extends React.Component {
     );
   }
 }
+
+export default withStyles(styles)(AddWater);

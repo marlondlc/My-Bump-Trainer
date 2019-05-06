@@ -7,11 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IntegrationDownshift from '../components/searchbarExercise';
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../css/style';
 
 import axios from 'axios';
 // import DateTime from 'react-datetime';
 
-export default class AddExercise extends React.Component {
+class AddExercise extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -64,9 +66,10 @@ export default class AddExercise extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="outlined" className={classes.exercise} onClick={this.handleClickOpen}>
           Add exercise
         </Button>
         <Dialog
@@ -104,3 +107,5 @@ export default class AddExercise extends React.Component {
     );
   }
 }
+
+export default withStyles(styles)(AddExercise);

@@ -101,11 +101,15 @@ class GenericCard extends React.Component {
 
         <ExpansionPanel className={classes.rec} recexpand={recexpand === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="h7" component="p">{this.props.message}</Typography>              
+            <Typography variant="h7" component="p">Tips and hints!</Typography>              
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
               {this.props.message}
+              <br/>Here's a video that might help!<br/>
+                <iframe width="300" height="225"
+                src={this.props.video}>
+                </iframe> 
             </Typography>
           </ExpansionPanelDetails>      
         </ExpansionPanel>        

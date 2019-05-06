@@ -131,12 +131,19 @@ class FoodCard extends React.Component {
 
     // This compares the consumed with the recommended to create a messsage that can be passed to generic card
     let message;
+    let video;
     if ((recommendedCalories - averageFood) >= 0) {
-        message = 'Wohoo you are meeting the recommendations.' ;
+        message = 'Wohoo you are meeting the recommendations.';
+        video = 'https://www.youtube.com/embed/8jtWDGJJRaI'
+    } else if ((averageFood - recommendedCalories) <= 0) {
+        message = 'You are eating less than the recommendations, remember you do need to gain some weight during pregnancy'
+        video = 'https://www.youtube.com/embed/1oqcfl44MEU'
     } else if (eatMoreVeges && eatLessSweets) {
         message = `Try replacing sugary treats with fruit or vegetables.`
+        video = 'https://www.youtube.com/embed/1ucf8i2-hjc'
     } else if (eatLessSweets &! eatMoreVeges ) {
         message = `Try replacing sugary drinks with water.`
+        video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
 
     return (
@@ -147,6 +154,7 @@ class FoodCard extends React.Component {
         timePeriod={timePeriod} 
         dialog={dialog} 
         trimester={this.props.trimester}
+        video={video}
         recommendedCalories={recommendedCalories}
         message={message}
         averageCalories={averageFood} 

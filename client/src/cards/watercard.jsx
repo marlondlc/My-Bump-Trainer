@@ -99,12 +99,16 @@ class WaterCard extends React.Component {
 
     // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
     let message;
+    let video;
     if ((2.3 - averageWater) === 0) {
-        message = 'Wohoo you are meeting the recommendations.' ;
+        message = 'Wohoo you are meeting the recommendations.';
+        video = 'https://www.youtube.com/embed/SDkPi0N5CZg'
     } else if ((2.3 - averageWater) < 0) {
-      message = 'You are exceeding expectations. Remember your bladder can only hold so much!' 
+        message = 'You are exceeding expectations. Remember your bladder can only hold so much!' 
+        video = 'https://www.youtube.com/embed/SDkPi0N5CZg'
     } else {
         message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
+        video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
 
     return (
@@ -113,6 +117,7 @@ class WaterCard extends React.Component {
         type="water" 
         message={message} 
         timePeriod={this.props.timePeriod} 
+        video={video}
         dialog={dialog} 
         averageWater={averageWater} 
         chart1={chart1} 
