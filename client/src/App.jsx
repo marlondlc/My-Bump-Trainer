@@ -25,7 +25,7 @@ class App extends Component {
         super(props)
         this.state = {
           timePeriod: "day",
-          currentUser: ''
+          currentUser:  localStorage.getItem("currentUser") ? JSON.parse(localStorage.getItem("currentUser")) : "" 
         }
     }
 
@@ -42,6 +42,9 @@ class App extends Component {
               <div>
                 {/* <Navigation /> */}
                   <Switch>
+                    {/* <Route path={process.env.PUBLIC_URL} render={(routeProps) => (
+                      <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+                      )} /> */}
                     <Route path="/login" render={(routeProps) => (
                       <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
                       )} />

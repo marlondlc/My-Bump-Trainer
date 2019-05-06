@@ -42,11 +42,15 @@ class WaterCard extends React.Component {
       .catch(error => console.log(error));
   }
 
+
+
   // Create function that will transform the data iam ngetting from axios/get -- 
 
   render() {
 
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
+    // const test = this.state.water_entries.map(e => e.volume)
+    // console.log(test)
     const timePeriod = this.props.timePeriod;
     let averageWater;
     let waterEntries;
