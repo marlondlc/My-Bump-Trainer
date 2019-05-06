@@ -10,7 +10,7 @@ import Logout from "./authentication/logout";
 // import Api from "./authentication/Api";
 
 // ROUTE COMPONENTS HERE : ----------------
-import Homepage from "./components/Home";
+import Homepage from "./Home.jsx";
 import Error from "./components/Error";
 import UserProfile from "./components/UserProfile";
 
