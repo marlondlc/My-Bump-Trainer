@@ -10,15 +10,9 @@ import Logout from "./authentication/logout";
 // import Api from "./authentication/Api";
 
 // ROUTE COMPONENTS HERE : ----------------
-<<<<<<< HEAD
-import Homepage from "./Home"
-import Error from "./components/Error"
-import UserProfile from "./components/UserProfile"
-=======
 import Homepage from "./components/Home";
 import Error from "./components/Error";
 import UserProfile from "./components/UserProfile";
->>>>>>> feature/axiosgetwater
 
 require('typeface-roboto')
 
@@ -26,13 +20,8 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-<<<<<<< HEAD
-          timePeriod: "week",
-          currentUser: {}
-=======
           timePeriod: "day",
           currentUser:  localStorage.getItem("currentUser") ? JSON.parse(localStorage.getItem("currentUser")) : "" 
->>>>>>> feature/axiosgetwater
         }
     }
 
