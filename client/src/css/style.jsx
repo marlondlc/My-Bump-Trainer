@@ -2,6 +2,7 @@ import blue from '@material-ui/core/colors/blue';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import amber from '@material-ui/core/colors/amber';
+import yellow from '@material-ui/core/colors/yellow';
 
 const styles = theme => ({
     card: {
@@ -25,6 +26,27 @@ const styles = theme => ({
     },
     expandOpen: {
       transform: 'rotate(180deg)',
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      flexBasis: '33.33%',
+      flexShrink: 0,
+    },
+    secondaryHeading: {
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary,
+    },
+    root: {
+      ...theme.mixins.gutters(),
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2,
+      // backgroundColor: yellow[200],
+    },
+    rec: {
+      ...theme.mixins.gutters(),
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2,
+      backgroundColor: yellow[50],
     },
     water: {
       backgroundColor: blue[500],

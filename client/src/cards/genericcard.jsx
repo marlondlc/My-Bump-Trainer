@@ -12,15 +12,20 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from '../css/style';
+import Paper from '@material-ui/core/Paper';
 
 class GenericCard extends React.Component {
   state = { 
     expanded: false,
+    recexpand: false,
     type: this.props.type,
    };
 
@@ -28,8 +33,15 @@ class GenericCard extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  handleChange = panel => (event, recexpand) => {
+    this.setState({
+      recexpand: recexpand ? panel : false,
+    });
+  };
+
   render() {
     const { classes } = this.props;
+    const { recexpand } = this.state;
 
     return (
       <Card className={classes.card}>
@@ -59,31 +71,44 @@ class GenericCard extends React.Component {
               default: return "X";
             }
           })()}
-          subheader={"Your " + this.props.timePeriod}
+          subheader={this.props.recommendation}
         />
-        {this.props.chart1}
-        <CardContent>
+        {/* Put something in here to show the total water/exercise/food that they have done */}
+        {/* {this.props.averageWater} */}
+        <Paper className={classes.root} elevation={1}>
+          <Typography variant="h5" component="h3">
+              {(() => {
+                switch (this.state.type) {
+                  case "water": return `You drank ${this.props.averageWater} litres.`;
+                  case "food": return `You ate ${this.props.averageCalories} calories.`;
+                  case "exercise": return `You exercised ${this.props.totalExercise} minutes.`;
+                  default: return "X";
+                }
+              })()}
+          </Typography>
           <Typography component="p">
-            {(() => {
+              {(() => {
                 switch (this.state.type) {
                   case "water": return "Recommendation: 10 eight ounce glasses (2.3 litres) of water per day";
-                  case "food": return `Recommendation ${this.props.trimester} trimester: ${this.props.recommendedCalories} calories per day.`;
+                  case "food": return `Recommendation for ${this.props.trimester} trimester: ${this.props.recommendedCalories} calories per day.`;
                   case "exercise": return "Recommendation: 20 minutes of moderate-intensity physical activity per day.";
                   default: return "X";
                 }
               })()}
           </Typography>
-          <Typography component="p">
-            {(() => {
-                switch (this.state.type) {
-                  case "water": return `Actual: ${this.props.averageWater} litres. ${this.props.message}`;
-                  case "food": return `Actual: ${this.props.averageCalories} calories. ${this.props.message}`;
-                  case "exercise": return `Actual: ${this.props.totalExercise} minutes. ${this.props.message}`;
-                  default: return "X";
-                }
-              })()}
-          </Typography>
-        </CardContent>
+        </Paper>
+        {this.props.chart1}
+
+        <ExpansionPanel className={classes.rec} recexpand={recexpand === 'panel1'} onChange={this.handleChange('panel1')}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography variant="h7" component="p">{this.props.message}</Typography>              
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              {this.props.message}
+            </Typography>
+          </ExpansionPanelDetails>      
+        </ExpansionPanel>        
         <CardActions className={classes.actions} disableActionSpacing>
             {this.props.dialog}
           {/* <IconButton aria-label="Add to favorites">
