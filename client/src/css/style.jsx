@@ -63,6 +63,10 @@ const styles = theme => ({
     chip: {
       margin: theme.spacing.unit,
     },
+    buttons: {
+      display: 'flex',
+      justifyContent: 'center',  
+    }
   });
 
   export default styles;

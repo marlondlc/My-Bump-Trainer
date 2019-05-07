@@ -4,7 +4,7 @@ const myDataSource = {
       caption: "Actual food pyramid",
       showLegend: "1",
       showLabels: "0",
-      subcaption: "As per www.safefood.eu",
+      // subcaption: "As per www.safefood.eu",
       showvalues: "1",
       numbersuffix: "%",
       plottooltext: "You ate <b>$dataValue</b> of <b>$label</b>"

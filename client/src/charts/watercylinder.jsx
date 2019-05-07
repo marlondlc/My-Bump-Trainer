@@ -7,7 +7,6 @@ const myDataSource = {
         upperlimitdisplay: "Bursting bladder",
         numbersuffix: "litres",
         cylfillcolor: "#5D62B5",
-        plottooltext: "Water consumption per day: <b>2.3 ltrs</b>",
         cylfillhoveralpha: "85",
         theme: "fusion"
       },

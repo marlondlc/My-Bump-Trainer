@@ -88,6 +88,7 @@ class WaterCard extends React.Component {
     
     // This sets the data for the charts
     waterCylinder.dataSource.value = averageWater;
+    waterCylinder.dataSource.chart.plottooltext = `Water consumption per day: <b>${averageWater}</b>`
     waterConfigs.dataSource.data = waterEntries;
 
     // This sets the charts to variables which can be passed to the generic chart

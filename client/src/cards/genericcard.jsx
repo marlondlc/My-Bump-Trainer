@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import CardHeader from '@material-ui/core/CardHeader';
 // import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
+// import CardContent from '@material-ui/core/CardContent';
 // import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
+// import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -28,7 +28,7 @@ class GenericCard extends React.Component {
     expanded: false,
     recexpand: false,
     type: this.props.type,
-    chart: this.props.chart1
+    chart1: true,
    };
 
   handleExpandClick = () => {
@@ -42,12 +42,7 @@ class GenericCard extends React.Component {
   };
 
   handleClick = () => {
-    if (this.state.chart === this.props.chart1) {
-      this.setState({chart: this.props.chart2})
-    } else {
-      this.setState({chart: this.props.chart1})
-    }
-    console.log(this.state.chart)
+    this.setState({chart1: !this.state.chart1})
   }
 
   render() {
@@ -56,7 +51,7 @@ class GenericCard extends React.Component {
 
     return (
       <Card className={classes.card}>
-        <CardHeader
+        <CardHeader className={classes.header}
           avatar={
             <Avatar aria-label={this.props.type} className={classes[this.props.type]}>
               {(() => {
@@ -84,11 +79,6 @@ class GenericCard extends React.Component {
           })()}
           subheader={this.props.recommendation}
         />
-        <Chip
-          label="Clickable Chip"
-          onClick={this.handleClick}
-          className={classes.chip}
-        />
         {/* Put something in here to show the total water/exercise/food that they have done */}
         {/* {this.props.averageWater} */}
         <Paper className={classes.root} elevation={1}>
@@ -113,8 +103,33 @@ class GenericCard extends React.Component {
               })()}
           </Typography>
         </Paper>
-        {this.state.chart}
-
+        {this.state.chart1? <div key='chart1'> {this.props.chart1} </div> : <div key='chart2'> {this.props.chart2} </div>}
+        <div className={classes.buttons}>
+            <Chip
+            label={(() => {
+              if (this.state.chart1) {
+                switch (this.state.type) {
+                  case "water": return "See water intake over time";
+                  case "food": return `See Actual Food Pyramid`;
+                  case "exercise": return "See exercise over time";
+                  default: return "X";
+                }
+              } else {
+                switch (this.state.type) {
+                  case "water": return "See total water intake";
+                  case "food": return `See Your Food Pyramid`;
+                  case "exercise": return "See total exercise by type";
+                  default: return "X";
+                }
+              }
+            })()}
+            onClick={this.handleClick}
+            className={classes.chip}
+            />
+            <CardActions className={classes.actions} disableActionSpacing>
+                {this.props.dialog}
+            </CardActions>
+          </div>
         <ExpansionPanel className={classes.rec} recexpand={recexpand === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography variant="h7" component="p">Tips and hints!</Typography>              
@@ -129,31 +144,7 @@ class GenericCard extends React.Component {
             </Typography>
           </ExpansionPanelDetails>      
         </ExpansionPanel>        
-        <CardActions className={classes.actions} disableActionSpacing>
-            {this.props.dialog}
-          {/* <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton> */}
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            {this.props.chart2}
-            {this.props.chart3}
-          </CardContent>
-        </Collapse>
+        
       </Card>
     );
   }
