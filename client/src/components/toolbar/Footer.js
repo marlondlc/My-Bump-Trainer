@@ -17,7 +17,7 @@ class Footer extends Component {
         >
           <Grid item xs={12} sm={4}>
             <div typeof="Organization">
-              <span property="name">Noname - company or bumpTrainer</span>
+              <span property="name">My Bump Trainer</span>
               <div property="address" typeof="PostalAddress">
                 <span property="streetAddress">1234 Mcgill Boulevard</span>
                 <span property="addressLocality" style={{ display: "block" }}>
@@ -36,7 +36,7 @@ class Footer extends Component {
                 item
                 xs={12}
               />
-              TESTING => Put fun fact here!
+              {/* TESTING => Put fun fact here! */}
             </Grid>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -51,7 +51,7 @@ class Footer extends Component {
             variant="subheading"
             component={"span"}
           >
-            © {currentYear} No name Company!!! fix this
+            © {currentYear} My Bump Trainer
           </Typography>
         </Grid>
       </div>
@@ -66,9 +66,9 @@ const styles = {
     borderTop: "solid 3px #5c6bc0",
     paddingTop: "10px",
     overflowX: "hidden",
-    position: 'fixed',
-    width: '100%',
-    bottom: 0,
+    // position: 'fixed',
+    width: "100%",
+    bottom: 0
   },
   footerSections: {
     margin: "0 10px"
@@ -77,11 +77,11 @@ const styles = {
     backgroundColor: "#5c6bc0",
     padding: "8px 16px 8px 16px",
     marginTop: "8px",
-    fontSize: "1px"
+    fontSize: "4px"
   },
   footerText: {
     color: "#fff",
-    fontSize: "6px",
+    fontSize: "12px",
     lineHeight: 1.5
   },
 

@@ -2,52 +2,69 @@ import React, { Component } from "react";
 import Axios, { post } from "axios";
 import Navbar from "../components/toolbar/Navbar";
 import Footer from "../components/toolbar/Footer";
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({
   main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
     marginTop: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing.unit
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 3
   },
+  paperContainer: {
+    backgroundImage: `url(${Image})`
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
+  card: {
+    position: "relative"
+  },
+  overlay: {
+    position: "absolute",
+    top: "20px",
+    left: "20px",
+    color: "black",
+    backgroundColor: "white"
+  }
 });
-
 
 class Login extends Component {
   constructor() {
@@ -57,10 +74,10 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const request = {"auth": {"email": email, "password": password}};
-    post('/user_token', request) 
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const request = { auth: { email: email, password: password } };
+    post("/user_token", request)
       .then(response => {
         localStorage.setItem("jwt", response.data.jwt);
         this.props.history.push("/");
@@ -68,24 +85,20 @@ class Login extends Component {
           "Bearer " + response.data.jwt;
       })
       .then(response => {
-        Axios.get(`/api/v1/users/6`)
-        .then(response => {
+        Axios.get(`/api/v1/users/6`).then(response => {
           // This props gets the user data from database show controller in users!!!
-          console.log(response.data)
-          this.props.updateCurrentUser(response.data)
-          })
-        })
+          console.log(response.data);
+          this.props.updateCurrentUser(response.data);
+        });
+      })
       .catch(error => console.log("error", error));
   }
 
-
-
-
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return (
-
       <div>
+        <Paper style={styles.paperContainer}> </Paper>
         <div className="navbar-div" style={{ height: "100%" }}>
           <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
         </div>
@@ -105,7 +118,12 @@ class Login extends Component {
               </FormControl>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>
-                <Input name="password" type="password" id="password" autoComplete="current-password" />
+                <Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
               </FormControl>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

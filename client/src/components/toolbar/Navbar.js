@@ -58,8 +58,8 @@ class MenuAppBar extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  
-  
+
+
   render() {
     const { classes } = this.props;
     const { auth } = this.state;
@@ -70,16 +70,16 @@ class MenuAppBar extends React.Component {
 
     // const open = Boolean(anchorEl);
     // removing anchorEl from const above as defined and not used
-    
+
     // Ternary variable solving the async backend issue -- IMPLEMENT TODAY WITH MENTOR (FIX AXIOS BUG ASYNC 4th OF MAY)
     // the find will get me an element without the array. So in render {userFunfacts.text} {userFunfacts.image}
     // console.log("SHOW ME THIS", userFunFacts)
     // const userFunFacts = this.props.currentUser.id ? this.state.funfacts.find(element => element.id === this.props.currentUser.id):null
     console.log("PLZ SHOW THIS", this.props.currentUser)
 
-   
 
-  
+
+
 
     return (
       <div className={classes.root}>
@@ -92,6 +92,9 @@ class MenuAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton> */}
+            <div>
+              <img src="./components/images/logo2.png" height="25" width="25" alt="logo" />
+            </div>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
               {/* {userFunFacts.email} */}

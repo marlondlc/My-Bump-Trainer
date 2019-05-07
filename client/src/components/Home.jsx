@@ -8,6 +8,8 @@ import Navbar from '../components/toolbar/Navbar';
 import FullWidthTabs from '../components/toolbar/Navbottom';
 // import { UserForm } from './user -NOT BEING USED/UserForm';
 import Footer from '../components/toolbar/Footer';
+import ControlledCarousel from "../components/toolbar/Carousel";
+
 
 class Home extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Home extends Component {
         trimester: "first"
       }
   }
+
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -36,20 +39,20 @@ class Home extends Component {
   render() {
     return (
       <div>
+
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
             <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
 
-            {/* <SideDrawer show={this.state.sideDrawerOpen} />
-              {Backdrop} */}
-            {/* <main style={{marginTop: '64px'}}>
-              <Main />
-            </main> */}
           </div>
           <div>
-          <FullWidthTabs switchTab={this.switchTab}/>
-</div>
+            <FullWidthTabs switchTab={this.switchTab}/>
+          </div>
         </div>
+          <div>
+            <ControlledCarousel />
+          </div>
+
         {localStorage.getItem('jwt') &&
         <div style={{padding: '10px 0 100px 0'}}>
           <div className="components">
