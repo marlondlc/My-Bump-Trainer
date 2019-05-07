@@ -11,41 +11,8 @@ class Footer extends Component {
     const currentYear = new Date().getFullYear();
     return (
       <div className={classes.root}>
-        {/* <Grid
-          container
-          spacing={0}
-          className={classNames(classes.footerText, classes.footerSections)}
-        >
-          <Grid item xs={12} sm={4}>
-            <div typeof="Organization">
-              <span property="name">Noname - company or bumpTrainer</span>
-              <div property="address" typeof="PostalAddress">
-                <span property="streetAddress">1234 Mcgill Boulevard</span>
-                <span property="addressLocality" style={{ display: "block" }}>
-                  Montreal, Quebec
-                </span>
-                <span property="postalCode">H5E 2K6</span>
-              </div>
-              <span property="telephone">(800) 454-2233</span>
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Grid container>
-              <Grid
-                className={classes.flexContainer}
-                style={{ justifyContent: "center" }}
-                item
-                xs={12}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ul style={{ listStyle: "none", margin: 0 }}>
-              <li />
-            </ul>
-          </Grid>
-        </Grid> */}
         <Grid className={classes.subFooter} item xs={12}>
+          <div className={classes.footer}>
           <Typography
             className={classes.white}
             variant="subheading"
@@ -54,6 +21,7 @@ class Footer extends Component {
             © {currentYear} Bump Trainer Inc
           </Typography>
           <Esme />
+          </div>
         </Grid>
       </div>
     );
@@ -91,6 +59,10 @@ const styles = {
   },
   flexContainer: {
     display: "flex"
+  },
+  footer: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 

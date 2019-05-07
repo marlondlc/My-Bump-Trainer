@@ -1,40 +1,44 @@
 const U1dayFoodEntries = [
-    {
-        label: "6am",
-        value: "0"
-    },      
-    {
-        label: "8am",
-        value: "1000"
-    },  
-    {
-        label: "10am",
-        value: "1000"
+  {
+    label: "4am",
+    value: "200"
+  },
+  {
+      label: "6am",
+      value: "0"
+  },      
+  {
+      label: "8am",
+      value: "0"
+  },  
+  {
+      label: "10am",
+      value: "300"
+  },
+  {
+      label: "12pm",
+      value: "1500"
     },
     {
-        label: "12pm",
-        value: "3000"
-      },
-      {
-        label: "2pm",
-        value: "3000"
-      },
-      {
-        label: "4pm",
-        value: "3050"
-      },
-      {
-        label: "6pm",
-        value: "3050"
-      },
-      {
-        label: "8pm",
-        value: "7050"
-      },
-      {
-        label: "10pm",
-        value: "8050",
-      }
+      label: "2pm",
+      value: "0"
+    },
+    {
+      label: "4pm",
+      value: "200"
+    },
+    {
+      label: "6pm",
+      value: "800"
+    },
+    {
+      label: "8pm",
+      value: "0"
+    },
+    {
+      label: "10pm",
+      value: "0",
+    }
 ]
 
 const U1weekFoodEntries = [

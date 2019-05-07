@@ -3,25 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import Icon from '../../docs/AB81.jpg';
+import styles from '../../css/style'
 
-// import List from '@material-ui/core/List';
-// import Divider from '@material-ui/core/Divider';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import AccountCircle from '@material-ui/icons/AccountCircle';
-// import SvgIcon from '@material-ui/core/SvgIcon';
-// import Link from "react-router-dom"
-
-const styles = {
-  list: {
-    width: 400,
-  },
-  fullList: {
-    width: 'auto',
-  },
-};
 
 // function HomeIcon(props) {
 //   return (
@@ -70,7 +53,7 @@ class DrawerRight extends React.Component {
     return (
       <div>
 
-        <Button onClick={this.toggleDrawer('right', true)}><span styles={{color:"white"}}><img src={Icon} alt="chat-bot"/></span></Button>
+        <Button className={classes.Esme} variant="outlined" onClick={this.toggleDrawer('right', true)}>Ask Esme</Button>
 
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
           <div

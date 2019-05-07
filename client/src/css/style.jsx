@@ -3,12 +3,23 @@ import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import amber from '@material-ui/core/colors/amber';
 import yellow from '@material-ui/core/colors/yellow';
+// import teal from '@material-ui/core/colors/teal';
 
 const styles = theme => ({
     card: {
       marginTop: 80,
       maxWidth: 400,
       marginBottom: 80,
+    },
+    list: {
+      width: 400,
+    },
+    fullList: {
+      width: 'auto',
+    },
+    Esme: {
+      // backgroundColor: teal[600],
+      color: grey[50],
     },
     media: {
       height: 0,
