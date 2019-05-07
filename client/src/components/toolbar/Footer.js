@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
+// import classNames from "classnames";
 import Esme from "../SideDrawer/Esme";
 
 class Footer extends Component {
@@ -11,7 +11,7 @@ class Footer extends Component {
     const currentYear = new Date().getFullYear();
     return (
       <div className={classes.root}>
-        <Grid
+        {/* <Grid
           container
           spacing={0}
           className={classNames(classes.footerText, classes.footerSections)}
@@ -44,7 +44,7 @@ class Footer extends Component {
               <li />
             </ul>
           </Grid>
-        </Grid>
+        </Grid> */}
         <Grid className={classes.subFooter} item xs={12}>
           <Typography
             className={classes.white}
@@ -82,7 +82,7 @@ const styles = {
   },
   footerText: {
     color: "#fff",
-    fontSize: "6px",
+    fontSize: "10px",
     lineHeight: 1.5
   },
 
