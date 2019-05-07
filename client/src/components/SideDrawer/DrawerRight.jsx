@@ -43,6 +43,8 @@ class DrawerRight extends React.Component {
     right: false,
   };
 
+
+
   toggleDrawer = (side, open) => () => {
     this.setState({
       [side]: open,
@@ -51,7 +53,11 @@ class DrawerRight extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    let spanstyle = {
+      color:"white",
+      fontSize:"50px",
+      verticalAlign: "middle"
+    }
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -94,7 +100,7 @@ class DrawerRight extends React.Component {
     return (
       <div>
 
-        <Button onClick={this.toggleDrawer('right', true)}><span styles={{color:"white"}}><AccountCircle/></span></Button>
+        <Button onClick={this.toggleDrawer('right', true)}><span style={spanstyle}><AccountCircle style={{fontSize:"60px"}}/></span></Button>
 
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
           <div

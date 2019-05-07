@@ -22,6 +22,7 @@
 .components {
   display: flex;
   justify-content: space-around;
+  margin-top: 90px;
 }
 
 @keyframes App-logo-spin {
