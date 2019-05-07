@@ -52,7 +52,7 @@ class ExerciseCard extends React.Component {
       currentUserId = this.props.currentUser.id;
     }
 
-    console.log(this.props.currentUser)
+    // console.log(this.props.currentUser)
 
     let averageExercise;
     let exerciseEntries;

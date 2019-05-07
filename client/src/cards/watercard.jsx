@@ -12,8 +12,8 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
-import {U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
-import {U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth} from'../data/User2/U2waterEntries';
+import {U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth, U1dayWaterEntries} from'../data/User1/U1waterEntries';
+import {U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth, U2dayWaterEntries} from'../data/User2/U2waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -55,6 +55,7 @@ class WaterCard extends React.Component {
             value: e.volume
           }
     })
+    console.log(databaseWaterEntries)
 
     // This isn't working currently.
     // const sumvolumedaily = this.state.water_entries.map(e => e.volume).reduce((a, b) => a + b, 0)
@@ -77,7 +78,7 @@ class WaterCard extends React.Component {
       if (currentUserId === 6) {
         if (timePeriod === 'day') {
           averageWater = U1totalWaterDay;
-          waterEntries = databaseWaterEntries;  
+          waterEntries = U1dayWaterEntries;  
         } else if (timePeriod === 'week') {
           averageWater = U1averageWaterWeek; 
           waterEntries = U1weekWaterEntries;
@@ -88,7 +89,7 @@ class WaterCard extends React.Component {
       } else {
         if (timePeriod === 'day') {
           averageWater = U2totalWaterDay;
-          waterEntries = databaseWaterEntries;  
+          waterEntries = U2dayWaterEntries;  
         } else if (timePeriod === 'week') {
           averageWater = U2averageWaterWeek; 
           waterEntries = U2weekWaterEntries;

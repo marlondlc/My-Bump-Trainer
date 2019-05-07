@@ -34,10 +34,6 @@ const U2dayWaterEntries = [
     {
         "label": "8pm",
         "value": "0"
-    },
-    {
-        "label": "10pm",
-        "value": "0",
     }
 ]
 
