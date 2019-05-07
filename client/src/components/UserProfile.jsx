@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -10,60 +10,42 @@ import Navbar from '../components/toolbar/Navbar';
 import Grid from '@material-ui/core/Grid';
 import { Divider } from '@material-ui/core';
 import Footer from '../components/toolbar/Footer';
+import axios from 'axios';
+import styles from "../css/userProfile"
 
 
-const styles = theme => ({
-  card: {
-    maxWidth: 800,
-    marginTop: 30,
-  },
-  media: {
-    height: 0,
-    paddingTop: '5%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    maxWidth: 100,
-    maxHeight: 100,
-    margin: 10,
-    width: 60,
-    height: 60,
-  },
-  // paper: {
-  //   padding: theme.spacing.unit * 2,
-  //   textAlign: 'center',
-  //   color: theme.palette.text.secondary,
-  // },
-});
-
-class UserProfile extends React.Component {
-  state = { expanded: false };
+class UserProfile extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      expended: false,
+      currentUser: ""
+    }
+}
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  componentDidMount() {
+    axios.get(`/api/v1/users/current_user`)
+      .then(res => {
+        const currentUser = localStorage.getItem("currentUser")
+        this.setState({ currentUser });
+      })
+      .catch(error => console.log(error));
+  }
+
+
   render() {
-    const { classes } = this.props;
+    const { classes, currentUser } = this.props;
 
     return (
       <div>
         <Grid container justify="center">
           <div>
             <div className="navbar-div" style={{height: '100%'}}>
-              <Navbar drawerClickHandler={this.drawerToggleClickHandler} />
+              <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
             </div>
           </div>
 
@@ -82,34 +64,44 @@ class UserProfile extends React.Component {
               </Avatar>
             }
 
-            title='Sheila Bridges' //{this.state.first_name}
+            title={currentUser.first_name + ' ' + currentUser.last_name} //{this.state.first_name}
           />
 
           <CardContent>
-
-
             <br/>
             <Grid container spacing={24}>
 
                 <Grid item xs={12} sm={6}>
-                    <p>First name: Sheila</p>
+                    <p><strong>Firstname: </strong>{currentUser.first_name}</p>
 
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                    <p>Last name: Bridges </p>
+                    <p><strong>Lastname: </strong>{currentUser.last_name}</p>
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                  <p>DOB: Dec,12,2020 </p>
+                    <p><strong>Email: </strong>{currentUser.email}</p>
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                    <p>Due date: Dec,12,2020 </p>
+                  <p><strong>Birthday : </strong>{currentUser.dob}</p>
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                    <p>Weight: 190lbs</p>
+                    <p><strong>Due Date: </strong>{currentUser.due_date} </p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                    <p><strong>Weight: </strong>{currentUser.initial_weight}</p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                    <p><strong>Height: </strong>{currentUser.height}</p>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                    <p><strong>Watter bottle: </strong>{currentUser.water_bottle}</p>
                 </Grid>
 
            </Grid>

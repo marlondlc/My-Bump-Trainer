@@ -1,17 +1,17 @@
-import React from 'react';
+// import React from 'react';
 
 
 
-const FoodForm = () => {
+// const FoodForm = () => {
 
-    return (
+//     return (
 
-        <div>
-          <p>foodform goes here</p>
-        </div>
+//         <div>
+//           <p>foodform goes here</p>
+//         </div>
 
-    );
+//     );
 
-}
+// }
 
-export default FoodForm
+// export default FoodForm

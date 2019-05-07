@@ -23,7 +23,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          timePeriod: "week",
+          timePeriod: "day",
           currentUser: {}
         }
     }
@@ -42,16 +42,16 @@ class App extends Component {
                 {/* <Navigation /> */}
                   <Switch>
                     <Route path="/login" render={(routeProps) => (
-                      <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-                      )} />
-                    <Route path="/logout" component={Logout} exact />
-                    <Route path="/" render={(props) => (
-                      <Homepage {...props} currentUser={this.state.currentUser} />
-                      )} />
-                    <Route component={Error} />
-                    <Route path="/profile" render={(props) => (
-                      <UserProfile {...props} currentUser={this.state.currentUser}/>
+                        <Login {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
                     )} />
+                    <Route path="/logout" component={Logout} exact />
+                    <Route path="/:handle" render={(props) => (
+                        <UserProfile {...props} currentUser={this.state.currentUser} />
+                    )} />
+                    <Route path="/" render={(props) => (
+                        <Homepage {...props} currentUser={this.state.currentUser} />
+                    )} />
+                    <Route component={Error} />
                   </Switch>
               </div>
               </BrowserRouter>

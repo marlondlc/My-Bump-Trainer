@@ -1,16 +1,16 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
+// import React from 'react';
+// import { NavLink } from "react-router-dom";
 
-const Navigation = () => {
+// const Navigation = () => {
 
-    return (
+//     return (
 
-        <div>
-         <NavLink to="/">home(easier testing)</NavLink>
-        </div>
+//         <div>
+//          <NavLink to="/">home(easier testing)</NavLink>
+//         </div>
 
-    );
+//     );
 
-};
+// };
 
-export default Navigation
+// export default Navigation

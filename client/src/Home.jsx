@@ -17,7 +17,7 @@ class Home extends Component {
         sideDrawerOpen: false,
         timePeriod: "day",
         trimester: "first",
-        currentUser: this.props.currentUser
+        // currentUser: this.props.currentUser
       }
   }
 
@@ -35,49 +35,37 @@ class Home extends Component {
     this.setState({timePeriod: value})
   }
 
+  componentDidMount = () => {
+    if (!this.props.currentUser) {
+      this.props.history.push("/login");
+    }
+  }
+
   render() {
     return (
       <div>
         <div>
           <div className="navbar-div" style={{height: '100%'}}>
             <Navbar drawerClickHandler={this.drawerToggleClickHandler} currentUser={this.props.currentUser}/>
-
-            {/* <SideDrawer show={this.state.sideDrawerOpen} />
-              {Backdrop} */}
-            {/* <main style={{marginTop: '64px'}}>
-              <Main />
-            </main> */}
           </div>
           <div>
           <FullWidthTabs switchTab={this.switchTab}/>
-</div>
+        </div>
         </div>
         {localStorage.getItem('jwt') &&
         <div style={{padding: '10px 0 100px 0'}}>
           <div className="components">
-            <WaterCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod}/>
-            <FoodCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} />
-            <ExerciseCard currentUser={this.state.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} />
-            {/* <Advice timePeriod={this.state.timePeriod} /> */}                
+            <WaterCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod}/>
+            <FoodCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} />
+            <ExerciseCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} />
           </div>
         </div>
         }
         <Footer/>
       </div>
   );
+  }
 }
-}
 
-// const Homepage = () => {
-
-//     return (
-
-//         <div>
-//           <p>Home page content</p>
-//           <div className="btn-display">
-//           </div>
-//         </div>
-//     );
-// }
 
 export default Home

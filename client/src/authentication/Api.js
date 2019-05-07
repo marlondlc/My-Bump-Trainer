@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 
 let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3000'
@@ -36,5 +35,4 @@ module.exports = {
     }
 }
 
-      // added header/config in your axios post response(or get too) -- after data . The component is an object : key headers, value is another object : Authorizzation  as the key and the value will be a string (add bearer + jwt) -- too look for jwt to the localstorage:build-in storage method
-  
+// added header/config in your axios post response(or get too) -- after data . The component is an object : key headers, value is another object : Authorizzation  as the key and the value will be a string (add bearer + jwt) -- too look for jwt to the localstorage:build-in storage method

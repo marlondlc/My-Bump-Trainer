@@ -12,8 +12,8 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
-import {U1dayWaterEntries, U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
-import {U2dayWaterEntries, U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth} from'../data/User2/U2waterEntries';
+import {U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
+import {U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth} from'../data/User2/U2waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -47,6 +47,19 @@ class WaterCard extends React.Component {
 
   render() {
 
+    //---- Here this is determining which data is going to be passed to the chart depending on the timeperiod. ----
+        // **map function to return an object containing every water entry in function of every hours**
+    const databaseWaterEntries = this.state.water_entries.map(e => {
+        return {
+            label:  (new Date(e.drunk_at)).getUTCHours(),
+            value: e.volume
+          }
+    })
+
+    // This isn't working currently.
+    // const sumvolumedaily = this.state.water_entries.map(e => e.volume).reduce((a, b) => a + b, 0)
+    // console.log(sumvolumedaily)
+
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
     
@@ -64,7 +77,7 @@ class WaterCard extends React.Component {
       if (currentUserId === 6) {
         if (timePeriod === 'day') {
           averageWater = U1totalWaterDay;
-          waterEntries = U1dayWaterEntries;  
+          waterEntries = databaseWaterEntries;  
         } else if (timePeriod === 'week') {
           averageWater = U1averageWaterWeek; 
           waterEntries = U1weekWaterEntries;
@@ -75,7 +88,7 @@ class WaterCard extends React.Component {
       } else {
         if (timePeriod === 'day') {
           averageWater = U2totalWaterDay;
-          waterEntries = U2dayWaterEntries;  
+          waterEntries = databaseWaterEntries;  
         } else if (timePeriod === 'week') {
           averageWater = U2averageWaterWeek; 
           waterEntries = U2weekWaterEntries;
