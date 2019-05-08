@@ -13,14 +13,14 @@ class Footer extends Component {
       <div className={classes.root}>
         <Grid className={classes.subFooter} item xs={12}>
           <div className={classes.footer}>
-          <Typography
-            className={classes.white}
-            variant="subheading"
-            component={"span"}
-          >
-            © {currentYear} Bump Trainer Inc
-          </Typography>
-          <Esme />
+            <Typography
+              className={classes.white}
+              variant="subheading"
+              component={"span"}
+            >
+              © {currentYear} My Bump Trainer Inc
+            </Typography>
+            <Esme />
           </div>
         </Grid>
       </div>
@@ -35,9 +35,9 @@ const styles = {
     borderTop: "solid 3px #5c6bc0",
     paddingTop: "10px",
     overflowX: "hidden",
-    position: 'fixed',
-    width: '100%',
-    bottom: 0,
+    // position: "fixed",
+    width: "100%",
+    bottom: 0
   },
   footerSections: {
     margin: "0 10px"

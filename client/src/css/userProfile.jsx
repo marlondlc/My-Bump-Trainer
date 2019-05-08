@@ -26,6 +26,10 @@ const styles = theme => ({
       margin: 10,
       width: 60,
       height: 60,
+    },
+    image: {
+      justifyContent: 'center',
+      display: 'flex',
     }
 
 });

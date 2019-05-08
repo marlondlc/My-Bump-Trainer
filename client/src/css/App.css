@@ -37,8 +37,8 @@
 .components {
   display: flex;
   justify-content: space-around;
-  margin-top: 90px;
   background-image: url("../../public/lilypads.png");
+  margin-top: 40px;
 }
 
 @keyframes App-logo-spin {

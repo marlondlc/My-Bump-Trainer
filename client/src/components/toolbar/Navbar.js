@@ -4,16 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-// import SvgIcon from '@material-ui/core/SvgIcon';
-// import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
-// import AccountCircle from "@material-ui/icons/AccountCircle";
 import DrawerRight from "../SideDrawer/DrawerRight";
-// import Switch from "@material-ui/core/Switch";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import FormGroup from "@material-ui/core/FormGroup";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import Menu from "@material-ui/core/Menu";
 
 const styles = {
   root: {
@@ -27,14 +18,6 @@ const styles = {
     marginRight: 20
   },
 };
-
-// function DotIcon(props) {
-//   return (
-//     <SvgIcon {...props}>
-//       <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z" />
-//     </SvgIcon>
-//   );
-// }
 
 class MenuAppBar extends React.Component {
   state = {
@@ -76,6 +59,31 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar style={{ margintop: "60px" }} position="fixed">
           <Toolbar>
+            {/* {/* <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
+              <MenuIcon />
+            </IconButton> */}
+
+            <img
+              src="/images/symbol.png"
+              style={{ width: "auto", height: "80px" , marginRight: "10px"}}
+              alt="Logo"
+            />
+            <div style={{ color: '#DA9DDC' }}>
+              <div>My</div>
+              <div>Bump</div>
+              <div>Trainer</div>
+            </div>
+            {/* <Typography variant="h6" color="inherit" className={classes.grow}>
+              {(this.props.currentUser) ? this.props.currentUser.first_name : "Not logged in!" }
+
+              <a>  : Your baby is 20 weeks old ! Equivalent to an Artichoke</a>
+              <img src="http://placekitten.com/25/25" alt="Kitten" height="25" width="25" />
+            </Typography> */}
+
             <Typography variant="h6" color="inherit" className={classes.grow} />
             {auth && <DrawerRight />}
           </Toolbar>
