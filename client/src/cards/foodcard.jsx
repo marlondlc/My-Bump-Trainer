@@ -118,16 +118,16 @@ class FoodCard extends React.Component {
     let message;
     let video;
     if ((recommendedCalories - averageFood) >= 0) {
-        message = 'Wohoo you are meeting the recommendations.';
+        message = "Wohoo you are meeting the recommendations. Here's a little something to make you smile";
         video = 'https://www.youtube.com/embed/8jtWDGJJRaI'
     } else if ((averageFood - recommendedCalories) <= 0) {
         message = 'You are eating less than the recommendations, remember you do need to gain some weight during pregnancy'
         video = 'https://www.youtube.com/embed/1oqcfl44MEU'
     } else if (eatMoreVeges && eatLessSweets) {
-        message = `Try replacing sugary treats with fruit or vegetables.`
+        message = `If you want to improve your food pyramid, try replacing sugary treats with fruit or vegetables.`
         video = 'https://www.youtube.com/embed/1ucf8i2-hjc'
     } else if (eatLessSweets &! eatMoreVeges ) {
-        message = `Try replacing sugary drinks with water.`
+        message = `If you want to improve your food pyramid, try replacing sugary drinks with water.`
         video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
 
@@ -143,6 +143,7 @@ class FoodCard extends React.Component {
         recommendedCalories={recommendedCalories}
         message={message}
         averageCalories={averageFood} 
+        panel='foodPanel'
         chart1={chart1} 
         chart2={chart2}/>
     );

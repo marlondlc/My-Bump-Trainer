@@ -129,13 +129,13 @@ class WaterCard extends React.Component {
     let message;
     let video;
     if ((2.3 - averageWater) === 0) {
-        message = 'Wohoo you are meeting the recommendations.';
+        message = "Wohoo you are meeting the recommendations. Here's a little treat to make you smile";
         video = 'https://www.youtube.com/embed/SDkPi0N5CZg'
     } else if ((2.3 - averageWater) < 0) {
         message = 'You are exceeding expectations. Remember your bladder can only hold so much!' 
         video = 'https://www.youtube.com/embed/SDkPi0N5CZg'
     } else {
-        message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
+        message = `Drinking enough water helps manage symptoms like heart burn. Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
         video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
 
@@ -149,6 +149,7 @@ class WaterCard extends React.Component {
         video={video}
         dialog={dialog} 
         averageWater={averageWater} 
+        panel='waterPanel'
         chart1={chart1} 
         chart2={chart2}
       />

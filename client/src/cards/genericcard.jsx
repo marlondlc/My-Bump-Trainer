@@ -25,21 +25,20 @@ import Paper from '@material-ui/core/Paper';
 
 class GenericCard extends React.Component {
   state = { 
-    expanded: false,
+    // expanded: false,
     recexpand: false,
     type: this.props.type,
     chart1: true,
    };
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+  // handleExpandClick = () => {
+  //   this.setState(state => ({ expanded: !state.expanded }));
+  // };
 
   handleChange = panel => (event, recexpand) => {
     this.setState({
       recexpand: recexpand ? panel : false,
     });
-    // waterCallback()
   };
 
   handleClick = () => {
@@ -49,6 +48,7 @@ class GenericCard extends React.Component {
   render() {
     const { classes } = this.props;
     const { recexpand } = this.state;
+    const panel = this.props.panel;
 
     return (
       <Card className={classes.card}>
@@ -131,21 +131,19 @@ class GenericCard extends React.Component {
                 {this.props.dialog}
             </CardActions>
           </div>
-        <ExpansionPanel className={classes.rec} recexpand={recexpand === 'panel1'} onChange={this.handleChange('panel1')}>
+        <ExpansionPanel className={classes.rec} recexpand={recexpand === {panel}} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography variant="h7" component="p">Tips and hints!</Typography>              
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
               {this.props.message}
-              <br/>Here's a video that might help!<br/>
                 <iframe width="300" height="225"
                 src={this.props.video}>
                 </iframe> 
             </Typography>
           </ExpansionPanelDetails>      
         </ExpansionPanel>        
-        
       </Card>
     );
   }

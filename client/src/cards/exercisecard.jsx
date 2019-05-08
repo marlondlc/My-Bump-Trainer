@@ -132,10 +132,11 @@ class ExerciseCard extends React.Component {
         }
       }
       else if (moreStrength || moreBalance || moreFlexibility) {
-        message = "You're meeting the recommendations, but try to ensure you are doing Strength, Balance and Flexibiilty exercises as well as Aerobic"
         if (moreBalance) {
+          message = "Woohoo you're getting enough exercise! But try adding add some balance to your routine"
             video = 'https://www.youtube.com/embed/cZ18qPmuXug'
         } else if (moreFlexibility &! moreBalance) {
+          message = "Woohoo you're getting enough exercise! But try adding some flexibility exercises to your routine"
             switch (this.props.trimester) {
                 case 'first':
                     video = 'https://www.youtube.com/embed/1bTSrM_Qdc4'
@@ -150,6 +151,7 @@ class ExerciseCard extends React.Component {
                     video = 'https://www.youtube.com/embed/Us3fW73_8Js'
             }
         } else {
+          message = "Woohoo you're getting enough exercise! But try adding some strength exercises to your routine"
             switch (this.props.trimester) {
                 case 'first':
                     video = 'https://www.youtube.com/embed/7D4zvnGletw'
@@ -177,13 +179,14 @@ class ExerciseCard extends React.Component {
 
       // This passes variables to the generic card component which renders the card
       <GenericCard 
-        type="exercise" 
+        type='exercise' 
         timePeriod={this.props.timePeriod} 
         dialog={dialog} 
         message={message}
         video={video}
         totalExercise={averageExercise} 
         chart1={chart1} 
+        panel='exercisePanel'
         chart2={chart2}/>
     );
   }
