@@ -51,7 +51,10 @@ class WaterCard extends React.Component {
     //   })
     //   .catch(error => console.log(error));
     this.handleWaterSubmit()
+
     }  
+
+    
   
 
   // Create function that will transform the data iam ngetting from axios/get -- 
@@ -135,6 +138,7 @@ class WaterCard extends React.Component {
         message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
         video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
+
 
     return (
       // This passes variables to the generic card component which renders the card

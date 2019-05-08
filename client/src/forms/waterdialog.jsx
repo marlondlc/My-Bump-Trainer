@@ -33,7 +33,6 @@ class AddWater extends React.Component {
   }
 
   handleSubmit = () => {
-    const that = this;
   
     let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
     const data = {
@@ -46,8 +45,8 @@ class AddWater extends React.Component {
      url: '/api/v1/water_entries', //backend api/v1/water_entries (run rake route to see backend route)
      data: data
     })
-    .then(function (response) {
-      that.props.onSubmit()
+    .then( (response) => {
+      this.props.onSubmit()
       // //handle 
       // // add get again and refresh state
       // console.log('who am i ', that.props)

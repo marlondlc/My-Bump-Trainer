@@ -9,7 +9,6 @@ import Navbar from './components/toolbar/Navbar';
 import FullWidthTabs from './components/toolbar/Navbottom';
 // import { UserForm } from './user -NOT BEING USED/UserForm';
 import Footer from './components/toolbar/Footer';
-import isLoading from './isloading'
 
 class Home extends Component {
   constructor(props) {
