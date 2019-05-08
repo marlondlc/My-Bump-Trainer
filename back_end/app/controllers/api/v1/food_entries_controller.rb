@@ -37,7 +37,7 @@ class Api::V1::FoodEntriesController < Api::V1::ApplicationController
   end
 
   def week
-    @weekly = User.find(1).food_entries.weekly_entries
+    @weekly = current_user.food_entries.weekly_entries
     render json: @weekly
   end
 

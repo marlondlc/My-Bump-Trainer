@@ -33,6 +33,7 @@ class AddWater extends React.Component {
   }
 
   handleSubmit = () => {
+  
     let momentpresent = this.state.drunk_at ? this.state.drunk_at : new Date().toISOString()
     const data = {
       volume: this.state.volume,
@@ -44,13 +45,24 @@ class AddWater extends React.Component {
      url: '/api/v1/water_entries', //backend api/v1/water_entries (run rake route to see backend route)
      data: data
     })
-    .then(function (response) {
-      //handle success
-      console.log(response);
+    .then( (response) => {
+      this.props.onSubmit()
+      // //handle 
+      // // add get again and refresh state
+      // console.log('who am i ', that.props)
+      //  axios.get(`/api/v1/water_entries/${that.props.timePeriod ? that.props.timePeriod : ""}`)
+      // .then(res => {
+      //   const water_entries = res.data ;
+      //   console.log('===> water_entries')
+      //   this.setState({ water_entries });
+      // })
+      // .catch(error => console.log(error));
+      // console.log(response);
+   
     })
     .catch(function (error) {
       //handle error
-      console.log(error);
+      console.log('ERRRROOR error', error);
     });
   }
 
@@ -65,6 +77,7 @@ class AddWater extends React.Component {
   handleCloseandSubmit = () => {
     this.setState({ open: false })
     this.handleSubmit();
+
   }
 
   render() {

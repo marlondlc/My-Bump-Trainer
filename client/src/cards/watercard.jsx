@@ -12,8 +12,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
-import {U1weekWaterEntries, U1monthWaterEntries, U1totalWaterDay, U1averageWaterWeek, U1averageWaterMonth, U1dayWaterEntries} from'../data/User1/U1waterEntries';
-import {U2weekWaterEntries, U2monthWaterEntries, U2totalWaterDay, U2averageWaterWeek, U2averageWaterMonth, U2dayWaterEntries} from'../data/User2/U2waterEntries';
+import {U1weekWaterEntries, U1monthWaterEntries, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
@@ -22,6 +21,7 @@ widgets(FusionCharts);
 class WaterCard extends React.Component {
   state = {
     water_entries: []
+
   }
       // this comment will be used for the map function listing elements of water data to the chart
      // <div>
@@ -30,18 +30,32 @@ class WaterCard extends React.Component {
       //   { this.state.water_entries.map(water => <li>{water_entries}</li>)}
       //   </ul>
       // </div>
-
-  componentDidMount() {
+  handleWaterSubmit = () => {
+    console.log('handleWaterSubmit')
+    axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
+    .then(res => {
+      const water_entries = res.data ;
+      console.log(water_entries)
+      this.setState({ water_entries });
+    })
+    .catch(error => console.log(error));
+  }  
+  componentDidMount = () => {
     // console.log(this.props.timePeriod)
     // console.log('this is the function', waterWeekAverage)
-    axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
-      .then(res => {
-        const water_entries = res.data ;
-        console.log(water_entries)
-        this.setState({ water_entries });
-      })
-      .catch(error => console.log(error));
-  }
+    // axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
+    //   .then(res => {
+    //     const water_entries = res.data ;
+    //     console.log(water_entries)
+    //     this.setState({ water_entries });
+    //   })
+    //   .catch(error => console.log(error));
+    this.handleWaterSubmit()
+
+    }  
+
+    
+  
 
   // Create function that will transform the data iam ngetting from axios/get -- 
 
@@ -57,28 +71,27 @@ class WaterCard extends React.Component {
     })
     console.log(databaseWaterEntries)
 
-    // This isn't working currently.
-    // const sumvolumedaily = this.state.water_entries.map(e => e.volume).reduce((a, b) => a + b, 0)
-    // console.log(sumvolumedaily)
+    const timePeriod = this.props.timePeriod;
+    const sumvolumedaily = this.state.water_entries.map(e => e.volume).reduce((a, b) => a + b, 0)
+    console.log(sumvolumedaily)
 
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
-    const timePeriod = this.props.timePeriod;
     
-    let currentUser = false;
-    let currentUserId;
-    if (this.props.currentUser) {
-      currentUser = true;
-      currentUserId = this.props.currentUser.id;
-    }
+    // let currentUser = false;
+    // let currentUserId;
+    // if (this.props.currentUser) {
+    //   currentUser = true;
+    //   currentUserId = this.props.currentUser.id;
+    // }
 
     let averageWater;
     let waterEntries;
 
-    if (currentUser) {
-      if (currentUserId === 6) {
+  
+
         if (timePeriod === 'day') {
-          averageWater = U1totalWaterDay;
-          waterEntries = U1dayWaterEntries;  
+          averageWater = sumvolumedaily / 1000;
+          waterEntries =  databaseWaterEntries
         } else if (timePeriod === 'week') {
           averageWater = U1averageWaterWeek; 
           waterEntries = U1weekWaterEntries;
@@ -86,19 +99,19 @@ class WaterCard extends React.Component {
           averageWater = U1averageWaterMonth;
           waterEntries = U1monthWaterEntries;
         }
-      } else {
-        if (timePeriod === 'day') {
-          averageWater = U2totalWaterDay;
-          waterEntries = U2dayWaterEntries;  
-        } else if (timePeriod === 'week') {
-          averageWater = U2averageWaterWeek; 
-          waterEntries = U2weekWaterEntries;
-        } else if (timePeriod === 'month') {
-          averageWater = U2averageWaterMonth;
-          waterEntries = U2monthWaterEntries;
-        }
-      }
-    }
+      // } else {
+      //   if (timePeriod === 'day') {
+      //     averageWater = U2totalWaterDay;
+      //     waterEntries = U2dayWaterEntries;  
+      //   } else if (timePeriod === 'week') {
+      //     averageWater = U2averageWaterWeek; 
+      //     waterEntries = U2weekWaterEntries;
+      //   } else if (timePeriod === 'month') {
+      //     averageWater = U2averageWaterMonth;
+      //     waterEntries = U2monthWaterEntries;
+      //   }
+      // }
+    
     
     // This sets the data for the charts
     waterCylinder.dataSource.value = averageWater;
@@ -110,7 +123,7 @@ class WaterCard extends React.Component {
     const chart2 = <ReactFC {...waterConfigs} />
 
     // This is the popup where people can enter water
-    const dialog = <Dialog />
+    const dialog = <Dialog onSubmit={this.handleWaterSubmit}/>
 
     // This compares the consumed with the recommended to create a messsage that can be passed to generic chart
     let message;
@@ -125,6 +138,7 @@ class WaterCard extends React.Component {
         message = `Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
         video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
+
 
     return (
       // This passes variables to the generic card component which renders the card

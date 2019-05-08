@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import {Link} from 'react-router-dom'
-import "./css/Home.css"
+// import "../css/Home.css"
 import FoodCard from './cards/foodcard';
 import ExerciseCard from './cards/exercisecard';
 import WaterCard from './cards/watercard';
@@ -17,9 +17,10 @@ class Home extends Component {
         sideDrawerOpen: false,
         timePeriod: "day",
         trimester: "first",
+        }
         // currentUser: this.props.currentUser
       }
-  }
+  
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -40,6 +41,8 @@ class Home extends Component {
       this.props.history.push("/login");
     }
   }
+
+  
 
   render() {
     return (

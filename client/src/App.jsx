@@ -24,7 +24,7 @@ class App extends Component {
         super(props)
         this.state = {
           timePeriod: "day",
-          currentUser: {}
+          currentUser: localStorage.getItem("currentUser") ? JSON.parse(localStorage.getItem("currentUser")) : "" 
         }
     }
 
