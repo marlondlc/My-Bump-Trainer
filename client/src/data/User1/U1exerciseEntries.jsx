@@ -162,7 +162,7 @@ const U1dayExercisePie = [
     },
     {
         label: "Strength",
-        value: "15"
+        value: "0"
     },
     {
         label: "Flexibility",
@@ -181,7 +181,7 @@ const U1weekExercisePie = [
     },
     {
         label: "Strength",
-        value: "15"
+        value: "0"
     },
     {
         label: "Flexibility",
@@ -200,7 +200,7 @@ const U1monthExercisePie = [
     },
     {
         label: "Strength",
-        value: "60"
+        value: "0"
     },
     {
         label: "Flexibility",

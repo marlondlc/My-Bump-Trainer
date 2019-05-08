@@ -170,7 +170,7 @@ const U2dayExercisePie = [
     },
     {
         label: "Balance",
-        value: "0"
+        value: "10"
     }
 ]
 
@@ -189,7 +189,7 @@ const U2weekExercisePie = [
     },
     {
         label: "Balance",
-        value: "0"
+        value: "10"
     }
 ]
 
@@ -208,7 +208,7 @@ const U2monthExercisePie = [
     },
     {
         label: "Balance",
-        value: "0"
+        value: "10"
     }
 ]
 

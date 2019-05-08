@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import styles from '../../css/style'
+import "../../css/App.css";
 
 
 class DrawerRight extends React.Component {

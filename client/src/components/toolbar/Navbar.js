@@ -17,7 +17,7 @@ import DrawerRight from "../SideDrawer/DrawerRight";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   grow: {
     flexGrow: 1
@@ -25,7 +25,7 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     marginRight: 20
-  }
+  },
 };
 
 // function DotIcon(props) {
@@ -76,20 +76,6 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar style={{ margintop: "60px" }} position="fixed">
           <Toolbar>
-            {/* {/* <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton> */}
-
-            {/* <Typography variant="h6" color="inherit" className={classes.grow}>
-              {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
-
-              <a>  : Your baby is 20 weeks old ! Equivalent to an Artichoke</a>
-              <img src="http://placekitten.com/25/25" alt="Kitten" height="25" width="25" />
-            </Typography> */}
             <Typography variant="h6" color="inherit" className={classes.grow} />
             {auth && <DrawerRight />}
           </Toolbar>

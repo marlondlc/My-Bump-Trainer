@@ -19,10 +19,26 @@
   font-size: large;
 }
 
+.MuiAppBar-colorPrimary-11 {
+  background-image: linear-gradient(135deg,  #26418f 0%,#DA9DDC 100%);
+  /* background-image: linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%); */
+  
+  /* background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%); */
+}
+
+.b-agent-demo_header {
+  background-image: linear-gradient(135deg,  #26418f 0%,#DA9DDC 100%);
+}
+
+.b-agent-demo .b-agent-demo_header-description {
+  font-size: 14px;
+}
+
 .components {
   display: flex;
   justify-content: space-around;
   margin-top: 90px;
+  background-image: url("../../public/lilypads.png");
 }
 
 @keyframes App-logo-spin {
@@ -46,7 +62,7 @@
   font-size: 18px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   .components {
     display: inline;
   }
