@@ -8,17 +8,23 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import MoreVert from '@material-ui/icons/MoreVert';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SvgIcon from '@material-ui/core/SvgIcon';
 // import Link from "react-router-dom"
 
 const styles = {
   list: {
-    width: 250,
+    width: 350,
   },
   fullList: {
     width: 'auto',
   },
+  image: {
+    justifyContent: 'center',
+    display: 'flex',
+    marginbottom: '20px'
+  }
 };
 
 function HomeIcon(props) {
@@ -57,11 +63,16 @@ class DrawerRight extends React.Component {
       color:"white",
       fontSize:"50px",
       verticalAlign: "middle"
+
     }
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['login/logout'].map((text) => (
+          <div className={classes.image}>
+            <img alt="user" src="/images/avatar_icon.png"/>
+          </div>
+
+          {['Logout'].map((text) => (
             <a href="/login">
               <ListItem button key={text}>
                 <ListItemIcon> <AccountCircle className={classes.icon} color="primary"/> </ListItemIcon>
@@ -70,9 +81,9 @@ class DrawerRight extends React.Component {
             </a>
           ))}
         </List>
-        <Divider />
+
         <List>
-          {['Profile'].map((text, index) => (
+          {['Profile'].map((text) => (
             < a href="/profile">
             <ListItem button key={text}>
               <ListItemIcon><ProfileIcon className={classes.icon} color="primary"/> </ListItemIcon>
@@ -81,9 +92,9 @@ class DrawerRight extends React.Component {
             </a>
           ))}
         </List>
-        <Divider />
+
         <List>
-          {['Home'].map((text, index) => (
+          {['Home'].map((text) => (
             <a href='/'>
             <ListItem button key={text}>
               <ListItemIcon><HomeIcon className={classes.icon} color="primary" /></ListItemIcon>
@@ -92,6 +103,7 @@ class DrawerRight extends React.Component {
             </a>
           ))}
         </List>
+        <Divider />
       </div>
     );
 
@@ -100,7 +112,7 @@ class DrawerRight extends React.Component {
     return (
       <div>
 
-        <Button onClick={this.toggleDrawer('right', true)}><span style={spanstyle}><AccountCircle style={{fontSize:"60px"}}/></span></Button>
+        <Button onClick={this.toggleDrawer('right', true)}><span style={spanstyle}><MoreVert style={{fontSize:"40px"}}/></span></Button>
 
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
           <div

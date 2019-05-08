@@ -13,6 +13,12 @@ import Footer from '../components/toolbar/Footer';
 import axios from 'axios';
 import styles from "../css/userProfile"
 
+const style = {
+  image: {
+    justifyContent: 'center',
+    display: 'flex',
+  }
+}
 
 class UserProfile extends Component {
   constructor(props) {
@@ -56,16 +62,14 @@ class UserProfile extends Component {
             title="User profile picture"
           />
           <Divider/>
-          <CardHeader
-            avatar={
-              <Avatar>
-                <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-6.png"
-                alt="user icon"/>
-              </Avatar>
-            }
+          <div>
 
-            title={currentUser.first_name + ' ' + currentUser.last_name} //{this.state.first_name}
-          />
+            <img src="images/avatar_icon.png"
+                alt="user icon"/>
+
+
+            {/* title={currentUser.first_name + ' ' + currentUser.last_name} //{this.state.first_name} */}
+          </div>
 
           <CardContent>
             <br/>

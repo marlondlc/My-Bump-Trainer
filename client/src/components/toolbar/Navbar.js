@@ -25,7 +25,8 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     marginRight: 20
-  }
+  },
+
 };
 
 // function DotIcon(props) {
@@ -84,12 +85,23 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton> */}
 
+            <img
+              src="/images/symbol.png"
+              style={{ width: "auto", height: "80px" , marginRight: "10px"}}
+              alt="Logo"
+            />
+            <div style={{ color: '#DA9DDC' }}>
+              <div>My</div>
+              <div>Bump</div>
+              <div>Trainer</div>
+            </div>
             {/* <Typography variant="h6" color="inherit" className={classes.grow}>
-              {(this.props.currentUser) ? this.props.currentUser.email : "Not logged in!" }
+              {(this.props.currentUser) ? this.props.currentUser.first_name : "Not logged in!" }
 
               <a>  : Your baby is 20 weeks old ! Equivalent to an Artichoke</a>
               <img src="http://placekitten.com/25/25" alt="Kitten" height="25" width="25" />
             </Typography> */}
+
             <Typography variant="h6" color="inherit" className={classes.grow} />
             {auth && <DrawerRight />}
           </Toolbar>
