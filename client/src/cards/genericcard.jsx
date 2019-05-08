@@ -39,6 +39,7 @@ class GenericCard extends React.Component {
     this.setState({
       recexpand: recexpand ? panel : false,
     });
+    // waterCallback()
   };
 
   handleClick = () => {

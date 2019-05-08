@@ -10,7 +10,7 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from "fusioncharts/fusioncharts.widgets";
-import {U1dayExerciseEntries, U1weekExerciseEntries, U1monthExerciseEntries, U1totalExerciseDay, U1averageExerciseWeek, U1averageExerciseMonth, U1dayExercisePie, U1weekExercisePie, U1monthExercisePie} from'../data/User1/U1exerciseEntries';
+// import {U1dayExerciseEntries, U1weekExerciseEntries, U1monthExerciseEntries, U1totalExerciseDay, U1averageExerciseWeek, U1averageExerciseMonth, U1dayExercisePie, U1weekExercisePie, U1monthExercisePie} from'../data/User1/U1exerciseEntries';
 import {U2dayExerciseEntries, U2weekExerciseEntries, U2monthExerciseEntries, U2totalExerciseDay, U2averageExerciseWeek, U2averageExerciseMonth, U2dayExercisePie, U2weekExercisePie, U2monthExercisePie} from'../data/User2/U2exerciseEntries';
 import {exercisePerDayRec} from '../data/recommendations';
 
@@ -45,12 +45,12 @@ class ExerciseCard extends React.Component {
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
 
-    let currentUser = false;
-    let currentUserId;
-    if (this.props.currentUser) {
-      currentUser = true;
-      currentUserId = this.props.currentUser.id;
-    }
+    // let currentUser = false;
+    // let currentUserId;
+    // if (this.props.currentUser) {
+    //   currentUser = true;
+    //   currentUserId = this.props.currentUser.id;
+    // }
 
     // console.log(this.props.currentUser)
 
@@ -58,22 +58,6 @@ class ExerciseCard extends React.Component {
     let exerciseEntries;
     let exercisePie;
 
-    if (currentUser) {
-      if (currentUserId === 6) {
-        if (timePeriod === 'day') {
-          averageExercise = U1totalExerciseDay;
-          exerciseEntries = U1dayExerciseEntries;  
-          exercisePie = U1dayExercisePie;
-        } else if (timePeriod === 'week') {
-          averageExercise = U1averageExerciseWeek; 
-          exerciseEntries = U1weekExerciseEntries;
-          exercisePie = U1weekExercisePie;
-        } else if (timePeriod === 'month') {
-          averageExercise = U1averageExerciseMonth;
-          exerciseEntries = U1monthExerciseEntries;
-          exercisePie = U1monthExercisePie;
-        }
-      } else {
         if (timePeriod === 'day') {
           averageExercise = U2totalExerciseDay;
           exerciseEntries = U2dayExerciseEntries;  
@@ -87,8 +71,8 @@ class ExerciseCard extends React.Component {
           exerciseEntries = U2monthExerciseEntries;
           exercisePie = U2monthExercisePie;
         }
-      }
-    }
+      
+    
 
     // This sets the data for the charts
     exerciseTarget.dataSource.data = exercisePie;
