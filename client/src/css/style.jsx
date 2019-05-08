@@ -12,7 +12,7 @@ const styles = theme => ({
       marginBottom: 80,
     },
     list: {
-      width: 400,
+      width: 600,
     },
     fullList: {
       width: 'auto',
@@ -20,6 +20,7 @@ const styles = theme => ({
     Esme: {
       // backgroundColor: teal[600],
       color: grey[50],
+      borderColor: grey[50]
     },
     media: {
       height: 0,

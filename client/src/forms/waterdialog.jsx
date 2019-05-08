@@ -89,7 +89,7 @@ class AddWater extends React.Component {
               autoFocus
               margin="dense"
               id="volume"
-              label="Volume"
+              label="Volume (mL)"
               type="text"
               fullWidth
               value={this.state.volume}

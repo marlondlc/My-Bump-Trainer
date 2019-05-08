@@ -6,23 +6,6 @@ import Button from '@material-ui/core/Button';
 import styles from '../../css/style'
 
 
-// function HomeIcon(props) {
-//   return (
-//     <SvgIcon {...props}>
-//       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-//     </SvgIcon>
-//   );
-// }
-
-// function ProfileIcon(props) {
-//   return (
-//     <SvgIcon {...props}>
-//       <path d="M22,4H14V7H10V4H2A2,2 0 0,0 0,6V20A2,2 0 0,0 2,22H22A2,2 0 0,0 24,20V6A2,2 0 0,0 22,4M8,9A2,2 0 0,1 10,11A2,2 0 0,1 8,13A2,2 0 0,1 6,11A2,2 0 0,1 8,9M12,17H4V16C4,14.67 6.67,14 8,14C9.33,14 12,14.67 12,16V17M20,18H14V16H20V18M20,14H14V12H20V14M20,10H14V8H20V10M13,6H11V2H13V6Z" />
-//     </SvgIcon>
-//   );
-// }
-
-
 class DrawerRight extends React.Component {
   state = {
     right: false,
@@ -41,8 +24,8 @@ class DrawerRight extends React.Component {
       <div className={classes.list}>
             <iframe
                 allow="microphone;"
-                width="350"
-                height="430"
+                width="100%"
+                height="800"
                 src="https://console.dialogflow.com/api-client/demo/embedded/1ace6817-a7da-43bd-99d9-b70cc8a4274d">
             </iframe>
       </div>
