@@ -56,7 +56,7 @@ class Home extends Component {
         </div>
         </div>
         {localStorage.getItem('jwt') &&
-        <div style={{padding: '10px 0 100px 0'}}>
+        <div style={{padding: '10px 0  0'}}>
           <div className="components">
             <WaterCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod}/>
             <FoodCard currentUser={this.props.currentUser} timePeriod={this.state.timePeriod} trimester={this.state.trimester} />

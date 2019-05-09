@@ -30,7 +30,7 @@ class Footer extends Component {
 
 const styles = {
   root: {
-    marginTop: 30,
+    // marginTop: 30,
     backgroundColor: `#26418f`,
     borderTop: "solid 3px #5c6bc0",
     paddingTop: "10px",

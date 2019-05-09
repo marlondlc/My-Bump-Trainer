@@ -113,6 +113,7 @@ class AddWater extends React.Component {
               margin="dense"
               id="timedate"
               label="When"
+              defaultValue="09/05/2019"
               type="date"
               fullWidth
               value={this.state.drunk_at}
