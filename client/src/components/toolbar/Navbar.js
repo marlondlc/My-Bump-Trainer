@@ -5,19 +5,20 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import DrawerRight from "../SideDrawer/DrawerRight";
+import styles from "../../css/NavbarStyles"
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  },
-};
+// const styles = {
+//   root: {
+//     flexGrow: 1,
+//   },
+//   grow: {
+//     flexGrow: 1
+//   },
+//   menuButton: {
+//     marginLeft: -12,
+//     marginRight: 20
+//   },
+// };
 
 class MenuAppBar extends React.Component {
   state = {
@@ -66,7 +67,7 @@ class MenuAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton> */}
-
+            
             <img
               src="/images/symbol.png"
               style={{ width: "auto", height: "80px" , marginRight: "10px"}}
@@ -76,6 +77,10 @@ class MenuAppBar extends React.Component {
               <div>My</div>
               <div>Bump</div>
               <div>Trainer</div>
+            </div>
+            
+            <div style={{ color: 'white', fontSize: "20pt", paddingLeft: '2rem'}} >
+              <a> {(this.props.currentUser.first_name)} {(this.props.currentUser.last_name)} </a>
             </div>
             {/* <Typography variant="h6" color="inherit" className={classes.grow}>
               {(this.props.currentUser) ? this.props.currentUser.first_name : "Not logged in!" }
