@@ -12,7 +12,6 @@ import foodPyramidchart from '../charts/foodpyramid.jsx';
 import actualfoodPyramid from '../charts/actualfoodpyramid.jsx';
 import foodConfigs from '../charts/food.jsx';
 import {U1dayFoodEntries, U1weekFoodEntries, U1monthFoodEntries, U1totalFoodDay, U1averageFoodWeek, U1averageFoodMonth, U1dayFoodPyramid, U1weekFoodPyramid, U1monthFoodPyramid} from'../data/User1/U1foodEntries';
-// import {U2dayFoodEntries, U2weekFoodEntries, U2monthFoodEntries, U2totalFoodDay, U2averageFoodWeek, U2averageFoodMonth, U2dayFoodPyramid, U2weekFoodPyramid, U2monthFoodPyramid} from'../data/User2/U2foodEntries';
 import {foodPyramidRec, caloriesPerDayRec} from '../data/recommendations';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
@@ -27,7 +26,6 @@ class FoodCard extends React.Component {
     axios.get(`/api/v1/food_entries`)
       .then(res => {
         const food_entries = res.data;
-        // console.log(food_entries)
         this.setState({ food_entries });
       })
       .catch(error => console.log(error));
@@ -37,18 +35,10 @@ class FoodCard extends React.Component {
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     const timePeriod = this.props.timePeriod;
 
-    // let currentUser = false;
-    // let currentUserId;
-    // if (this.props.currentUser) {
-    //   currentUser = true;
-    //   currentUserId = this.props.currentUser.id;
-    // }
-
     let averageFood;
     let foodEntries;
     let foodPyramid;
 
-    
         if (timePeriod === 'day') {
           averageFood = U1totalFoodDay;
           foodEntries = U1dayFoodEntries;  
@@ -63,8 +53,6 @@ class FoodCard extends React.Component {
           foodPyramid = U1monthFoodPyramid;
         }
       
-    
-
     // This sets the data for the charts
     foodPyramidchart.dataSource.data = foodPyramid;
     foodConfigs.dataSource.data = foodEntries;

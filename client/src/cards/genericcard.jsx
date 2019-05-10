@@ -1,39 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-// import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from '../css/style';
 import Paper from '@material-ui/core/Paper';
 
 class GenericCard extends React.Component {
   state = { 
-    // expanded: false,
     recexpand: false,
     type: this.props.type,
     chart1: true,
    };
-
-  // handleExpandClick = () => {
-  //   this.setState(state => ({ expanded: !state.expanded }));
-  // };
 
   handleChange = panel => (event, recexpand) => {
     this.setState({
@@ -65,11 +51,6 @@ class GenericCard extends React.Component {
               })()}
             </Avatar>
           }
-          // action={
-          //   <IconButton>
-          //     <MoreVertIcon />
-          //   </IconButton>
-          // }
           title={(() => {
             switch (this.state.type) {
               case "water": return "Your water";
@@ -80,8 +61,6 @@ class GenericCard extends React.Component {
           })()}
           subheader={this.props.recommendation}
         />
-        {/* Put something in here to show the total water/exercise/food that they have done */}
-        {/* {this.props.averageWater} */}
         <Paper className={classes.root} elevation={1}>
           <Typography variant="h5" component="h3">
               {(() => {

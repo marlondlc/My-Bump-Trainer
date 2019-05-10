@@ -1,10 +1,11 @@
+// This configures the actual foodpyramid. Data is passed to this page from the data recommendations via the foodcard
+
 const myDataSource = {
     "chart": {
       theme: "fusion",
       caption: "Actual food pyramid",
       showLegend: "1",
       showLabels: "0",
-      // subcaption: "As per www.safefood.eu",
       showvalues: "1",
       numbersuffix: "%",
       plottooltext: "You ate <b>$dataValue</b> of <b>$label</b>"

@@ -1,3 +1,4 @@
+// This configures the exercise over time chart. Data is passed to this page from the exercise card.
 const myDataSource = {
     "chart": {
         "caption": "Your Exercise",

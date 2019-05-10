@@ -1,3 +1,5 @@
+// This configures the water cylinder chart. Data is sent to this via the watercard
+
 const myDataSource = {
     chart: {
         caption: "Water per day",

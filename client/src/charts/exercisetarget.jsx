@@ -1,3 +1,5 @@
+// This configures the exercise pie chart. Data is sent to this via the exercisecard
+
 const myDataSource =  {
     chart: {
       caption: "Your Exercise",
@@ -10,7 +12,6 @@ const myDataSource =  {
       showLabels: "0",
       plottooltext:
         "<b>$percentValue</b> of your exercise was <b>$label</b>",
-      // centerlabel: "# Users: $value",
       theme: "fusion"
     },
   };

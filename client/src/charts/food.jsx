@@ -1,3 +1,5 @@
+// This configures the food over time chart (not currently used). Data is sent to this via the foodcard
+
 const myDataSource = {
     "chart": {
         "caption": "How much food have you eaten today",

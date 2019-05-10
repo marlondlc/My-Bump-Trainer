@@ -1,3 +1,5 @@
+// This configures the user's food chart. Data is sent to this via the foodcard
+
 const myDataSource = {
     "chart": {
       theme: "fusion",

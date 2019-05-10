@@ -23,13 +23,7 @@ class WaterCard extends React.Component {
     water_entries: []
 
   }
-      // this comment will be used for the map function listing elements of water data to the chart
-     // <div>
-      //   <span>TESTING JSON RESPONSE</span>
-      //   <ul>
-      //   { this.state.water_entries.map(water => <li>{water_entries}</li>)}
-      //   </ul>
-      // </div>
+
   handleWaterSubmit = () => {
     console.log('handleWaterSubmit')
     axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
@@ -41,21 +35,8 @@ class WaterCard extends React.Component {
     .catch(error => console.log(error));
   }  
   componentDidMount = () => {
-    // console.log(this.props.timePeriod)
-    // console.log('this is the function', waterWeekAverage)
-    // axios.get(`/api/v1/water_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
-    //   .then(res => {
-    //     const water_entries = res.data ;
-    //     console.log(water_entries)
-    //     this.setState({ water_entries });
-    //   })
-    //   .catch(error => console.log(error));
     this.handleWaterSubmit()
-
-    }  
-
-    
-  
+  }  
 
   // Create function that will transform the data iam ngetting from axios/get -- 
 
@@ -77,17 +58,8 @@ class WaterCard extends React.Component {
 
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.
     
-    // let currentUser = false;
-    // let currentUserId;
-    // if (this.props.currentUser) {
-    //   currentUser = true;
-    //   currentUserId = this.props.currentUser.id;
-    // }
-
     let averageWater;
     let waterEntries;
-
-  
 
         if (timePeriod === 'day') {
           averageWater = sumvolumedaily / 1000;
@@ -98,20 +70,7 @@ class WaterCard extends React.Component {
         } else if (timePeriod === 'month') {
           averageWater = U1averageWaterMonth;
           waterEntries = U1monthWaterEntries;
-        }
-      // } else {
-      //   if (timePeriod === 'day') {
-      //     averageWater = U2totalWaterDay;
-      //     waterEntries = U2dayWaterEntries;  
-      //   } else if (timePeriod === 'week') {
-      //     averageWater = U2averageWaterWeek; 
-      //     waterEntries = U2weekWaterEntries;
-      //   } else if (timePeriod === 'month') {
-      //     averageWater = U2averageWaterMonth;
-      //     waterEntries = U2monthWaterEntries;
-      //   }
-      // }
-    
+        }    
     
     // This sets the data for the charts
     waterCylinder.dataSource.value = averageWater;
@@ -138,7 +97,6 @@ class WaterCard extends React.Component {
         message = `Drinking enough water helps manage symptoms like heart burn. Try drinking an extra ${Math.round((2.3 - averageWater) * 1000/440)} bottle(s).`
         video = 'https://www.youtube.com/embed/F9sigNSpETc'
     }
-
 
     return (
       // This passes variables to the generic card component which renders the card

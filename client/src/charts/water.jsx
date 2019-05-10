@@ -1,3 +1,5 @@
+// This configures the water over time chart. Data is sent to this via the watercard
+
 const myDataSource = {
   "chart": {
       "caption": "How much water you've drank",
