@@ -1,5 +1,5 @@
 
-# Bump Trainer
+# My Bump Trainer
 
 Welcome to Bump Trainer. This project is a web application health platform designed initially for pregnant women. It is built with React-App, MaterialUi, Axios, Ruby-on-Rails and PostgreSQL. Bump Trainer is divided in three sections to display personal information about the user's health : health, food diet and exercise. Fusion Chart React is used in each section to provide graphical and interactive data to the user. Lastly, Json-Web-Token is used to protect the users information when the server is communicating with the client.
 
