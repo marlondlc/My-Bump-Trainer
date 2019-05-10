@@ -43,13 +43,10 @@ function ProfileIcon(props) {
   );
 }
 
-
 class DrawerRight extends React.Component {
   state = {
     right: false,
   };
-
-
 
   toggleDrawer = (side, open) => () => {
     this.setState({
@@ -63,8 +60,8 @@ class DrawerRight extends React.Component {
       color:"white",
       fontSize:"50px",
       verticalAlign: "middle"
-
     }
+
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -107,13 +104,9 @@ class DrawerRight extends React.Component {
       </div>
     );
 
-
-
     return (
       <div>
-
         <Button onClick={this.toggleDrawer('right', true)}><span style={spanstyle}><MoreVert style={{fontSize:"40px"}}/></span></Button>
-
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
           <div
             tabIndex={0}
