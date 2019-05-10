@@ -16,7 +16,7 @@ class AddWater extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      volume: 440,
+      volume: 500,
       drunk_at: "",
       open: false,
     }

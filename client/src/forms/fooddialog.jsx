@@ -83,6 +83,17 @@ class AddFood extends React.Component {
               defaultValue="1"
               onChange={this.handleChange}
             />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="timedate"
+              label="When"
+              defaultValue="09/05/2019"
+              type="date"
+              fullWidth
+              value={this.state.drunk_at}
+              onInputCapture={this.handleChangeDate}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
