@@ -1,170 +1,186 @@
 // Need to pass suggestions down from dialog.
 // Since moved styles into separate file, the form changes size based on whether you are searching.
 // It would be nicer if it stayed the same size.
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import deburr from 'lodash/deburr';
+// import Downshift from 'downshift';
+// import { withStyles } from '@material-ui/core/styles';
+// import TextField from '@material-ui/core/TextField';
+// import Paper from '@material-ui/core/Paper';
+// import MenuItem from '@material-ui/core/MenuItem';
+
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import deburr from 'lodash/deburr';
-import Downshift from 'downshift';
+import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import styles from '../css/searchbarStyles';
+import {foodSuggestions} from '../data/recommendations';
 
-const suggestions = [
-  { label: 'Acorn Squash', servingSize: "0.5 Cup" },
-  { label: 'Adzuki Beans', servingSize: "0.5 Cup"},
-  { label: 'Agave Syrup', servingSize: "1 Tbsp"},
-  { label: 'Aioli', servingSize: "1 Tbsp" },
-  { label: 'Alfalfa Sprouts', servingSize: "0.5 Cup"},
-  { label: 'Almond milk', servingSize: "" },
-  { label: 'Almond Oil', servingSize: "1 Tbsp"},
-  { label: 'Almonds', servingSize: "15g"},
-  { label: 'Amaranth', servingSize: "0.5 Cup"},
-  { label: 'Anchovies', servingSize: "20g"},
-  { label: 'Ants, chocolate covered', servingSize: "1 Tbsp"},
-  { label: 'Apple', servingSize: "1 Apple" },
-  { label: 'Apple Cider', servingSize: "1 Tbsp"},
-  { label: 'Apple Juice', servingSize: "1 Cup" },
-  { label: 'Apple Juice concentrate', servingSize: "100mL"},
-  { label: 'Apple Sauce', servingSize: "1 Tbsp" },
-  { label: 'Apricot', servingSize: "1 Apricot"},
-  { label: 'Arrowroot', servingSize: "1 Tbsp"},
-  { label: 'Artichoke', servingSize: "1 Artichoke" },
-  { label: 'Artichoke Heart', servingSize: "1 Artichoke Heart" },
-  { label: 'Artificial Sweetener', servingSize: "1 Tablet" },
-  { label: 'Asparagus', servingSize: "70 g" },
-  { label: 'Aubergine', servingSize: "1 Cup" },
-  { label: 'Avocado', servingSize: "100g" },
-  { label: 'Avocado Oil', servingSize: "100g" },
-  { label: 'Avocado Spread', servingSize: "100g" },
-  { label: 'Baba ghanoush', servingSize: "1 Cup" },
-  { label: 'Bacon', servingSize: "27g" },
-  { label: 'Bagel', servingSize: "1 Bagel" },
-  { label: 'Baguette', servingSize: "0.25 Baguette" },
-  { label: 'Baked Alaska', servingSize: "1 Slice" },
-  { label: 'Baked Beans', servingSize: "0.5 Can" },
-  { label: 'Baklava', servingSize: "1 Slice" },
-  { label: 'Banana', servingSize: "1 Banana" },
-  { label: 'Barley Pearl', servingSize: "0.5 Cup" },
-  { label: 'Barramundi', servingSize: "160g" },
-  { label: 'Basmati Rice', servingSize: "0.5 Cup" },
-  { label: 'Bean Shoots', servingSize: "0.5 Cup"},
-  { label: 'Beetroot', servingSize: "1 Beet" },
-  { label: 'Birds nest soup', servingSize: "1 Bowl" },
-  { label: 'Biscuit', servingSize: "1 Biscuit" },
-];
+const suggestions = foodSuggestions.map(suggestion => ({
+  value: suggestion.id,
+  label: `${suggestion.label} (${suggestion.servingSize})`,
+}));
 
-function renderInput(inputProps) {
-  const { InputProps, classes, ref, ...other } = inputProps;
+function NoOptionsMessage(props) {
+  return (
+    <Typography
+      color="textSecondary"
+      className={props.selectProps.classes.noOptionsMessage}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
+  );
+}
 
+function inputComponent({ inputRef, ...props }) {
+  return <div ref={inputRef} {...props} />;
+}
+
+function Control(props) {
   return (
     <TextField
+      fullWidth
       InputProps={{
-        inputRef: ref,
-        classes: {
-          root: classes.inputRoot,
-          input: classes.inputInput,
+        inputComponent,
+        inputProps: {
+          className: props.selectProps.classes.input,
+          inputRef: props.innerRef,
+          children: props.children,
+          ...props.innerProps,
         },
-        ...InputProps,
       }}
-      {...other}
+      {...props.selectProps.textFieldProps}
     />
   );
 }
 
-function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
-  const isHighlighted = highlightedIndex === index;
-  const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
-
+function Option(props) {
   return (
     <MenuItem
-      {...itemProps}
-      key={suggestion.label}
-      selected={isHighlighted}
+      buttonRef={props.innerRef}
+      selected={props.isFocused}
       component="div"
       style={{
-        fontWeight: isSelected ? 500 : 400,
+        fontWeight: props.isSelected ? 500 : 400,
       }}
+      {...props.innerProps}
     >
-      {suggestion.label} (serving size is {suggestion.servingSize})
+      {props.children}
     </MenuItem>
   );
 }
-renderSuggestion.propTypes = {
-  highlightedIndex: PropTypes.number,
-  index: PropTypes.number,
-  itemProps: PropTypes.object,
-  selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
-};
-  
-function getSuggestions(value) {
-  const inputValue = deburr(value.trim()).toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
 
-  return inputLength === 0
-    ? []
-    : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
-
-        if (keep) {
-          count += 1;
-        }
-
-        return keep;
-      });
-}
-
-function IntegrationDownshift(props) {
-  const { classes } = props;
-
+function Placeholder(props) {
   return (
-    <div className={classes.root}>
-      <Downshift id="downshift-simple">
-        {({
-          getInputProps,
-          getItemProps,
-          getMenuProps,
-          highlightedIndex,
-          inputValue,
-          isOpen,
-          selectedItem,
-        }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              InputProps: getInputProps({
-                placeholder: 'Search for food',
-              }),
-            })}
-            <div {...getMenuProps()}>
-              {isOpen ? (
-                <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue).map((suggestion, index) =>
-                    renderSuggestion({
-                      suggestion,
-                      index,
-                      itemProps: getItemProps({ item: suggestion.label, servingSize: suggestion.servingSize }),
-                      highlightedIndex,
-                      selectedItem,
-                    }),
-                  )}
-                </Paper>
-              ) : null}
-            </div>
-          </div>
-        )}
-      </Downshift>
-    </div>
+    <Typography
+      color="textSecondary"
+      className={props.selectProps.classes.placeholder}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
   );
 }
 
-IntegrationDownshift.propTypes = {
-  classes: PropTypes.object.isRequired,
+function SingleValue(props) {
+  return (
+    <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
+      {props.children}
+    </Typography>
+  );
+}
+
+function ValueContainer(props) {
+  return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
+}
+
+function Menu(props) {
+  return (
+    <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
+      {props.children}
+    </Paper>
+  );
+}
+
+const components = {
+  Control,
+  Menu,
+  NoOptionsMessage,
+  Option,
+  Placeholder,
+  SingleValue,
+  ValueContainer,
 };
 
-export default withStyles(styles)(IntegrationDownshift);
+class IntegrationReactSelect extends React.Component {
+  state = {
+    foodChoice: null,
+    servingSize: 1
+  };
+
+  handleChange = name => value => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleServingChange = event => {
+    this.setState({ servingSize: event.target.value })
+  }
+
+  render() {
+    const { classes, theme } = this.props;
+
+    const selectStyles = {
+      input: base => ({
+        ...base,
+        color: theme.palette.text.primary,
+        '& input': {
+          font: 'inherit',
+        },
+      }),
+    };
+
+    return (
+      <div className={classes.root}>
+        <NoSsr>
+          <Select
+            classes={classes}
+            styles={selectStyles}
+            options={suggestions}
+            components={components}
+            value={this.state.foodChoice}
+            onChange={this.handleChange('foodChoice')}
+            placeholder="Search for the food you want to add"
+            isClearable
+          />
+          <TextField
+              autoFocus
+              margin="dense"
+              id="servings"
+              label="Number of servings"
+              type="text"
+              fullWidth
+              defaultValue="1"
+              onChange={this.handleServingChange}
+            />
+        </NoSsr>
+      </div>
+    );
+  }
+}
+
+IntegrationReactSelect.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);

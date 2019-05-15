@@ -19,17 +19,31 @@ widgets(FusionCharts);
 
 class FoodCard extends React.Component {
   state = {
-    food_entries: []
+    food_entries: [], 
   }
 
-  componentDidMount() {
-    axios.get(`/api/v1/food_entries`)
-      .then(res => {
-        const food_entries = res.data;
-        this.setState({ food_entries });
-      })
-      .catch(error => console.log(error));
-  }
+  handleFoodSubmit = () => {
+    console.log('handleFoodSubmit')
+    axios.get(`/api/v1/food_entries/${this.props.timePeriod ? this.props.timePeriod : ""}`)
+    .then(res => {
+      const food_entries = res.data ;
+      console.log(food_entries)
+      this.setState({ food_entries });
+    })
+    .catch(error => console.log(error));
+  }  
+  componentDidMount = () => {
+    this.handleFoodSubmit()
+  }  
+
+  // componentDidMount() {
+  //   axios.get(`/api/v1/food_entries`)
+  //     .then(res => {
+  //       const food_entries = res.data;
+  //       this.setState({ food_entries });
+  //     })
+  //     .catch(error => console.log(error));
+  // }
   
   render() {
     // Here this is determining which data is going to be passed to the chart depending on the timeperiod.

@@ -13,7 +13,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import GammelTheme from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import widgets from 'fusioncharts/fusioncharts.widgets';
 import {U1weekWaterEntries, U1monthWaterEntries, U1averageWaterWeek, U1averageWaterMonth} from'../data/User1/U1waterEntries';
-
+  
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, GammelTheme);
 widgets(FusionCharts);
 
@@ -21,7 +21,6 @@ widgets(FusionCharts);
 class WaterCard extends React.Component {
   state = {
     water_entries: []
-
   }
 
   handleWaterSubmit = () => {
